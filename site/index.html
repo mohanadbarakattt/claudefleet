@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClaudeStack — Digital products that make your AI make you money</title>
+<meta name="description" content="Ready-made agent packs, money-making prompt vaults, and business playbooks for Claude & AI power users. Install in minutes, earn from day one.">
+<meta property="og:title" content="ClaudeStack — Upgrade your Claude. Upgrade your income.">
+<meta property="og:description" content="Agent packs, prompt vaults, and playbooks for AI power users.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#0a0a0f; --panel:#12121a; --panel2:#171722; --border:#26263a;
+    --text:#e8e8f0; --muted:#9a9ab0; --accent:#d97748; --accent2:#e8955f;
+    --green:#4ade80;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid var(--border)}
+  .logo{font-weight:800;font-size:1.25rem;letter-spacing:-.5px}
+  .logo span{color:var(--accent)}
+  .nav-cta{background:var(--accent);color:#0a0a0f;font-weight:700;padding:10px 20px;border-radius:10px;font-size:.9rem;transition:.2s}
+  .nav-cta:hover{background:var(--accent2)}
+  header{padding:90px 0 70px;text-align:center}
+  .pill{display:inline-block;border:1px solid var(--border);background:var(--panel);color:var(--muted);font-size:.8rem;padding:6px 14px;border-radius:99px;margin-bottom:24px}
+  .pill b{color:var(--green)}
+  h1{font-size:clamp(2.2rem,5.5vw,3.6rem);line-height:1.1;letter-spacing:-1.5px;font-weight:800}
+  h1 em{font-style:normal;color:var(--accent)}
+  .sub{color:var(--muted);font-size:1.15rem;max-width:620px;margin:20px auto 36px}
+  .btn{display:inline-block;background:var(--accent);color:#0a0a0f;font-weight:700;padding:16px 34px;border-radius:12px;font-size:1.05rem;transition:.2s}
+  .btn:hover{transform:translateY(-2px);background:var(--accent2)}
+  .btn-ghost{display:inline-block;border:1px solid var(--border);color:var(--text);padding:16px 30px;border-radius:12px;font-weight:600;margin-left:12px;transition:.2s}
+  .btn-ghost:hover{border-color:var(--accent)}
+  .trust{color:var(--muted);font-size:.85rem;margin-top:18px}
+  section{padding:70px 0}
+  .kicker{color:var(--accent);font-weight:700;text-transform:uppercase;font-size:.8rem;letter-spacing:2px}
+  h2{font-size:2rem;letter-spacing:-.5px;margin:8px 0 40px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:32px;display:flex;flex-direction:column;position:relative;transition:.25s}
+  .card:hover{border-color:var(--accent);transform:translateY(-4px)}
+  .card.flag{border-color:var(--accent)}
+  .badge{position:absolute;top:-12px;right:20px;background:var(--accent);color:#0a0a0f;font-size:.72rem;font-weight:800;padding:4px 12px;border-radius:99px;text-transform:uppercase;letter-spacing:1px}
+  .emoji{font-size:2rem;margin-bottom:14px}
+  .card h3{font-size:1.3rem;margin-bottom:8px}
+  .card .who{color:var(--accent2);font-size:.85rem;font-weight:600;margin-bottom:14px}
+  .card p{color:var(--muted);font-size:.95rem}
+  .card ul{list-style:none;margin:18px 0;flex:1}
+  .card li{color:var(--muted);font-size:.9rem;padding:6px 0 6px 26px;position:relative}
+  .card li::before{content:"✓";color:var(--green);position:absolute;left:0;font-weight:700}
+  .price{font-size:2rem;font-weight:800;margin:10px 0 4px}
+  .price s{color:var(--muted);font-size:1.1rem;font-weight:400;margin-left:10px}
+  .card .btn{text-align:center;margin-top:14px}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+  .step{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:26px}
+  .step .n{color:var(--accent);font-weight:800;font-size:1.6rem}
+  .step h4{margin:8px 0 6px}
+  .step p{color:var(--muted);font-size:.9rem}
+  .bundle{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--accent);border-radius:20px;padding:48px;text-align:center}
+  .bundle h2{margin-bottom:12px}
+  .bundle p{color:var(--muted);max-width:520px;margin:0 auto 26px}
+  details{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin-bottom:12px}
+  summary{cursor:pointer;font-weight:600}
+  details p{color:var(--muted);margin-top:10px;font-size:.95rem}
+  .capture{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:44px;text-align:center}
+  .capture form{display:flex;gap:10px;max-width:440px;margin:22px auto 0;flex-wrap:wrap;justify-content:center}
+  .capture input{flex:1;min-width:220px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;color:var(--text);font-size:1rem}
+  footer{border-top:1px solid var(--border);padding:34px 0;color:var(--muted);font-size:.85rem;text-align:center}
+  @media(max-width:640px){.btn-ghost{margin-left:0;margin-top:12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="logo">Claude<span>Stack</span></div>
+    <a class="nav-cta" href="#products">Get the Stack</a>
+  </nav>
+
+  <header>
+    <div class="pill">🔥 Built with Claude, for Claude users — <b>instant download</b></div>
+    <h1>Your AI is capable of<br>making you money.<br><em>Give it the tools.</em></h1>
+    <p class="sub">Ready-made agent packs, battle-tested prompt vaults, and a complete money-making operating system — install in minutes, use the same day.</p>
+    <a class="btn" href="#products">Browse the products ↓</a>
+    <a class="btn-ghost" href="#how">How it works</a>
+    <p class="trust">Instant digital delivery · Lifetime updates · No subscription</p>
+  </header>
+
+  <section id="products">
+    <div class="kicker">The Products</div>
+    <h2>Pick your upgrade</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="emoji">⚙️</div>
+        <h3>Claude Code Power Pack</h3>
+        <div class="who">For Claude Code users</div>
+        <p>Turn Claude Code into a team. 5 ready-made AI employees + 7 slash commands, installed in 2 minutes.</p>
+        <ul>
+          <li>5 subagents: executor, reviewer, researcher, marketer, bug-hunter</li>
+          <li>7 workflow slash commands</li>
+          <li>The delegation CLAUDE.md template</li>
+          <li>Copy-paste install guide</li>
+        </ul>
+        <div class="price">$19 <s>$29</s></div>
+        <a class="btn" href="GUMROAD_LINK_POWER_PACK">Get the Power Pack</a>
+      </div>
+
+      <div class="card flag">
+        <div class="badge">Best seller</div>
+        <div class="emoji">💰</div>
+        <h3>AI Income Prompt Vault</h3>
+        <div class="who">For freelancers & creators</div>
+        <p>50 production-grade prompts that produce sellable work — client deliverables, content systems, digital products.</p>
+        <ul>
+          <li>50 long-form structured prompts</li>
+          <li>5 income categories</li>
+          <li>"Sell it as" pricing angle on every prompt</li>
+          <li>Fill-in-the-bracket variables</li>
+        </ul>
+        <div class="price">$27 <s>$47</s></div>
+        <a class="btn" href="GUMROAD_LINK_PROMPT_VAULT">Get the Vault</a>
+      </div>
+
+      <div class="card">
+        <div class="emoji">🧠</div>
+        <h3>Claude Money OS</h3>
+        <div class="who">For builders going full-time</div>
+        <p>The complete playbook: pick a lane, build an offer, deliver with Claude, land clients, scale with agents.</p>
+        <ul>
+          <li>8-chapter operator's manual</li>
+          <li>5 proven business lanes + decision matrix</li>
+          <li>Outreach scripts & objection handling</li>
+          <li>90-day week-by-week plan</li>
+        </ul>
+        <div class="price">$39 <s>$69</s></div>
+        <a class="btn" href="GUMROAD_LINK_MONEY_OS">Get the OS</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="bundle">
+      <div class="kicker">The Full Stack</div>
+      <h2>Everything, together — $59</h2>
+      <p>All three products (worth $85 separately). The tools, the prompts, and the plan. This is the whole system.</p>
+      <a class="btn" href="GUMROAD_LINK_BUNDLE">Get the Full Stack — save $26</a>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="kicker">How it works</div>
+    <h2>From download to deployed in one sitting</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>Instant download</h4><p>Checkout takes 30 seconds. Files land in your inbox immediately.</p></div>
+      <div class="step"><div class="n">2</div><h4>Install in minutes</h4><p>Copy-paste install for the Power Pack. Prompts and playbooks work in any Claude chat.</p></div>
+      <div class="step"><div class="n">3</div><h4>Use it the same day</h4><p>Every product ships with a "do this first" path so you get a result today, not someday.</p></div>
+      <div class="step"><div class="n">4</div><h4>Lifetime updates</h4><p>Products improve as Claude improves. You get every update free, forever.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">FAQ</div>
+    <h2>Questions, answered</h2>
+    <details><summary>Do these work with the free Claude plan?</summary><p>The Prompt Vault and Money OS work with any Claude plan (and other AI chatbots too). The Power Pack requires Claude Code, which has a free tier via the CLI with an API key or a Pro/Max subscription.</p></details>
+    <details><summary>I'm a total beginner — where do I start?</summary><p>Start with Claude Money OS. It assumes nothing, helps you pick a lane, and tells you exactly what to do each week for 90 days. Add the Vault when you start delivering work.</p></details>
+    <details><summary>Is this just AI-generated filler?</summary><p>Everything here is a working system we use ourselves — real agent configs, real prompt chains, real delivery workflows. If any product feels like filler, reply to your receipt email for a full refund.</p></details>
+    <details><summary>How do I get the files?</summary><p>Instant download after checkout, plus an email link. Markdown + ready-to-install files. Lifetime access, no subscription.</p></details>
+  </section>
+
+  <section>
+    <div class="capture">
+      <div class="kicker">Free stuff first?</div>
+      <h2>Get 5 free prompts from the Vault</h2>
+      <p class="sub" style="margin-bottom:0">Plus one tactical email per week on making money with Claude. Unsubscribe anytime.</p>
+      <form action="FORM_ENDPOINT" method="POST">
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button class="btn" type="submit">Send it</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">ClaudeStack · Digital products for AI power users · <a href="mailto:mohanad.barakat001@gmail.com" style="color:var(--accent)">Contact</a></div>
+  </footer>
+</div>
+</body>
+</html>
