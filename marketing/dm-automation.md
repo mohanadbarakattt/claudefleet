@@ -16,8 +16,8 @@ Alternative if you outgrow it: Chatfuel or a custom Meta app later.
 3. Create a ManyChat account → connect Instagram → grant all messaging permissions.
 4. In ManyChat: **Automation → New Automation → Instagram → "User comments on your post"**.
 
-## Build 5 automations (one per keyword)
-For each keyword (STACK, VAULT, OS, FULL, START):
+## Build 6 automations (one per keyword)
+For each keyword (STACK, VAULT, OS, FLEET, FULL, START):
 
 - **Trigger:** comment contains the keyword → on *specific post* (attach after posting) or *any post*.
 - **Step 1 — public reply** (builds social proof, rotates automatically):
@@ -44,17 +44,23 @@ For each keyword (STACK, VAULT, OS, FULL, START):
 > [LINK]
 > Chapter 1 helps you pick your lane in ~10 minutes. Start there tonight.
 
-**FULL →**
-> The Full Stack 📦 — all 3 products, $59 instead of $85:
+**FLEET →**
+> ClaudeFleet Machines 🏢 — 3 done-for-you AI businesses, each with its own agent employees + an outreach system to land clients: $97:
 > [LINK]
-> This is everything I showed in the reel: the tools, the prompts, and the plan.
+> Heads up before you buy: this one needs a few outside tools running underneath it (Higgsfield, Apollo.io, Resend, etc.) — full breakdown of what and why is inside, so there's no surprise cost.
+
+**FULL →**
+> The Full Stack 📦 — all 4 products, $129 instead of $182:
+> [LINK]
+> This is everything I showed in the reel: the tools, the prompts, the plan, and the done-for-you machines.
 
 **START →**
 > Depends where you are 👇
 > Total beginner → Claude Money OS: [LINK_OS]
 > Already freelancing → Prompt Vault: [LINK_VAULT]
 > Using Claude Code → Power Pack: [LINK_STACK]
-> Want it all → Full Stack ($59): [LINK_BUNDLE]
+> Want a run business, not just tools → ClaudeFleet Machines: [LINK_FLEET]
+> Want it all → Full Stack ($129): [LINK_BUNDLE]
 
 ## Follow-up sequence (set in ManyChat, huge conversion lift)
 - **+23 hours** (must be <24h per Meta rules), only if link not clicked:

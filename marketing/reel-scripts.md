@@ -86,7 +86,23 @@ Voiceover = you or AI voice. On-screen text is written to be readable without so
 
 ---
 
+## Reel 6 — "I gave my AI a business" (sells: ClaudeFleet Machines) · keyword: **FLEET**
+
+**Hook:** "I didn't give my AI a job. I gave it a company."
+**On-screen:** I GAVE MY AI A COMPANY 🏢
+
+**Plot beats:**
+1. "Not one assistant — a whole staff. A strategist, a writer, an outreach agent, all with their own job."
+2. "This one runs a content agency. This one runs lead-gen. This one launches a product every month."
+3. "I don't do the work. I review the work. That's the entire difference."
+4. "It's not free — you still need real tools running underneath it. I'm not going to pretend otherwise."
+
+**Payoff:** "This is the one for people who don't want another prompt. They want a business with employees who happen to be AI."
+**CTA:** "Comment **FLEET** and I'll DM you the breakdown — what's inside, and exactly what it costs to run."
+
+---
+
 ## Posting notes
-- Post order: 5 → 1 → 2 → 3 → 4 (start with the pattern-interrupt, end with the meta "AI built this" reel).
+- Post order: 5 → 1 → 2 → 3 → 6 → 4 (start with the pattern-interrupt, end with the meta "AI built this" reel; slot the Fleet/Machines reel in once the audience has seen the cheaper products first — it's a bigger ask).
 - Reply to every keyword comment within the first hour (automation handles it — see dm-automation.md).
 - Pin a comment: "🔗 Everything is also linked in bio if you don't want to wait for the DM."

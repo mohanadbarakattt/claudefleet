@@ -68,6 +68,18 @@ Aspect ratio: 9:16 for all. Style anchor to reuse in every prompt:
 
 ---
 
+## Reel 6 — "I gave my AI a business" (4 scenes)
+
+**Scene 1 (hook):** A man standing in an empty dark office facing three glowing holographic desks that light up one by one behind him, each desk projecting a translucent job title in the air above it, cinematic wide shot, teal-and-orange grade, volumetric light, photorealistic. Camera: slow dolly-in from behind the subject toward the desks.
+
+**Scene 2:** Close-up on one holographic desk — documents, outreach emails, and content calendars assembling themselves in mid-air above the surface as if an invisible employee is working, warm desk-lamp glow, cinematic macro. Camera: slow orbital arc around the desk.
+
+**Scene 3:** The man seated at a central control desk, calmly reviewing and approving floating documents with a single tap gesture, holographic "APPROVED" stamps appearing, confident and unhurried body language, cinematic teal-and-orange. Camera: static medium shot, subtle slow push-in.
+
+**Scene 4 (payoff):** Wide shot of the full office now fully lit, all three holographic desks active and busy, the man leaning back in his chair at the center watching it all run, dawn light mixing with the cool hologram glow, cinematic realism. Camera: slow crane pull-back revealing the whole room.
+
+---
+
 ## Consistency checklist
 - Same character reference image in every scene generation.
 - Same grade phrase (`teal-and-orange`) in every prompt — makes cuts feel like one film.

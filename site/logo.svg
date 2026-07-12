@@ -5,7 +5,8 @@
       <stop offset="100%" stop-color="#d97748"/>
     </linearGradient>
   </defs>
-  <rect x="8" y="38" width="48" height="12" rx="4" fill="url(#g1)" opacity="0.55"/>
-  <rect x="12" y="24" width="40" height="12" rx="4" fill="url(#g1)" opacity="0.78"/>
-  <rect x="16" y="10" width="32" height="12" rx="4" fill="url(#g1)"/>
+  <!-- forward-deploy mark: three chevrons in echelon, front one solid -->
+  <path d="M6 44 20 30 6 16" stroke="url(#g1)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+  <path d="M20 44 34 30 20 16" stroke="url(#g1)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.65"/>
+  <path d="M34 48 52 30 34 12" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>
