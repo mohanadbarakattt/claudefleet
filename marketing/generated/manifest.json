@@ -56,7 +56,7 @@
       "scenes": [
         { "n": 1, "role": "hook", "file": "clips/reel5-scene1.mp4", "job_id": "dac9e20f-aa35-4c62-982a-c468e9b36c53" },
         { "n": 2, "role": "beat", "file": "clips/reel5-scene2.mp4", "job_id": "44f8d89b-de74-44be-a242-e12b65db1bb1" },
-        { "n": 3, "role": "beat", "file": "clips/reel5-scene3.mp4", "job_id": "87c76cfc-872f-4c78-a413-fe399b022944" },
+        { "n": 3, "role": "beat", "file": "clips/reel5-scene3.mp4", "job_id": "85910bae-538d-4847-87b6-2e6148e31f30", "note": "regenerated 2026-07-17: original prompt had literal on-screen text (PROMPT/DELIVERABLE/PRICE/BUYER) which Kling garbles; rewritten as text-free abstract motion" },
         { "n": 4, "role": "payoff", "file": "clips/reel5-scene4.mp4", "job_id": "4f9dfe56-fa51-4440-9d61-58bffabd0bd8" }
       ]
     },
@@ -67,7 +67,7 @@
       "scenes": [
         { "n": 1, "role": "hook", "file": "clips/reel6-scene1.mp4", "job_id": "b959a686-0a61-4978-bc79-32c638812c99" },
         { "n": 2, "role": "beat", "file": "clips/reel6-scene2.mp4", "job_id": "4ae1469d-b586-4a9a-9e25-e47d902411e1" },
-        { "n": 3, "role": "beat", "file": "clips/reel6-scene3.mp4", "job_id": "39201519-fffe-417b-a16f-53442813aae1" },
+        { "n": 3, "role": "beat", "file": "clips/reel6-scene3.mp4", "job_id": "27fa67a9-1914-411b-8fa9-80737dd02e89", "note": "regenerated 2026-07-17: original prompt had literal on-screen text (APPROVED stamps) which Kling garbles; rewritten as text-free abstract motion" },
         { "n": 4, "role": "payoff", "file": "clips/reel6-scene4.mp4", "job_id": "2f1033e5-6ee7-4f9e-b069-b1a73a034f8c" }
       ]
     }

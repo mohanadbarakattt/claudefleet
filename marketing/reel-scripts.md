@@ -1,3 +1,8 @@
+> **Superseded by `production-scripts.md`** (2026-07-17) — same 6 concepts and CTA keywords,
+> rewritten with a 4-column shot format, sharper hooks, and the correct Higgsfield mode named
+> per shot (Cinema Studio vs. Hyper Motion vs. Marketing Studio vs. screen-record). Kept here
+> for history; use `production-scripts.md` for actual shooting/editing.
+
 # ClaudeStack — Instagram Reel Scripts (5)
 
 Format per reel: HOOK (0–2s) → PLOT (2–20s) → PAYOFF (20–28s) → CTA (28–32s).

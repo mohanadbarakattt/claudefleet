@@ -29,12 +29,20 @@ standard non-premium pricing).
   disclaimer ("not affiliated with/endorsed by Anthropic")
 - `site/logo.svg` — refined "fleet in echelon formation" mark (three forward chevrons), also
   used as favicon
-- `marketing/reel-scripts.md` — 6 IG reel scripts (hook/plot/payoff/CTA keywords, incl. Reel 6/FLEET)
-- `marketing/higgsfield-prompts.md` — 24 scene prompts (4 per reel), consistent style
-- `marketing/generated/` — **the 24 scene prompts actually rendered** via the Higgsfield MCP
-  (`kling3_0_turbo`, 9:16, 4s), downloaded locally to `clips/` (~85MB, 24 files), 144 credits
-  spent. `manifest.json` maps reel → scene → file → job ID. Ready to import straight into
-  CapCut — no manual Higgsfield work left to do for these 6 launch reels.
+- `marketing/production-scripts.md` — **canonical shooting script**, v2: 6 reels rewritten with
+  a 4-column format (timestamp/VO/Higgsfield mode/shot), one sharpened psychological hook per
+  reel, and the correct Higgsfield surface named per shot (Cinema Studio / Hyper Motion /
+  Marketing Studio / screen-record) instead of one generic "AI video" mode for everything.
+- `marketing/higgsfield-technique-guide.md` — which Higgsfield tool to use for what (incl. how
+  to run Marketing Studio "App" mode on our real live URL), and the prompt rules learned from
+  the garbled-text bug below.
+- `marketing/reel-scripts.md` — superseded v1, kept for history.
+- `marketing/higgsfield-prompts.md` — the 24 scene prompts as originally written (2 later fixed).
+- `marketing/generated/` — **the 24 scenes actually rendered** via the Higgsfield MCP
+  (`kling3_0_turbo`, 9:16, 4s), downloaded locally to `clips/` (~85MB, 24 files), 156 credits
+  spent total (144 original + 12 fixing 2 clips that had garbled on-screen text — see
+  `generated/README.md`). `manifest.json` maps reel → scene → file → job ID. Ready to import
+  straight into CapCut.
 - `marketing/dm-automation.md` — ManyChat comment→DM setup + DM copy (6 keywords)
 - `marketing/market-research.md` — real sourced research (audience segments, working content
   formats, top objections + counters, Claude-specific niche opportunity) — figures flagged
@@ -68,8 +76,8 @@ standard non-premium pricing).
    auto-deploy on every future push, link the repo in the Vercel dashboard (Import Project →
    pick this repo → Root Directory: `site`). Otherwise redeploy manually from `site/`.
 5. **ManyChat**: 20-min setup per `marketing/dm-automation.md` (needs your IG + FB logins).
-6. **Film/generate content**: you now have two content sources — the original 6 short reel
-   scripts in `marketing/reel-scripts.md` (post order 5→1→2→3→6→4) for a quick launch burst, and
+6. **Film/generate content**: you now have two content sources — the 6 launch-reel scripts in
+   `marketing/production-scripts.md` (post order 5→1→2→3→6→4) for a quick launch burst, and
    the full `marketing/calendar/` 30-day plan for sustained daily posting. The 6 launch reels'
    24 AI-video scenes are **already generated** — see `marketing/generated/` (real rendered
    clips, not just prompts). The 30-day calendar's AI-video notes are still text prompts you'd
