@@ -31,6 +31,10 @@ standard non-premium pricing).
   used as favicon
 - `marketing/reel-scripts.md` — 6 IG reel scripts (hook/plot/payoff/CTA keywords, incl. Reel 6/FLEET)
 - `marketing/higgsfield-prompts.md` — 24 scene prompts (4 per reel), consistent style
+- `marketing/generated/` — **the 24 scene prompts actually rendered** via the Higgsfield MCP
+  (`kling3_0_turbo`, 9:16, 4s), downloaded locally to `clips/` (~85MB, 24 files), 144 credits
+  spent. `manifest.json` maps reel → scene → file → job ID. Ready to import straight into
+  CapCut — no manual Higgsfield work left to do for these 6 launch reels.
 - `marketing/dm-automation.md` — ManyChat comment→DM setup + DM copy (6 keywords)
 - `marketing/market-research.md` — real sourced research (audience segments, working content
   formats, top objections + counters, Claude-specific niche opportunity) — figures flagged
@@ -66,9 +70,12 @@ standard non-premium pricing).
 5. **ManyChat**: 20-min setup per `marketing/dm-automation.md` (needs your IG + FB logins).
 6. **Film/generate content**: you now have two content sources — the original 6 short reel
    scripts in `marketing/reel-scripts.md` (post order 5→1→2→3→6→4) for a quick launch burst, and
-   the full `marketing/calendar/` 30-day plan for sustained daily posting. Every "screen-record"
-   note needs a real recording of your actual site/product — don't fake these (see
-   `calendar/README.md`). Every AI-video note is a ready Higgsfield prompt.
+   the full `marketing/calendar/` 30-day plan for sustained daily posting. The 6 launch reels'
+   24 AI-video scenes are **already generated** — see `marketing/generated/` (real rendered
+   clips, not just prompts). The 30-day calendar's AI-video notes are still text prompts you'd
+   generate the same way (ready Higgsfield prompts, same style anchor) — not yet rendered, to
+   keep this batch scoped. Every "screen-record" note (both launch reels and calendar) needs a
+   real recording of your actual site/product — don't fake these (see `calendar/README.md`).
 7. **Cast the recurring characters**: Ava (AI-guide), Skeptic, and Client are written as roles,
    not scripts for a specific person — use an AI-avatar tool, a friend, or play them yourself.
    Keep the compliance framing intact if you rewrite lines.

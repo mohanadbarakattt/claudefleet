@@ -1,0 +1,75 @@
+{
+  "generated": "2026-07-17",
+  "model": "kling3_0_turbo",
+  "params": { "aspect_ratio": "9:16", "duration": 4, "resolution": "720p" },
+  "cost_credits": 144,
+  "total_clips": 24,
+  "reels": [
+    {
+      "reel": 1,
+      "title": "Your AI is unemployed",
+      "cta_keyword": "STACK",
+      "scenes": [
+        { "n": 1, "role": "hook", "file": "clips/reel1-scene1.mp4", "job_id": "bfe8aeca-1ff1-4a57-8fe3-2e9e1b294d1c" },
+        { "n": 2, "role": "beat", "file": "clips/reel1-scene2.mp4", "job_id": "df091646-5eb4-401f-b936-798f7308321f" },
+        { "n": 3, "role": "beat", "file": "clips/reel1-scene3.mp4", "job_id": "db7eca7f-bac7-4da4-a51f-408d266cf989" },
+        { "n": 4, "role": "payoff", "file": "clips/reel1-scene4.mp4", "job_id": "98a58a79-3c9f-4a8e-85e8-2aadf9244473" }
+      ]
+    },
+    {
+      "reel": 2,
+      "title": "The $27 folder",
+      "cta_keyword": "VAULT",
+      "scenes": [
+        { "n": 1, "role": "hook", "file": "clips/reel2-scene1.mp4", "job_id": "96eadf40-81d4-4716-b8ec-91280601b959" },
+        { "n": 2, "role": "beat", "file": "clips/reel2-scene2.mp4", "job_id": "b52163b7-06d0-429d-8ac1-1e0d39e6f8da" },
+        { "n": 3, "role": "beat", "file": "clips/reel2-scene3.mp4", "job_id": "31cb8844-025e-46e6-97f8-4b29d9cf9377" },
+        { "n": 4, "role": "payoff", "file": "clips/reel2-scene4.mp4", "job_id": "6058029c-9eba-49f7-bf99-0c55b383ae32" }
+      ]
+    },
+    {
+      "reel": 3,
+      "title": "POV: you fired yourself",
+      "cta_keyword": "OS",
+      "scenes": [
+        { "n": 1, "role": "hook", "file": "clips/reel3-scene1.mp4", "job_id": "1f7cd5b4-4302-445a-abcb-832fdad427ed" },
+        { "n": 2, "role": "beat", "file": "clips/reel3-scene2.mp4", "job_id": "92a69ab7-f952-4e88-970f-00e7e0bfb324" },
+        { "n": 3, "role": "beat", "file": "clips/reel3-scene3.mp4", "job_id": "fca98896-bb68-4f52-b45a-c0c5e2817a4a" },
+        { "n": 4, "role": "payoff", "file": "clips/reel3-scene4.mp4", "job_id": "949bff53-0547-4574-85ee-b8689b6d59e9" }
+      ]
+    },
+    {
+      "reel": 4,
+      "title": "I asked Claude to make money",
+      "cta_keyword": "FULL",
+      "scenes": [
+        { "n": 1, "role": "hook", "file": "clips/reel4-scene1.mp4", "job_id": "1bb63523-6ad5-4bbb-ade6-d1fd87bf387e" },
+        { "n": 2, "role": "beat", "file": "clips/reel4-scene2.mp4", "job_id": "efd84962-4de4-4741-a17b-22643e8d9753" },
+        { "n": 3, "role": "beat", "file": "clips/reel4-scene3.mp4", "job_id": "fc9b5c40-2b1a-4723-b05a-c096cd5d4124" },
+        { "n": 4, "role": "payoff", "file": "clips/reel4-scene4.mp4", "job_id": "c64ec9c8-295a-4210-9887-6c0261634eee" }
+      ]
+    },
+    {
+      "reel": 5,
+      "title": "Stop scrolling AI tips",
+      "cta_keyword": "START",
+      "scenes": [
+        { "n": 1, "role": "hook", "file": "clips/reel5-scene1.mp4", "job_id": "dac9e20f-aa35-4c62-982a-c468e9b36c53" },
+        { "n": 2, "role": "beat", "file": "clips/reel5-scene2.mp4", "job_id": "44f8d89b-de74-44be-a242-e12b65db1bb1" },
+        { "n": 3, "role": "beat", "file": "clips/reel5-scene3.mp4", "job_id": "87c76cfc-872f-4c78-a413-fe399b022944" },
+        { "n": 4, "role": "payoff", "file": "clips/reel5-scene4.mp4", "job_id": "4f9dfe56-fa51-4440-9d61-58bffabd0bd8" }
+      ]
+    },
+    {
+      "reel": 6,
+      "title": "I gave my AI a business",
+      "cta_keyword": "FLEET",
+      "scenes": [
+        { "n": 1, "role": "hook", "file": "clips/reel6-scene1.mp4", "job_id": "b959a686-0a61-4978-bc79-32c638812c99" },
+        { "n": 2, "role": "beat", "file": "clips/reel6-scene2.mp4", "job_id": "4ae1469d-b586-4a9a-9e25-e47d902411e1" },
+        { "n": 3, "role": "beat", "file": "clips/reel6-scene3.mp4", "job_id": "39201519-fffe-417b-a16f-53442813aae1" },
+        { "n": 4, "role": "payoff", "file": "clips/reel6-scene4.mp4", "job_id": "2f1033e5-6ee7-4f9e-b069-b1a73a034f8c" }
+      ]
+    }
+  ]
+}
