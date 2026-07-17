@@ -29,15 +29,25 @@ standard non-premium pricing).
   disclaimer ("not affiliated with/endorsed by Anthropic")
 - `site/logo.svg` — refined "fleet in echelon formation" mark (three forward chevrons), also
   used as favicon
-- `marketing/reel-scripts.md` — 5 IG reel scripts (hook/plot/payoff/CTA keywords)
-- `marketing/higgsfield-prompts.md` — 20 scene prompts (4 per reel), consistent style
-- `marketing/dm-automation.md` — ManyChat comment→DM setup + DM copy
+- `marketing/reel-scripts.md` — 6 IG reel scripts (hook/plot/payoff/CTA keywords, incl. Reel 6/FLEET)
+- `marketing/higgsfield-prompts.md` — 24 scene prompts (4 per reel), consistent style
+- `marketing/dm-automation.md` — ManyChat comment→DM setup + DM copy (6 keywords)
+- `marketing/market-research.md` — real sourced research (audience segments, working content
+  formats, top objections + counters, Claude-specific niche opportunity) — figures flagged
+  where the primary source couldn't be confirmed, nothing invented
+- `marketing/content-system.md` — the content engine's spec: 3 recurring characters (The
+  Operator, Ava the AI-guide, Skeptic/Client dramatized roles), 9 format pillars, CTA keyword
+  map, and the compliance rules (no fake urgency, no fake income/bank-balance screenshots, no
+  testimonial misrepresentation) every calendar day follows
+- `marketing/calendar/` — the full 30-day content calendar (week-1.md through week-4.md, start
+  at calendar/README.md), one entry per day: hook, beats, a screen-record instruction or ready
+  Higgsfield-style AI video prompt, a ready-to-post caption, and a CTA keyword. Scanned for
+  compliance violations after writing — none found.
 - `dist/` — zipped products ready to upload to Gumroad (`claudefleet-full-bundle.zip` is all 4)
 
 ## Live / shipped
-- GitHub: https://github.com/mohanadbarakattt/claude-goods (public; consider renaming the repo
-  to `claudefleet` via `gh repo rename claudefleet` for consistency — not done automatically
-  since renaming changes the repo URL and any links you've already shared)
+- GitHub: https://github.com/mohanadbarakattt/claudefleet (renamed from claude-goods; local
+  remote already updated, `git push` works as normal)
 - Deployed: https://site-delta-hazel-30.vercel.app (redeployed after rebrand + new product)
 
 ## needsUser (things only you can do — accounts/payments/domain/publishing)
@@ -54,17 +64,23 @@ standard non-premium pricing).
    auto-deploy on every future push, link the repo in the Vercel dashboard (Import Project →
    pick this repo → Root Directory: `site`). Otherwise redeploy manually from `site/`.
 5. **ManyChat**: 20-min setup per `marketing/dm-automation.md` (needs your IG + FB logins).
-6. **Film/generate reels**: Higgsfield prompts are ready; post order 5→1→2→3→4. Consider adding
-   a 6th reel for the Machines product (new keyword, e.g. "FLEET") — script not yet written.
-7. **Real reviews**: the site ships with 3 honest "no reviews yet" placeholder cards
+6. **Film/generate content**: you now have two content sources — the original 6 short reel
+   scripts in `marketing/reel-scripts.md` (post order 5→1→2→3→6→4) for a quick launch burst, and
+   the full `marketing/calendar/` 30-day plan for sustained daily posting. Every "screen-record"
+   note needs a real recording of your actual site/product — don't fake these (see
+   `calendar/README.md`). Every AI-video note is a ready Higgsfield prompt.
+7. **Cast the recurring characters**: Ava (AI-guide), Skeptic, and Client are written as roles,
+   not scripts for a specific person — use an AI-avatar tool, a friend, or play them yourself.
+   Keep the compliance framing intact if you rewrite lines.
+8. **Real reviews**: the site ships with 3 honest "no reviews yet" placeholder cards
    (`#reviews` section in `site/index.html`) instead of fake testimonials. As real buyers
    send feedback, replace the `.t-empty` cards with real `.t-card` quotes + first name + role
    (get permission before publishing anyone's words).
-8. **"Built With This Approach" section**: generalized capability showcases (autoposter, career
+9. **"Built With This Approach" section**: generalized capability showcases (autoposter, career
    advisor, orchestration OS, etc.), written as proof-of-concept, not as claims about specific
    existing products. Swap in real live project names/URLs if you want, only ones you're
    comfortable making public.
-9. **Machines pricing is unverified against your actual costs**: the $97 price assumes buyers
+10. **Machines pricing is unverified against your actual costs**: the $97 price assumes buyers
    already run or are willing to sign up for Higgsfield/Apollo/Resend-type tools. If you want to
    test a lower-commitment price point before the $97 tier, that's a pricing call only you should
    make — nothing in the copy locks you into $97.
