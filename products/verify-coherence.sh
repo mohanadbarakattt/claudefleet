@@ -124,6 +124,32 @@ else
   bad "$SEED missing"
 fi
 
+# --- install-integrity checks (found by dogfooding the real zip, 2026-07-25) ---
+ING=_engine/INSTALL.md
+if [ -f "$ING" ]; then
+  # 1. The documented FLEET_SRC must be a folder the zip actually produces.
+  for p in $(grep -oE 'FLEET_SRC="\$HOME/Downloads/[a-z-]+"' "$ING" | sed 's|.*/||;s|"||'); do
+    [ -d "$p" ] && ok "INSTALL.md's FLEET_SRC example '$p' is a real machine folder" \
+                || bad "INSTALL.md tells buyers to use '$p', which no zip produces"
+  done
+  # 2. Every directory a skill writes into must be created by the install.
+  MK=$(grep -A2 'mkdir -p "\$CLAUDEFLEET_HOME/logs"' "$ING" | tr -d '\\\n')
+  MISS=0
+  for d in $(grep -rhoE '(content|product)-machine/[a-z]+/' autopilot-content-machine/skills/*.md 2>/dev/null \
+             | sed 's|.*machine/||;s|/||' | sort -u); do
+    printf '%s' "$MK" | grep -q "$d" || { bad "skills write to '$d/' but INSTALL.md never creates it"; MISS=1; }
+  done
+  [ "$MISS" -eq 0 ] && ok "install creates every directory the skills write into"
+fi
+# 3. Seed data must self-declare as demo, or the panel shows fabricated cards unflagged.
+if [ -f "$SEED" ]; then
+  python3 -c "
+import json,sys; d=json.load(open('$SEED'))
+sys.exit(0 if d.get('demo') is True else 1)" 2>/dev/null \
+    && ok "seed declares demo:true (panel will warn + offer Clear)" \
+    || bad "seed has demo:false but ships fabricated cards — panel will show them as real state"
+fi
+
 # The admin panel's command config must match shipped skills too.
 PANEL=_engine/admin-panel/index.html
 if [ -f "$PANEL" ]; then

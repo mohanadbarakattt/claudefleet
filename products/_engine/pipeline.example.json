@@ -1,11 +1,17 @@
 {
-  "note": "Example data. Copy to ~/claudefleet/pipeline.json and replace with your own. Key names here match what the admin panel imports and exports: cards = pipeline items, log = runs, costs = money you record yourself. Cost amounts are 0 on purpose — the engine does not know and never quotes any vendor's pricing. Fill them in from your own invoices and check current pricing on each vendor's own pricing page.",
+  "note": "Example data. Copy to ~/claudefleet/pipeline.json and replace with your own. Key names here match what the admin panel imports and exports: cards = pipeline items, log = runs, costs = money you record yourself. Cost amounts are 0 on purpose \u2014 the engine does not know and never quotes any vendor's pricing. Fill them in from your own invoices and check current pricing on each vendor's own pricing page.",
   "schema": 1,
-  "demo": false,
+  "demo": true,
   "machine": "content",
   "selectedStage": 1,
   "currency": "USD",
-  "stages": ["Idea", "Script", "Render", "Assemble", "Scheduled"],
+  "stages": [
+    "Idea",
+    "Script",
+    "Render",
+    "Assemble",
+    "Scheduled"
+  ],
   "services": {
     "claude": {
       "connected": true,
@@ -20,7 +26,7 @@
     "postiz": {
       "connected": false,
       "lastRun": "2026-07-22T17:30:58Z",
-      "note": "Instagram token expired — reconnect in Postiz before the next schedule run"
+      "note": "Instagram token expired \u2014 reconnect in Postiz before the next schedule run"
     }
   },
   "cards": [
@@ -36,17 +42,17 @@
       "id": "c-0010",
       "machine": "content",
       "stage": 1,
-      "title": "Northside Dental — week 4 batch (4 scripts)",
+      "title": "Northside Dental \u2014 week 4 batch (4 scripts)",
       "created": "2026-07-23T15:02:44Z",
-      "notes": "20-35s read time each. Client asked for less clinical jargon than week 3. No prices in any script — the client supplies their own numbers."
+      "notes": "20-35s read time each. Client asked for less clinical jargon than week 3. No prices in any script \u2014 the client supplies their own numbers."
     },
     {
       "id": "c-0009",
       "machine": "content",
       "stage": 2,
-      "title": "Vela Coffee — founder-story teaser",
+      "title": "Vela Coffee \u2014 founder-story teaser",
       "created": "2026-07-21T10:15:00Z",
-      "notes": "Higgsfield brief: 5 shots, 9:16, warm morning light, no text in frame (captions added in the editor). First pass had unreadable on-screen text — regenerated."
+      "notes": "Higgsfield brief: 5 shots, 9:16, warm morning light, no text in frame (captions added in the editor). First pass had unreadable on-screen text \u2014 regenerated."
     },
     {
       "id": "c-0008",
@@ -62,7 +68,7 @@
       "stage": 4,
       "title": "Reel: why whitening fades",
       "created": "2026-07-18T09:00:00Z",
-      "notes": "Live since Monday. Saves outperformed the tips-style posts — repeat the explainer format next cycle."
+      "notes": "Live since Monday. Saves outperformed the tips-style posts \u2014 repeat the explainer format next cycle."
     },
     {
       "id": "p-0003",
@@ -79,35 +85,35 @@
       "ts": "2026-07-24T09:12:03Z",
       "machine": "content",
       "stage": 0,
-      "text": "/cf-ideas — 9 hooks drafted from the intake answers, 3 promoted to Script"
+      "text": "/cf-ideas \u2014 9 hooks drafted from the intake answers, 3 promoted to Script"
     },
     {
       "id": "l-0004",
       "ts": "2026-07-23T15:02:44Z",
       "machine": "content",
       "stage": 1,
-      "text": "/cf-script — 4 scripts + 3 caption variants each for the week 4 batch"
+      "text": "/cf-script \u2014 4 scripts + 3 caption variants each for the week 4 batch"
     },
     {
       "id": "l-0003",
       "ts": "2026-07-24T11:47:19Z",
       "machine": "content",
       "stage": 2,
-      "text": "/cf-render — 5-shot Higgsfield brief written; shots 2 and 4 regenerated, second pass usable"
+      "text": "/cf-render \u2014 5-shot Higgsfield brief written; shots 2 and 4 regenerated, second pass usable"
     },
     {
       "id": "l-0002",
       "ts": "2026-07-22T17:30:58Z",
       "machine": "content",
       "stage": 3,
-      "text": "/cf-schedule — TikTok queued; Instagram failed on an expired token, needs reconnecting in Postiz"
+      "text": "/cf-schedule \u2014 TikTok queued; Instagram failed on an expired token, needs reconnecting in Postiz"
     },
     {
       "id": "l-0001",
       "ts": "2026-07-20T13:20:00Z",
       "machine": "product",
       "stage": 1,
-      "text": "/dp-build — Client Onboarding Kit v1 drafted against the validated problem statement"
+      "text": "/dp-build \u2014 Client Onboarding Kit v1 drafted against the validated problem statement"
     }
   ],
   "costs": [

@@ -40,14 +40,25 @@ Point `FLEET_SRC` at the folder you unzipped, and name your machine's working fo
 (`content-machine` for the Autopilot Content Machine, `product-machine` for the Digital
 Product Machine — these match the folder names the admin panel shows).
 
+The zip unpacks to a folder named after the **machine**, not after the zip file — so
+`claudefleet-content-machine.zip` gives you `autopilot-content-machine/`. Use these:
+
+| You bought | Unzipped folder | `MACHINE_DIR` |
+|---|---|---|
+| Autopilot Content Machine | `autopilot-content-machine` | `content-machine` |
+| Digital Product Machine | `digital-product-machine` | `product-machine` |
+
 ```zsh
-# EDIT THIS LINE to match where you unzipped the product
-export FLEET_SRC="$HOME/Downloads/claudefleet-content-machine"
+# EDIT THESE TWO LINES to match what you bought and where you unzipped it
+export FLEET_SRC="$HOME/Downloads/autopilot-content-machine"
 export MACHINE_DIR="content-machine"
 
 export CLAUDEFLEET_HOME="$HOME/claudefleet"
 ls "$FLEET_SRC" && ls "$FLEET_SRC/_engine"   # both must list files before you continue
 ```
+
+If that `ls` errors, you have the wrong `FLEET_SRC`. Find it with
+`ls ~/Downloads | grep -iE 'content-machine|product-machine'` and paste the exact name.
 
 ## 2–6. The whole install, copy-pasteable
 
@@ -55,7 +66,8 @@ Run this after step 1, in the same terminal window.
 
 ```zsh
 # --- 2. create the fleet home and seed pipeline.json (never overwrites an existing one)
-mkdir -p "$CLAUDEFLEET_HOME/logs" "$CLAUDEFLEET_HOME/$MACHINE_DIR"/{assets,notes}
+mkdir -p "$CLAUDEFLEET_HOME/logs" \
+  "$CLAUDEFLEET_HOME/$MACHINE_DIR"/{assets,notes,scripts,briefs,posts,schedule}
 [ -f "$CLAUDEFLEET_HOME/pipeline.json" ] \
   || cp "$FLEET_SRC/_engine/pipeline.example.json" "$CLAUDEFLEET_HOME/pipeline.json"
 
