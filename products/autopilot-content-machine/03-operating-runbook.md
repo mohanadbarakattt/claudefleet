@@ -52,6 +52,40 @@ Import the current `pipeline.json` into the dashboard, then:
 6. **Connections.** Confirm Postiz still shows every platform connected and next week's
    queue is what you think it is.
 
+## Handing a card off to Postiz
+
+`/cf-schedule` writes the plan; it never posts. This engine holds no credentials and
+touches no account. Queuing is a human step, and it is the last one before an audience
+sees anything. Which branch you use depends on your setup — record which one you're on in
+the intake note's Distribution section so you're not deciding it card by card.
+
+**Hosted Postiz (or self-hosted without API access) — the paste path.**
+
+1. Open `content-machine/schedule/<card-id>-postiz.md` beside the Postiz composer.
+2. Per row, in this order: channel → media file → caption → first comment → date, local
+   time and timezone. Doing it in a fixed order is what stops a caption landing on the
+   wrong account.
+3. Before clicking schedule, do the visual check *inside Postiz* — the preview, not your
+   file. Wrong aspect ratio and a truncated caption both only show up here.
+4. Paste the returned Postiz post id back into the `postiz-id` column. A blank id means
+   you don't actually know whether it queued.
+
+**Self-hosted Postiz with API access — the scripted path.**
+
+1. Your token lives in your shell environment or your own secrets manager. **Never write a
+   token into any file in the fleet home, the schedule file, or anything you'd commit** —
+   the whole fleet home is designed to be diffable and possibly git-tracked.
+2. Dry-run first: print the payload you're about to send and eyeball the channel ids and
+   timestamps before anything is sent.
+3. Send, then read the response ids back into the `postiz-id` column exactly as in the
+   paste path. Do not assume a 2xx means the slot is what you intended — re-open one post
+   in the UI and look.
+4. If a send fails halfway through a batch, fix forward one row at a time. Re-running a
+   whole batch is how a card gets double-posted.
+
+Either way, the queue gate in "Quality-control gates" still applies, and nothing is marked
+Scheduled until the ids are filled in.
+
 ## When output quality drops
 
 Diagnose in this order; the cheap causes are the common ones.
@@ -83,6 +117,20 @@ publish a clip you rejected just because it cost credits.
 **A generation comes back unusable.** Two-strike rule: regenerate once, with a *changed*
 prompt. If the second pass fails, cut the shot or swap in a still. A third attempt rarely
 lands and is how credit spend runs away. Log both attempts in the card's `notes`.
+
+Change one thing on the retry, and take it in this order — cheapest and most likely first:
+
+1. **The must-not-appear line.** Garbled words, a watermark, a stray logo, an extra limb —
+   almost always fixed by naming it as excluded rather than rewriting anything.
+2. **Framing or camera move.** Wrong scale, a face that won't hold, motion that smears.
+   Change the shot size or slow the move before you touch the words.
+3. **The prompt paragraph.** Rewrite subject and setting as concrete nouns. Vague
+   adjectives are the usual reason a generator improvises.
+4. **The beat itself.** If three passes haven't landed, the script is asking for a shot
+   that's hard to generate. Rewrite the beat into something filmable and re-brief.
+
+If the same fault repeats across cards, stop fixing cards — the fix belongs in the intake
+note's Visual grammar section so it stops recurring.
 
 **Postiz fails or a token expires.** The most common way a week's work misses its slot.
 Reconnect the account, verify with one test post, re-queue. If it can't be fixed today,

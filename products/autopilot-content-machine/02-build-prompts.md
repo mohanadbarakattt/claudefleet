@@ -378,8 +378,6 @@ STEPS
    d) MUST NOT APPEAR: my standing negative list — watermarks, logos, readable brand
       names, bystanders' faces, extra limbs, anything in my banned list.
    e) MY HIGGSFIELD CONTROLS: only the controls from [HIGGSFIELD_FEATURES_I_HAVE].
-   f) WHEN A SHOT FAILS: what to change first, in order of cheapness — negative prompt,
-      then framing or camera move, then the whole prompt, then the beat itself.
 2. Add an "ASK HIGGSFIELD / CHECK MY ACCOUNT" list at the end of the section for any
    control I asked for that is not in [HIGGSFIELD_FEATURES_I_HAVE].
 3. Print the rewritten section back to me so I can check it before it drives real spend.
@@ -393,6 +391,10 @@ cf-shot-designer agent owns that format.
 
 **If it goes wrong:** briefs that produce garbled words in-frame mean the on-screen text policy was ignored — tighten the MUST NOT APPEAR list and burn captions in your editor instead.
 
+**What to do when an individual shot fails** is a procedure, not config, so it lives in
+`03-operating-runbook.md` → *When something fails* → "A generation comes back unusable",
+which gives you the change-one-thing retry order.
+
 ---
 
 ### Prompt A8 — Put your distribution settings in the intake note
@@ -401,7 +403,8 @@ cf-shot-designer agent owns that format.
 **What you get back:** a **Distribution** section inside
 `content-machine/notes/[OFFER_SLUG]-intake.md`, replacing the thin "Platforms" section —
 the channels, timezone and cadence `/cf-schedule` hands to the `cf-distribution-planner`
-agent, plus your Postiz handoff procedure and pre-flight checklist.
+agent, plus your pre-flight checklist and which handoff path you use. The queuing steps
+themselves live in the runbook.
 
 > **Why it goes in the intake note.** `/cf-schedule` passes "the platforms, the account
 > handles, the operator's timezone and their stated cadence" to `cf-distribution-planner`.
@@ -437,11 +440,12 @@ STEPS
       time in [TIMEZONE]. If [KNOWN_GOOD_TIMES] is "unknown", spread slots across
       different days and times and label the whole table "HYPOTHESIS — replace with your
       own data after four weeks". Do not present any slot as a proven best time.
-   e) HANDOFF PROCEDURE for my setup: if self-hosted with API access, the exact steps and
-      where my token lives (never write a token into any file in this repo); if hosted,
-      the manual paste checklist — caption, media, channel, date, time, then a final
-      visual check in Postiz before I click schedule.
-   f) PRE-FLIGHT CHECKLIST run before any card reaches stage 4 Scheduled.
+   e) PRE-FLIGHT CHECKLIST run before any card reaches stage 4 Scheduled. Keep it to
+      things that are checkable against this section — aspect ratio, caption length,
+      hashtag convention, link policy, asset present and playable, account connected.
+   f) One line naming which handoff path I use — hosted paste, or self-hosted with API
+      access — so it is decided once rather than per card. The steps for both live in
+      03-operating-runbook.md; do not restate them here.
 2. Update pipeline.json's services.postiz note with my setup, leaving connected as false
    until I confirm a test post scheduled successfully.
 3. Print the new section back to me.
@@ -453,6 +457,10 @@ my own data replaces it.
 ```
 
 **If it goes wrong:** a caption that silently truncates on a platform means the max-length column was guessed — verify it inside Postiz and correct the table.
+
+**The actual queuing steps** — both the hosted paste path and the self-hosted API path,
+including where your token must never go — are a procedure, not config, so they live in
+`03-operating-runbook.md` → *Handing a card off to Postiz*.
 
 ---
 
@@ -710,9 +718,8 @@ INPUTS
 
 STEPS
 1. Read the Distribution section of content-machine/notes/[OFFER_SLUG]-intake.md. Run its
-   pre-flight checklist and print each
-   item with a tick or a cross: aspect ratio, caption length, hashtags, link policy,
-   on-screen text safe area, file present and playable.
+   pre-flight checklist and print each item with a tick or a cross: aspect ratio, caption
+   length, hashtags, link policy, on-screen text safe area, file present and playable.
 2. Choose slots from the posting-windows table, avoiding collisions with cards already at
    stage 4 in pipeline.json. Say plainly that these windows are a hypothesis until my own
    data replaces them.
@@ -724,9 +731,11 @@ STEPS
 5. Write content-machine/schedule/[CARD_ID]-postiz.md — platform, account handle, date,
    local time, timezone, asset path, caption reference and first comment, with a blank
    postiz-id column for me to fill in after queuing.
-6. After approval: if my Postiz is self-hosted with API access, walk me through the queue
-   step; if hosted, give me the numbered paste checklist. Either way, I am the one who
-   clicks schedule in Postiz.
+6. After approval: read which handoff path I use from the Distribution section, then walk
+   me through that path exactly as written in 03-operating-runbook.md → "Handing a card
+   off to Postiz". Do not improvise a different sequence. Either way, I am the one who
+   clicks schedule in Postiz, and the postiz-id column gets filled before this card counts
+   as queued.
 7. Once I confirm it is queued, bump the card to stage 4, write the scheduled times into
    its notes, log the run, and set services.postiz.lastRun.
 

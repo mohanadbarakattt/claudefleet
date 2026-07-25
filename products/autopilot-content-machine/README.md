@@ -43,7 +43,8 @@ autopilot-content-machine/
   README.md                  ← you are here
   00-START-HERE.md           first hour: unzipped folder → a card moving through two stages
   01-architecture.md         each stage: input, work, agent, service, approval, done
-  03-operating-runbook.md    daily loop, weekly review, failure fallbacks, QC gates
+  03-operating-runbook.md    daily loop, weekly review, Postiz handoff, failure
+                             fallbacks + shot-retry order, QC gates
   04-requirements-and-costs.md  every dependency, honest cost talk, pre-flight checklist
   skills/
     cf-ideas.md               fills Idea (writes new cards at stage 0)
