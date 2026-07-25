@@ -103,8 +103,9 @@ later stage reads.
 
 ```
 You are the strategist for my content machine. Write my intake note. Every later stage
-(/cf-ideas, /cf-script, /cf-render, /cf-assemble) reads this file, so it must be specific
-enough to constrain a writer who has never met me.
+(/cf-ideas, /cf-script, /cf-render, /cf-assemble, /cf-schedule) reads this file — it is
+the machine's only config file — so it must be specific enough to constrain a writer who
+has never met me. Prompts A7 and A8 will come back and deepen two of its sections.
 
 INPUTS — use only what I give you here. Do not research, invent or embellish.
 - Offer slug, short and filename-safe: [OFFER_SLUG]
@@ -127,8 +128,10 @@ STEPS
    Identity · Audience (with 3 named pains in their words, drawn only from my inputs)
    · Offer and the one action every post drives toward · Proof I own · What's already been
    posted · Voice (5 rules, each with a one-line DO and DON'T example written in my voice)
-   · Visual grammar (colour, pacing, framing, on-screen text policy) · Banned list ·
-   Compliance rules · Platforms.
+   · Visual grammar (colour, pacing, framing, on-screen text policy — Prompt A7 rewrites
+   this section in full) · Banned list · Compliance rules · Distribution (start with just
+   my platforms from [PLATFORMS]; Prompt A8 expands this into channels, timezone, cadence
+   and the Postiz pre-flight checklist).
 2. Under Compliance rules, write these three verbatim and non-negotiable: no invented
    statistics or third-party claims; no income or results promises of any kind; any number,
    price or testimonial must come from me and be marked [SOURCE: owner-supplied].
@@ -334,58 +337,87 @@ attempt a second merge on top of a broken file.
 
 ---
 
-### Prompt A7 — Configure the Higgsfield brief format
+### Prompt A7 — Put your visual grammar in the intake note
 
 **When you run it:** once, after hooks are live; again whenever your visual style changes.
-**What you get back:** `content-machine/notes/render-spec.md` — your house style for Higgsfield briefs. Note it is an **operator reference file**: the `/cf-render` skill does not read it automatically, so paste it (or point Claude at it) when you run the render stage via prompt B3, which does read it.
+**What you get back:** an upgraded **Visual grammar** section inside
+`content-machine/notes/[OFFER_SLUG]-intake.md` — the constraints `/cf-render` hands to the
+`cf-shot-designer` agent on every card.
+
+> **Why it goes in the intake note and not a separate spec file.** `/cf-render` passes
+> "the visual constraints from the intake note" to `cf-shot-designer`. The intake note is
+> the only config file the skills actually read. A separate `render-spec.md` would sit
+> there unread. Note also that the shot table, the prompt paragraph order and the
+> regeneration log are already fixed by `cf-shot-designer`'s own output contract — do not
+> redefine them here, or you will be writing a template that fights the agent. What
+> belongs here is only what is genuinely *yours*: the look, the limits of your account,
+> and your text policy.
 
 ```
-Define the exact brief format my machine will produce for Higgsfield, tuned to my visual
-style. /cf-render and the cf-shot-designer agent will follow this template for every card,
-so it must match the controls my actual account exposes.
+Update my intake note's Visual grammar section so the shot designer is properly
+constrained. Edit the existing file in place; do not create a new one and do not touch
+any other section.
 
 INPUTS
-- Intake note: [CLAUDEFLEET_HOME]/content-machine/notes/[OFFER_SLUG]-intake.md
+- Intake note to edit: [CLAUDEFLEET_HOME]/content-machine/notes/[OFFER_SLUG]-intake.md
 - Controls and options my Higgsfield account actually gives me: [HIGGSFIELD_FEATURES_I_HAVE]
 - Aspect ratio: [ASPECT_RATIO]        - Shots per clip: [SHOTS_PER_CLIP]
 - Clip length: [CLIP_LENGTH] seconds  - Look in one sentence: [LOOK]
 
 STEPS
-1. Write [CLAUDEFLEET_HOME]/content-machine/notes/render-spec.md containing:
-   a) A SHOT TABLE template: shot number, script line it covers, duration, subject,
-      camera move, framing, lighting, motion intensity, negative prompt.
-   b) A PROMPT TEMPLATE: one paste-ready paragraph per shot, in the order
-      subject → action → environment → lighting → camera → style → constraints.
-   c) A HOUSE STYLE block derived from [LOOK] that every prompt inherits verbatim.
-   d) An ON-SCREEN TEXT POLICY. Default: request no text inside generated frames and add
-      captions in the editor afterwards — generated text is the most common reason a clip
-      has to be regenerated.
-   e) A REGENERATION CHECKLIST: what to change on a failed shot, in order of cheapness.
-   f) A CREDIT LOG line format: card id, shots requested, shots kept, credits spent —
-      so I can fill pipeline.json's "costs" array from my own invoice.
-2. Produce one fully worked example brief for card c-0001, complete enough to paste.
+1. Rewrite the "Visual grammar" section of the intake note so it contains, in order:
+   a) A HOUSE STYLE block derived from [LOOK], written as concrete nouns a generator can
+      act on — subject, wardrobe, palette, lighting, location type, time of day. This is
+      the block every shot prompt will inherit, so it must be specific enough that two
+      different clips look like the same channel.
+   b) FORMAT: aspect ratio [ASPECT_RATIO], target clip length [CLIP_LENGTH]s, and roughly
+      [SHOTS_PER_CLIP] shots per clip. Say plainly that more shots costs more credits.
+   c) ON-SCREEN TEXT POLICY. Default: request no words inside generated frames and burn
+      captions in during editing — generated in-frame text is the most common reason a
+      shot has to be regenerated.
+   d) MUST NOT APPEAR: my standing negative list — watermarks, logos, readable brand
+      names, bystanders' faces, extra limbs, anything in my banned list.
+   e) MY HIGGSFIELD CONTROLS: only the controls from [HIGGSFIELD_FEATURES_I_HAVE].
+   f) WHEN A SHOT FAILS: what to change first, in order of cheapness — negative prompt,
+      then framing or camera move, then the whole prompt, then the beat itself.
+2. Add an "ASK HIGGSFIELD / CHECK MY ACCOUNT" list at the end of the section for any
+   control I asked for that is not in [HIGGSFIELD_FEATURES_I_HAVE].
+3. Print the rewritten section back to me so I can check it before it drives real spend.
 
 CONSTRAINT
 Use ONLY the controls listed in [HIGGSFIELD_FEATURES_I_HAVE]. Do not name Higgsfield
-models, presets, plans or prices — if a control I need is not on my list, add it to an
-"ASK HIGGSFIELD / CHECK MY ACCOUNT" section at the bottom instead of inventing it.
+models, presets, plans or prices, and do not invent a control — put anything uncertain in
+the ASK HIGGSFIELD list instead. Do not add a shot table or a prompt template; the
+cf-shot-designer agent owns that format.
 ```
 
-**If it goes wrong:** briefs that produce garbled words in-frame mean the on-screen text policy was ignored — tighten the negative prompt and add captions in your editor.
+**If it goes wrong:** briefs that produce garbled words in-frame mean the on-screen text policy was ignored — tighten the MUST NOT APPEAR list and burn captions in your editor instead.
 
 ---
 
-### Prompt A8 — Map the Postiz channels
+### Prompt A8 — Put your distribution settings in the intake note
 
 **When you run it:** after your social accounts are connected inside Postiz.
-**What you get back:** `content-machine/schedule/channels.md` plus a `posting-windows` table. Like `render-spec.md`, this is an **operator reference file** — the `/cf-schedule` skill does not read it automatically; prompt B5 does, and that is where the windows get applied.
+**What you get back:** a **Distribution** section inside
+`content-machine/notes/[OFFER_SLUG]-intake.md`, replacing the thin "Platforms" section —
+the channels, timezone and cadence `/cf-schedule` hands to the `cf-distribution-planner`
+agent, plus your Postiz handoff procedure and pre-flight checklist.
+
+> **Why it goes in the intake note.** `/cf-schedule` passes "the platforms, the account
+> handles, the operator's timezone and their stated cadence" to `cf-distribution-planner`.
+> It reads those from the intake note. A standalone `channels.md` would never be opened by
+> any skill or agent.
 
 ```
-Configure how my machine hands finished posts to Postiz. Postiz is my own account
-connected to my own social accounts; this machine's job ends at "approved, formatted, and
-queued with a time". It must never publish without my say-so.
+Update my intake note so the distribution planner is properly constrained. Replace the
+existing "Platforms" section with a fuller "Distribution" section. Edit the file in
+place; do not create a new one and do not touch any other section.
+
+Postiz is my own account connected to my own social accounts. This machine's job ends at
+"approved, formatted, and queued with a time". It must never publish without my say-so.
 
 INPUTS
+- Intake note to edit: [CLAUDEFLEET_HOME]/content-machine/notes/[OFFER_SLUG]-intake.md
 - Postiz setup: [HOSTED_OR_SELF_HOSTED] at [POSTIZ_URL]
 - Channels I have actually connected in Postiz, with handles: [CHANNELS]
 - My timezone: [TIMEZONE]
@@ -393,25 +425,31 @@ INPUTS
 - Windows that have worked for me so far, or "unknown": [KNOWN_GOOD_TIMES]
 
 STEPS
-1. Write [CLAUDEFLEET_HOME]/content-machine/schedule/channels.md with:
+1. Write the "Distribution" section containing:
    a) A CHANNEL TABLE: channel, handle, aspect ratio, max caption length, hashtag
       convention, link policy, and any format constraint I stated. Mark anything you are
       not certain of as "VERIFY IN POSTIZ" rather than asserting it.
-   b) A POSTING WINDOWS table: for each channel, [CADENCE] slots with weekday and local
+   b) TIMEZONE: [TIMEZONE], stated once and explicitly, because every slot the planner
+      writes must carry a named zone.
+   c) CADENCE: [CADENCE] per channel per week, and the minimum gap between two posts on
+      the same account.
+   d) POSTING WINDOWS: for each channel, [CADENCE] candidate slots with weekday and local
       time in [TIMEZONE]. If [KNOWN_GOOD_TIMES] is "unknown", spread slots across
       different days and times and label the whole table "HYPOTHESIS — replace with your
       own data after four weeks". Do not present any slot as a proven best time.
-   c) A HANDOFF PROCEDURE for my setup: if self-hosted with API access, the exact steps
-      and where my token lives (never write a token into any file in this repo); if
-      hosted, the manual paste checklist — caption, media, channel, date, time, then a
-      final visual check in Postiz before I click schedule.
-   d) A PRE-FLIGHT CHECKLIST run before any card reaches stage 4 Scheduled.
+   e) HANDOFF PROCEDURE for my setup: if self-hosted with API access, the exact steps and
+      where my token lives (never write a token into any file in this repo); if hosted,
+      the manual paste checklist — caption, media, channel, date, time, then a final
+      visual check in Postiz before I click schedule.
+   f) PRE-FLIGHT CHECKLIST run before any card reaches stage 4 Scheduled.
 2. Update pipeline.json's services.postiz note with my setup, leaving connected as false
    until I confirm a test post scheduled successfully.
+3. Print the new section back to me.
 
 CONSTRAINT
-No invented engagement statistics, no "optimal time" claims, no Postiz pricing. Every
-timing recommendation is labelled as an untested hypothesis until my own data replaces it.
+No invented engagement statistics, no "optimal time" claims, no Postiz pricing, no guessed
+platform limits. Every timing recommendation is labelled as an untested hypothesis until
+my own data replaces it.
 ```
 
 **If it goes wrong:** a caption that silently truncates on a platform means the max-length column was guessed — verify it inside Postiz and correct the table.
@@ -576,24 +614,28 @@ INPUTS
 - Anything about this clip that differs from house style: [OVERRIDES]
 
 STEPS
-1. Read content-machine/notes/render-spec.md and content-machine/notes/[OFFER_SLUG]-intake.md, then the
-   script at content-machine/scripts/[CARD_ID]-script.md.
-2. Delegate to cf-shot-designer. Follow render-spec.md's shot table and prompt template
-   exactly — same field order, same house style block inherited verbatim.
+1. Read content-machine/notes/[OFFER_SLUG]-intake.md — the Visual grammar section is the
+   binding constraint — then the script at content-machine/scripts/[CARD_ID]-script.md.
+2. Delegate to cf-shot-designer, passing the script, the beat timecodes, the aspect ratio
+   and the Visual grammar constraints. The agent owns the shot-table and prompt format;
+   your job is to hold it to the house style block verbatim, not to restate its layout.
 3. Produce [SHOTS_PER_CLIP] shots that between them cover every beat of the B-roll column.
    Each shot needs: the script line it covers, duration in seconds summing to the script's
    total, the full prompt paragraph, a negative prompt, and a one-line "what would make
    this shot unusable" note.
 4. Add a GENERATION ORDER section: which shot to make first as a style test, so I burn one
    shot's worth of credit finding out the look is wrong instead of [SHOTS_PER_CLIP].
-5. Add an empty CREDIT LOG line in render-spec.md's format for me to fill after the session.
+5. End the brief with the empty regeneration log the agent produces (shot, attempt,
+   result, credits) so I can fill in real credits after the session — /cf-render reads
+   my figure from me and never estimates it.
 6. Write content-machine/briefs/[CARD_ID]-higgsfield.md, bump the card to stage 2, log the
    run, and remind me that generation happens in my own Higgsfield account on my own
    credits.
 
 CONSTRAINT
 Do not invent Higgsfield model names, presets, parameters or prices. If the brief needs a
-control that is not in render-spec.md, list it under OPEN QUESTIONS and leave the prompt
+control that is not in the intake note's MY HIGGSFIELD CONTROLS list, put it under OPEN
+QUESTIONS and leave the prompt
 written in plain descriptive language that works regardless of which control I use.
 ```
 
@@ -647,7 +689,7 @@ If more than a third of the shots failed QC, do not assemble around it — say s
 the card back to stage 2 with specific brief changes.
 ```
 
-**If it goes wrong:** repeated QC failures on the same fault (garbled text, wrong ratio) mean `render-spec.md` needs the fix, not this card — update the spec so it stops recurring.
+**If it goes wrong:** repeated QC failures on the same fault (garbled text, wrong ratio) mean the intake note's Visual grammar needs the fix, not this card — update that section so it stops recurring.
 
 ---
 
@@ -667,7 +709,8 @@ INPUTS
 - Preferred slot, or "next available": [SLOT]
 
 STEPS
-1. Read content-machine/schedule/channels.md. Run its pre-flight checklist and print each
+1. Read the Distribution section of content-machine/notes/[OFFER_SLUG]-intake.md. Run its
+   pre-flight checklist and print each
    item with a tick or a cross: aspect ratio, caption length, hashtags, link policy,
    on-screen text safe area, file present and playable.
 2. Choose slots from the posting-windows table, avoiding collisions with cards already at
@@ -763,7 +806,7 @@ STEPS
    per service, with a note naming the invoice. Report total spend in [CURRENCY] and cost
    per published post. State that these are my numbers, not estimates.
 4. From [FRICTION], name the single biggest bottleneck and propose one concrete change to
-   the intake note, render-spec.md or channels.md — a specific edit, not a principle.
+   the intake note — a specific edit to a named section, not a principle.
 5. Write three DIRECTIVES for next week: things to do more of, stop, and test. Each must
    be checkable next Friday.
 6. Save all of it to content-machine/notes/review-[WEEK_LABEL].md and log the run.

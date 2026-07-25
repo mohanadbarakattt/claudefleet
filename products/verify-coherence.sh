@@ -52,6 +52,28 @@ for M in autopilot-content-machine digital-product-machine; do
       || bad "skill '$c' ships but no doc mentions it"
   done
 
+  # Every _engine/... path a doc cites must exist in the canonical products/_engine/,
+  # because package.sh copies that folder into the machine at package time.
+  ENG_MISSING=0
+  for p in $(grep -rhoE '_engine/[A-Za-z0-9._/-]+' "$M" --include='*.md' 2>/dev/null \
+             | sed 's/[.,)`]*$//' | sort -u); do
+    [ -e "_engine/${p#_engine/}" ] || { bad "doc cites '$p' but it is not in products/_engine/"; ENG_MISSING=1; }
+  done
+  [ "$ENG_MISSING" -eq 0 ] && ok "every _engine/... path cited resolves in products/_engine/"
+
+  # No doc may claim a skill/agent auto-reads a standalone config file. The skills read
+  # the intake note and pipeline.json — nothing else. Line-scoped: the filename and the
+  # read-claim must appear together, so "cf-render reads my figure from me" stays legal.
+  CFG_HITS=$(grep -rnE '(render-spec|channels)\.md' "$M" --include='*.md' 2>/dev/null \
+             | grep -E '(reads|read by|will follow|follows|auto-read)' \
+             | grep -viE 'unread|never be opened|does not read|would sit|not read')
+  if [ -n "$CFG_HITS" ]; then
+    bad "a doc claims a skill/agent auto-reads a standalone config file:"
+    printf '%s\n' "$CFG_HITS" | sed 's/^/      /'
+  else
+    ok "no doc claims a skill/agent auto-reads a standalone config file"
+  fi
+
   # Cross-machine contamination (content docs citing /dp-*, or vice versa)
   case "$M" in
     autopilot-content-machine) WRONG='/dp-' ;;
