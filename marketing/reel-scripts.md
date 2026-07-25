@@ -1,7 +1,17 @@
-> **Superseded by `production-scripts.md`** (2026-07-17) — same 6 concepts and CTA keywords,
-> rewritten with a 4-column shot format, sharper hooks, and the correct Higgsfield mode named
-> per shot (Cinema Studio vs. Hyper Motion vs. Marketing Studio vs. screen-record). Kept here
-> for history; use `production-scripts.md` for actual shooting/editing.
+> ## ⚠️ RETIRED — do not shoot from this file
+>
+> These six reels sell a **catalog that no longer exists** (Power Pack $19,
+> Prompt Vault $27, Money OS $39, Machines $97, bundle $129) using keywords
+> that have been retired (STACK / VAULT / OS / FLEET / FULL). Posting any of
+> them would send people to offers that aren't for sale and DM keywords that
+> aren't wired up.
+>
+> **Use `production-scripts.md` (v3).** Current catalog: Autopilot Content
+> Machine $99, Digital Product Machine $99, both for $149 — keywords
+> CONTENT / PRODUCT / BOTH / START.
+>
+> Kept only as history for the 24 clips in `generated/`, which were rendered
+> against these scripts.
 
 # ClaudeStack — Instagram Reel Scripts (5)
 

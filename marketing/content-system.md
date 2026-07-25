@@ -28,7 +28,7 @@ accidentally caption it as a genuine unsolicited review.
    "POV: I didn't believe this" arc. This is a dramatized scenario, same
    category as any before/after ad skit — label your own notes as
    "(dramatization)" and never present it as an unsolicited real review.
-3. **The Client (Machines-specific)** — a played character representing a
+3. **The Client (Machine-specific)** — a played character representing a
    business owner receiving a deliverable from a ClaudeFleet Machine
    (e.g., getting their week's content calendar). Same rule: dramatized
    workflow demo, not a claimed real client relationship.
@@ -66,20 +66,25 @@ accidentally caption it as a genuine unsolicited review.
 
 ## CTA keyword map (matches marketing/dm-automation.md)
 
-- STACK → Power Pack ($19) · VAULT → Prompt Vault ($27) · OS → Money OS ($39)
-- FLEET → ClaudeFleet Machines ($97) · FULL → Bundle ($129) · START → funnel
-  starter question
+- CONTENT → Autopilot Content Machine ($99)
+- PRODUCT → Digital Product Machine ($99)
+- BOTH → both machines, one engine ($149)
+- START → funnel starter question ("tell me what you're building")
+
+The catalog is **two machines on a shared engine**, not four small products.
+Both require paid Claude + Higgsfield + Postiz subscriptions, and that gets
+said out loud in the content — it is a trust asset, not a footnote.
 
 ## Weekly arc (how the 30 days are sequenced)
 
 - **Week 1 — Hook & prove**: pattern-interrupts and screen-record proof,
-  cheap products (STACK/VAULT), build initial trust and following.
+  the Content Machine (CONTENT), build initial trust and following.
 - **Week 2 — Teach & warm**: listicle/tip content, light engagement-bait,
   positions the account as useful even to non-buyers (algorithm favors
   saves/shares on this kind of content).
-- **Week 3 — Escalate**: POV/skit and guru-guide content, introduces Money
-  OS and starts building toward the Machines reveal.
-- **Week 4 — Cheat-code push**: heaviest hype framing, the Machines/FLEET
+- **Week 3 — Escalate**: POV/skit and guru-guide content, introduces the
+  Digital Product Machine (PRODUCT) and builds toward the both-machines close.
+- **Week 4 — Cheat-code push**: heaviest hype framing, the BOTH/bundle
   push, a recap/bundle close, and a "how it's all built" behind-the-scenes
   post to reinforce the Operator's credibility.
 
