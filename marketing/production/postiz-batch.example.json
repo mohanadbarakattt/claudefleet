@@ -1,0 +1,73 @@
+{
+  "type": "draft",
+  "date": "[START_DATE_PLUS_26_DAYS]T18:00:00[UTC_OFFSET]",
+  "integrations": [
+    "[INSTAGRAM_INTEGRATION_ID]",
+    "[TIKTOK_INTEGRATION_ID]",
+    "[TWITTER_INTEGRATION_ID]",
+    "[LINKEDIN_INTEGRATION_ID]"
+  ],
+  "posts": [
+    {
+      "provider": "instagram",
+      "post": [
+        {
+          "content": "Autopilot Content Machine and Digital Product Machine \u2014 $99 each, $149 for both: real pipelines that run a piece of your business workflow end to end, on your own Claude, Higgsfield, and Postiz accounts. This clip is the actual thing running, not a demo reel. No guarantees beyond the 30-day refund \u2014 just watch it work and decide for yourself. Comment BOTH and I'll DM you the full breakdown.",
+          "image": [
+            "[POSTIZ_UPLOAD_PATH_FOR_assets/day-27.mp4]"
+          ]
+        }
+      ],
+      "settings": {
+        "__type": "instagram",
+        "post_type": "post"
+      }
+    },
+    {
+      "provider": "tiktok",
+      "post": [
+        {
+          "content": "Autopilot Content Machine and Digital Product Machine \u2014 $99 each, $149 for both. Real pipelines that run a piece of your business workflow end to end, on your own Claude, Higgsfield and Postiz accounts. This clip is the actual thing running, not a demo reel. No guarantees beyond the 30-day refund. Comment BOTH for the full breakdown.",
+          "image": [
+            "[POSTIZ_UPLOAD_PATH_FOR_assets/day-27.mp4]"
+          ]
+        }
+      ],
+      "settings": {
+        "__type": "tiktok",
+        "privacy": "PUBLIC_TO_EVERYONE",
+        "duet": true,
+        "stitch": true
+      }
+    },
+    {
+      "provider": "twitter",
+      "post": [
+        {
+          "content": "$99 each, $149 for both. Real pipelines, running on your own Claude/Higgsfield/Postiz accounts. This clip is the actual thing running, not a demo reel. No guarantees beyond the 30-day refund. Reply BOTH for the breakdown.",
+          "image": [
+            "[POSTIZ_UPLOAD_PATH_FOR_assets/day-27.mp4]"
+          ]
+        }
+      ],
+      "settings": {
+        "__type": "twitter",
+        "who_can_reply_post": "everyone"
+      }
+    },
+    {
+      "provider": "linkedin",
+      "post": [
+        {
+          "content": "Autopilot Content Machine and Digital Product Machine \u2014 $99 each, $149 for both.\n\nBoth are real pipelines that run a piece of a business workflow end to end, on your own Claude, Higgsfield and Postiz accounts \u2014 those subscriptions are not included in the price, which is worth saying plainly rather than burying.\n\nThe clip attached is the actual thing running, not a demo reel. No guarantees beyond the 30-day refund \u2014 watch it work and decide for yourself.\n\nComment BOTH and I'll send the full breakdown.",
+          "image": [
+            "[POSTIZ_UPLOAD_PATH_FOR_assets/day-27.mp4]"
+          ]
+        }
+      ],
+      "settings": {
+        "__type": "linkedin"
+      }
+    }
+  ]
+}
