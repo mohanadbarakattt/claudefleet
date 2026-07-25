@@ -33,6 +33,13 @@ that needs to show real words.
 ## What to do with these
 1. Open `clips/` — each reel's 4 scenes are numbered in cut order.
 2. Import into CapCut (or any editor) in scene order (1→2→3→4).
+> **Note on catalog:** these 24 clips were rendered against the retired
+> four-product scripts. The footage itself is abstract (pipeline boards,
+> hologram desks, macro shots) and mostly still usable, but `manifest.json`'s
+> `cta_keyword` fields are dead (STACK/VAULT/OS/FLEET). Re-cut against
+> `../production-scripts.md` v3 and use CONTENT / PRODUCT / BOTH / START.
+> Reels 2 and 4 in v3 are screen-record only — don't use this footage there.
+
 3. Add the voiceover + on-screen text from `../production-scripts.md`
    (per-shot dialogue and text cards are already written per reel).
 4. Post in the order from `../production-scripts.md`'s posting notes:

@@ -1,5 +1,13 @@
 # Higgsfield Prompts — one set per reel
 
+> **Historical — these 24 prompts were rendered for the retired four-product
+> catalog.** The clips in `generated/clips/` are real and the abstract footage
+> (pipeline boards, hologram desks, macro shots) is still reusable, but the
+> reel titles and CTA keywords here (STACK/VAULT/OS/FLEET) are dead.
+> Current shooting script: **`production-scripts.md` (v3)** — two machines,
+> keywords CONTENT / PRODUCT / BOTH / START.
+
+
 Workflow: generate each scene as a 3–6s clip in Higgsfield, cut together in CapCut,
 add the voiceover + on-screen text from reel-scripts.md. Keep one consistent
 character across scenes (upload the same reference face/outfit image each time).

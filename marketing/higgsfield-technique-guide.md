@@ -14,7 +14,7 @@ that apply to us.
 | A talking-to-camera testimonial-style ad, built from our real site | **Marketing Studio → App mode (UGC)** | Paste the live URL, it pulls real UI + product info automatically, pick an avatar, generate. See below. |
 | A longer lifestyle/brand narrative for YouTube or the site itself, not just Reels | **Marketing Studio → TV Spot (16:9)** | Same pull-from-URL flow, longer format, cinematic pacing. |
 | Anything with **readable on-screen text** — hero headline animation, feature-card micro-interactions, pricing reveal on the site | **Vibe Motion** (web app only — not in the MCP tool list, must be run at higgsfield.ai) | Generates real UI/motion code, not video pixels — this is the only mode where text stays sharp. Cinema Studio and Marketing Studio video models both warp on-screen words (this is exactly what broke 2 of our first 24 clips — see `generated/README.md`). |
-| A structured "how it works" explainer with narration | **Explainer** (web app) | Paste a URL (our site) or describe the topic, pick a visual preset, set duration/voice, generate a complete narrated video in one pass. Good candidate for a "how ClaudeFleet Machines works" explainer if we want one later. |
+| A structured "how it works" explainer with narration | **Explainer** (web app) | Paste a URL (our site) or describe the topic, pick a visual preset, set duration/voice, generate a complete narrated video in one pass. Good candidate for a "how the engine works" explainer covering the five stages, if we want one later. |
 
 ## Marketing Studio "App" mode — run this on our real site
 
@@ -31,7 +31,7 @@ the actual live product instead of describing it from scratch.
 5. Pick an avatar (or none, for a pure UI-reveal cut).
 6. Prompt — use Reel 4's script from `production-scripts.md` as the brief,
    not verbatim: describe the moment (someone discovering the site, scrolling
-   the product cards, landing on the $129 bundle), the mood (confident, a
+   the product cards, landing on the $149 both-machines bundle), the mood (confident, a
    little "wait, this is real?"), and let Marketing Studio handle camera
    moves and audio.
 7. Generate.

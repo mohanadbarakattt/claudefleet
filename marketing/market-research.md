@@ -13,19 +13,19 @@ you plan to put in ad copy as a hard claim.
    existing income, high price sensitivity, respond to "cheat code" framing.
 2. **Existing freelancers adding AI to their service stack** — already
    selling a skill, looking to increase margin/speed rather than start from
-   zero. Best fit for the Prompt Vault and Power Pack — they need leverage,
-   not a business idea.
+   zero. Best fit for the **Autopilot Content Machine** — they need leverage
+   on delivery, not a business idea.
 3. **Creators already using AI daily** — a Kit 2025/2026 survey of 500+
    creators found 57% use AI tools daily, 72% weekly. This is a *warm*,
    pre-adopted audience — the pitch isn't "should I use AI" but "you're
    already using it wrong / underusing it."
 4. **Laid-off or under-employed knowledge workers** — looking for a
-   structured path back to income, respond well to the Money OS's
-   step-by-step framing (no reliable primary stat on size of this segment;
-   directional only).
-5. **Small agency owners / solo operators** — the ClaudeFleet Machines
-   buyer. Already run a service business, want to add a second offer or
-   automate delivery. Smallest segment but highest willingness to pay.
+   structured path back to income, respond well to the **Digital Product
+   Machine's** validate-before-you-build framing (no reliable primary stat
+   on the size of this segment; directional only).
+5. **Small agency owners / solo operators** — the both-machines buyer.
+   Already run a service business, want to add a second offer or automate
+   delivery. Smallest segment but highest willingness to pay.
 
 ## Formats that are actually working right now (2025-2026)
 
@@ -39,7 +39,7 @@ you plan to put in ad copy as a hard claim.
    inbox → done, blank doc → finished deliverable). Repeatable, high-trust
    because it's *shown*, not claimed.
 4. **Listicle / "did you know" micro-lessons** — tip-dense, low production,
-   good for the Prompt Vault specifically.
+   good for showing individual pipeline stages without a full demo.
 5. **POV / story format** — "POV: you just found out AI can do this."
    Borrowed from broader viral formats, now standard in this niche.
 6. **Comment-keyword → DM CTA** — this is already ClaudeFleet's funnel model
