@@ -41,7 +41,8 @@ digital-product-machine/
   00-START-HERE.md                the first hour, in order, with exact commands
   01-architecture.md              the five stages in detail
   02-build-prompts.md             17 paste-ready prompts: build the machine, then run it
-  03-operating-runbook.md         daily loop, weekly review, failure fallbacks, QC gates
+  03-operating-runbook.md         daily loop, weekly review, Postiz launch handoff,
+                                  failure fallbacks + render-retry order, QC gates
   04-requirements-and-costs.md    every dependency, and the pre-flight checklist
   skills/dp-validate.md           the five slash commands (the installer copies each
   skills/dp-build.md              one to ~/.claude/skills/<name>/SKILL.md)

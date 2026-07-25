@@ -61,7 +61,6 @@ STEPS
    nothing. If jq is absent, tell me I must use the manual hook merge in Prompt 6.
 2. Create these, skipping any that already exist:
    FLEET_HOME/logs/
-   FLEET_HOME/product-machine/config/
    FLEET_HOME/product-machine/notes/
    FLEET_HOME/product-machine/assets/
 3. Copy UNZIPPED_PRODUCT_DIR/_engine/admin-panel/index.html to FLEET_HOME/admin.html only if
@@ -109,7 +108,7 @@ STEPS
    currency CURRENCY, selectedStage 0, and stages exactly
    ["Validate","Build","Package","Launch Kit","Scheduled"].
 4. Rewrite the top-level "note" string to name MY_NICHE and MY_OFFER_THESIS and to point at
-   product-machine/config/profile.md as the long-form version.
+   CLAUDE.md as the long-form version.
 5. cards: one card per FIRST_IDEAS entry — id "p-0001" upward, machine "product", stage 0,
    title = the idea in under 12 words, created = current UTC time in ISO-8601 with a Z, notes =
    two lines: "slug: <kebab-case-slug>" then my raw idea text verbatim. The slug lives in notes
@@ -128,7 +127,15 @@ The full file, then the validation result, then a one-line summary: N cards seed
 
 ### Prompt 3 — Write the business profile every stage reads
 **When you run it:** once, after Prompt 2. Revisit it whenever your positioning changes.
-**What you get back:** `~/claudefleet/product-machine/config/profile.md` — the context file all five skills load.
+**What you get back:** `~/claudefleet/CLAUDE.md` — your standing business context, loaded
+automatically into every Claude Code session you start from the fleet home.
+
+> **Why it goes in `CLAUDE.md` and not a config file.** Claude Code reads `CLAUDE.md` from
+> your working directory at the start of every session. Since you run this machine with
+> `cd ~/claudefleet && claude`, putting your profile there means every stage genuinely does
+> see your voice, your hard nos and your claim rules — without any skill having to open a
+> file. A `config/profile.md` would sit there unread. This is also why the file is written
+> as instructions to Claude rather than as notes to yourself.
 
 ```
 You are writing the profile that every stage of my Digital Product Machine reads before it does
@@ -146,9 +153,14 @@ INPUTS
 STEPS
 1. Ask me up to 6 clarifying questions, then wait for my answers. Ask only about things you
    cannot infer.
-2. Write FLEET_HOME/product-machine/config/profile.md with these sections: Audience; Problem;
-   Offer thesis; Voice (with 3 example sentences in it and 3 sentences that are NOT it); Formats;
-   Price band; Evidence I can legitimately cite; Hard nos; Claim rules.
+2. Write FLEET_HOME/CLAUDE.md with these sections: Audience; Problem; Offer thesis; Voice
+   (with 3 example sentences in it and 3 sentences that are NOT it); Formats; Price band;
+   Evidence I can legitimately cite; Hard nos; Claim rules.
+   If FLEET_HOME/CLAUDE.md already exists — because I also run the Content Machine — do NOT
+   overwrite it. Append these sections under a `# Digital Product Machine` heading and leave
+   everything above untouched.
+   Write it addressed to Claude ("Never state an earnings figure…"), not to me, because this
+   file is loaded as instructions at the start of every session in this directory.
 3. The Claim rules section is mandatory and must state, as binding instructions to any future
    session: never state an earnings figure, a "results in N days" claim, or a testimonial that
    did not happen; never invent statistics, user counts, or vendor prices; the only guarantee
@@ -179,18 +191,18 @@ Machine. Each skill is a directory under ~/.claude/skills/<name>/ containing SKI
 INPUTS
 - FLEET_HOME: [~/claudefleet]
 - SOURCE_SKILLS_DIR: [~/Downloads/claudefleet-digital-product-machine/skills]  (may not exist)
-- PROFILE: FLEET_HOME/product-machine/config/profile.md
+- STANDING CONTEXT: FLEET_HOME/CLAUDE.md (auto-loaded; you already have it in context)
 
 STEPS
-1. Read PROFILE. If SOURCE_SKILLS_DIR exists, read those files and adapt them; otherwise write
-   them from this spec.
+1. If SOURCE_SKILLS_DIR exists, read those files and adapt them; otherwise write them from
+   this spec. My standing context in CLAUDE.md is already loaded — honour its Claim rules.
 2. Create dp-validate, dp-build, dp-package, dp-launch, dp-schedule. Each SKILL.md starts with
    YAML frontmatter containing a `description` field: one sentence naming the stage transition
    and when to use it. Frontmatter must be the first line of the file.
 3. Every skill body must specify this identical STAGE CONTRACT, written out in full in each file:
    read FLEET_HOME/pipeline.json; select the target card by id, or by title if I named one;
    refuse to run if the card's stage index is not the one this skill consumes, and say which
-   skill I actually need; read config/profile.md and obey its Claim rules; do the stage work;
+   skill I actually need; obey the Claim rules already loaded from CLAUDE.md; do the stage work;
    write artifacts under FLEET_HOME/product-machine/notes/<slug>/ — Validate writes
    validation.md directly in that folder; Build, Package, Launch Kit and Scheduled each write
    into their own subfolder (build/, package/, launch/, schedule/); anything Higgsfield renders
@@ -233,7 +245,7 @@ Each is one markdown file at ~/.claude/agents/<name>.md.
 
 INPUTS
 - SOURCE_AGENTS_DIR: [~/Downloads/claudefleet-digital-product-machine/agents]  (may not exist)
-- PROFILE: ~/claudefleet/product-machine/config/profile.md
+- STANDING CONTEXT: ~/claudefleet/CLAUDE.md (auto-loaded; you already have it in context)
 
 STEPS
 1. Read PROFILE. Adapt SOURCE_AGENTS_DIR files if present; otherwise write from this spec.
@@ -264,7 +276,7 @@ STEPS
 3. Match each agent's tool set to what the shipped versions actually carry (listed above) — all
    five write their own output files; only dp-researcher needs web access, and only dp-packager
    needs Bash, to list the build folder for real before it writes the manifest.
-4. Every agent's body must include: "Load ~/claudefleet/product-machine/config/profile.md and
+4. Every agent's body must include: "Obey the Claim rules in the session's loaded CLAUDE.md and
    obey its Claim rules. Never invent facts, statistics, prices, or testimonials. Never state or
    imply what income anyone will make."
 5. Print `ls ~/.claude/agents/` and, in a session restart, `/agents`.
@@ -319,17 +331,23 @@ half-written settings.json.
 
 ---
 
-### Prompt 7 — Configure the Higgsfield brief format for your brand style
+### Prompt 7 — Add your visual style to CLAUDE.md
 **When you run it:** once, after Prompt 6, with two or three reference clips or images you like.
-**What you get back:** `config/higgsfield-brief.md` — a reusable brief template plus one fully worked example.
+**What you get back:** a **Visual style** section appended to `~/claudefleet/CLAUDE.md`, so
+`/dp-package` writes media briefs that already look like your brand.
+
+> **Why not a brief template.** `/dp-package` writes `notes/<slug>/package/media-briefs.md`
+> itself, and the `dp-packager` agent fixes that file's format in its own output contract.
+> Authoring a competing template would give you two formats fighting each other. What is
+> genuinely yours is the *look* and the *never* list — so that goes in `CLAUDE.md`, which
+> every session loads.
 
 ```
-You are defining the house format for every media brief this machine will hand to Higgsfield.
+You are adding my visual style to the standing context every session of this machine loads.
 The engine never generates media; it writes briefs I paste into my own Higgsfield account, on my
 own credits.
 
 INPUTS
-- PROFILE: ~/claudefleet/product-machine/config/profile.md
 - LOOK I WANT: [3-6 words, e.g. "clean desk, daylight, no people"]
 - REFERENCES: [links or file paths to 2-3 clips/images whose look I want — or describe them]
 - PRIMARY ASPECT: [9:16]
@@ -338,39 +356,45 @@ INPUTS
 - THINGS THAT MUST NEVER APPEAR: [e.g. fake logos, invented UI, on-screen text, faces]
 
 STEPS
-1. Read PROFILE for voice and hard nos.
-2. Write FLEET_HOME/product-machine/config/higgsfield-brief.md containing:
-   a. A BRIEF TEMPLATE with fixed fields: card id, product slug, purpose of the clip, aspect,
-      shot count, per-shot rows (subject / camera move / lighting / duration / negative
-      constraints), reference image slot, and output filename convention
-      assets/<slug>/<card-id>-shot-N.<ext>.
-   b. A HOUSE STYLE block derived from LOOK I WANT and REFERENCES, written as directive prompt
-      language, not adjectives — say what is in frame and how the camera moves.
+1. Read the existing FLEET_HOME/CLAUDE.md so the new section matches its voice and hard nos.
+2. Append a "## Visual style" section to FLEET_HOME/CLAUDE.md containing:
+   a. A HOUSE STYLE block derived from LOOK I WANT and REFERENCES, written as directive prompt
+      language, not adjectives — say what is in frame and how the camera moves. This is the
+      block every media brief inherits.
+   b. FORMAT: primary aspect [PRIMARY_ASPECT], secondary [SECONDARY_ASPECT], shots cut to
+      [SHOT_LENGTH].
    c. A NEVER list built from THINGS THAT MUST NEVER APPEAR, plus this default: no invented
-      statistics, prices, logos, or product UI rendered as if real.
-   d. A CREDITS block: a place to record what each batch actually cost me in credits after the
-      fact. Do not estimate credit costs and do not quote Higgsfield's pricing — I check that on
-      their pricing page.
-   e. A REGENERATION RULE: what makes a clip a reject (garbled on-screen text, warped hands,
-      wrong aspect) and how many retries before I change the prompt instead.
-3. Then write one COMPLETE worked example brief, filled in for the product idea in card p-0001,
-   ready to paste into Higgsfield with no edits.
+      statistics, prices, logos, or product UI rendered as if real, and no words rendered
+      inside the frame — captions are added in the editor.
+   d. The filename convention every brief must specify:
+      assets/<slug>/<card-id>-shot-N.<ext>.
+3. Print the appended section back to me before it drives any spend.
 
-QUALITY BAR
-The worked example must contain zero brackets and zero "insert here". If I can't paste it as-is,
-it's not done.
+CONSTRAINT
+Do not write a brief template, a per-shot table, or a worked example — `dp-packager` owns that
+format. Do not estimate credit costs and do not quote Higgsfield's pricing; I check that on
+their pricing page.
 ```
 **If it goes wrong:** clips come back generic — your house style block is still adjectives; rewrite it as concrete nouns, camera moves and lighting.
 
+**What to do when a batch comes back unusable** is a procedure, not config, so it lives in
+`03-operating-runbook.md` → *When a service fails* → "A Higgsfield batch comes back unusable".
+
 ---
 
-### Prompt 8 — Configure the Postiz channel mapping
+### Prompt 8 — Add your distribution settings to CLAUDE.md
 **When you run it:** once, after your Postiz instance is connected to your social accounts.
-**What you get back:** `config/postiz-channels.md` — the channel table, slot plan, and the approval gate `/dp-schedule` obeys.
+**What you get back:** a **Distribution** section appended to `~/claudefleet/CLAUDE.md` —
+your channels, windows and approval gate, loaded into every session.
+
+> **Why `CLAUDE.md` and why the gate belongs there.** The approval gate has to bind *future
+> sessions*, not just the one that wrote it. A `config/postiz-channels.md` binds nothing,
+> because nothing opens it. In `CLAUDE.md` it is loaded as a standing instruction every time
+> you start a session — which is what an approval gate has to be to mean anything.
 
 ```
-You are writing the distribution config for my Digital Product Machine. Postiz is where finished
-copy and finished assets get scheduled; it is connected to my own social accounts.
+You are adding my distribution settings to the standing context every session loads. Postiz is
+where finished copy and finished assets get scheduled; it is connected to my own social accounts.
 
 INPUTS
 - CHANNELS I HAVE CONNECTED IN POSTIZ: [list them exactly as Postiz names them, with handles]
@@ -380,28 +404,34 @@ INPUTS
 - WHO APPROVES: [me]
 
 STEPS
-1. Write FLEET_HOME/product-machine/config/postiz-channels.md with:
+1. Append a "## Distribution" section to FLEET_HOME/CLAUDE.md containing:
    a. A CHANNEL TABLE: Channel | Handle | Asset format | Aspect | Caption style | Link allowed?
       | Verified caption/limit notes. Leave the limit column to be filled from what Postiz's own
       composer shows me — do not state any platform's character or duration limits from memory.
-   b. A SLOT PLAN mapping MY POSTING WINDOWS across LAUNCH LENGTH: for each slot, the channel,
+   b. MY TIMEZONE, stated explicitly, and the POSTING WINDOWS above — every slot written
+      anywhere in this machine must carry a named timezone.
+   c. A SLOT PLAN mapping MY POSTING WINDOWS across LAUNCH LENGTH: for each slot, the channel,
       the asset type, and the job that post does (tease / teach / proof / offer / close).
-   c. A NAMING CONTRACT: every scheduled item is identified as <card-id>-<slot-n>, and the
+   d. A NAMING CONTRACT: every scheduled item is identified as <card-id>-<slot-n>, and the
       matching media file is assets/<slug>/<card-id>-shot-N.<ext>, so a failed post is traceable
       back to one card in pipeline.json.
-   d. An APPROVAL GATE, stated as a binding instruction to future sessions: /dp-schedule prepares
-      drafts and a schedule table and then STOPS. Nothing is queued, scheduled, or published
-      until I reply with an explicit approval line. Claude never posts on my behalf.
-   e. A FAILURE PLAYBOOK: expired channel token, rejected media aspect, duplicate-content
-      rejection — what to do for each, and where to record it (card.notes plus the services block
-      in pipeline.json).
+   e. An APPROVAL GATE, written as a binding instruction to every future session: /dp-schedule
+      prepares drafts and a schedule table and then STOPS. Nothing is queued, scheduled, or
+      published until I reply with an explicit approval line. Claude never posts on my behalf,
+      and never treats a previous card's approval as covering this one.
+   f. One line naming which handoff path I use — hosted paste, or self-hosted with API access.
+      The steps for both live in 03-operating-runbook.md; do not restate them here.
 2. Set services.postiz.connected in pipeline.json to true only if I confirm the channels are
    actually connected right now.
 
 OUTPUT
-The file, then a 5-line summary of the slot plan.
+The appended section, then a 5-line summary of the slot plan.
 ```
 **If it goes wrong:** you can't name your channels exactly — open Postiz and copy them verbatim; a mismatched channel name is the most common scheduling failure.
+
+**The queuing steps and the failure playbook** (expired token, rejected aspect, duplicate-content
+rejection) are procedures, so they live in `03-operating-runbook.md` → *Handing a launch off to
+Postiz* and *When a service fails*.
 
 ---
 
@@ -425,7 +455,7 @@ files appeared under product-machine/notes/smoke-test/.
 4. /dp-build on p-9999 — a deliberately tiny deliverable is fine, but it must be real content.
 5. /dp-package on p-9999.
 6. /dp-launch on p-9999 — the Higgsfield brief must come out in the format defined in
-   config/higgsfield-brief.md. Do not generate any media.
+   the Visual style section of CLAUDE.md. Do not generate any media.
 7. /dp-schedule on p-9999 — it must produce the schedule table and then STOP at the approval
    gate. If it schedules or publishes anything, that is a FAIL and the most serious one.
 
@@ -460,7 +490,7 @@ You are stocking the Validate stage of my Digital Product Machine with product c
 come from evidence, not from your imagination.
 
 INPUTS
-- PROFILE: ~/claudefleet/product-machine/config/profile.md
+- STANDING CONTEXT: ~/claudefleet/CLAUDE.md (auto-loaded; you already have it in context)
 - RAW SIGNAL I AM PASTING: [paste real material — customer DMs, support tickets, the questions
   you get asked most, comments, a competitor's FAQ. Quantity beats polish.]
 - SIGNAL SOURCES I CAN CHECK: [subreddits, forums, communities, marketplaces I actually use]
@@ -505,7 +535,7 @@ INPUTS
   comparable paid products — raise it if you want more before you'll say GO]
 
 STEPS
-1. Load the card from pipeline.json and config/profile.md. Refuse to continue if the card is not
+1. Load the card from pipeline.json. Refuse to continue if the card is not
    at stage 0, and tell me which skill it needs instead.
 2. Have dp-researcher gather evidence: who has this problem, in their own words; what they
    currently do instead; what comparable products already exist and what buyers complain about
@@ -546,7 +576,7 @@ INPUTS
 - WORKING DAYS THIS BUILD GETS: [the skill refuses to run without a number]
 
 STEPS
-1. Load the card, notes/<slug>/validation.md, and config/profile.md. Refuse to run if the card
+1. Load the card and notes/<slug>/validation.md. Refuse to run if the card
    is not at Build (stage 1), or if line 1 of validation.md does not start with `DECISION: GO`.
 2. Delegate to dp-builder, asking first for notes/<slug>/build/00-outline.md only: the
    deliverable list mapped to the exact problem from the validation memo, and for each item its
@@ -632,14 +662,14 @@ INPUTS
 - CARD: [p-0003]
 - LAUNCH WINDOW: [cart open date, cart close date or "always open", and my timezone]
 - LIST SIZE AND CONTEXT: [e.g. "340 subscribers, last emailed 6 weeks ago" — or "no list yet"]
-- CHANNELS: [from config/postiz-channels.md]
+- CHANNELS: [from the Distribution section of CLAUDE.md]
 - OFFER MECHANIC: [e.g. launch price for the first 7 days, then standard price — or none]
 - ONE THING I WANT REMEMBERED: [the single idea the campaign should hammer]
 
 STEPS
 1. Load the card, notes/<slug>/package/manifest.md (must already carry a price I approved),
-   notes/<slug>/validation.md, config/profile.md, config/higgsfield-brief.md,
-   config/postiz-channels.md. Refuse to run if the card is not at Launch Kit (stage 3), or if
+   notes/<slug>/validation.md, and the Distribution section of CLAUDE.md (already loaded).
+   Refuse to run if the card is not at Launch Kit (stage 3), or if
    I have not given a real cart-open date, cart-close date, and timezone.
 2. Skim two deliverables from notes/<slug>/build/ so the copy describes what's actually inside.
 3. Delegate to dp-launch-writer. It writes into notes/<slug>/launch/:
@@ -649,10 +679,10 @@ STEPS
    - emails.md — five emails (announce, teach, objection, proof-or-process, close), each with
      subject line, preview text, body, and a send offset from cart open. Where I have no proof,
      use process — show how the thing was made — never a fabricated testimonial.
-   - social.md — launch-week posts grouped per channel, following config/postiz-channels.md,
-     each tagged with its slot in the week.
-   - promo-video-briefs.md — two Higgsfield video briefs in the exact template from
-     config/higgsfield-brief.md, paste-ready, output filenames as
+   - social.md — launch-week posts grouped per channel, following the slot plan in CLAUDE.md's
+     Distribution section, each tagged with its slot in the week.
+   - promo-video-briefs.md — two Higgsfield video briefs inheriting the house style and NEVER
+     list from CLAUDE.md's Visual style section, paste-ready, output filenames as
      assets/<slug>/<card-id>-shot-N.mp4.
    - needs-user.md — anything the copy wants but nobody can invent.
 4. Sweep before showing me anything:

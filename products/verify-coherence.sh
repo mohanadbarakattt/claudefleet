@@ -61,17 +61,29 @@ for M in autopilot-content-machine digital-product-machine; do
   done
   [ "$ENG_MISSING" -eq 0 ] && ok "every _engine/... path cited resolves in products/_engine/"
 
-  # No doc may claim a skill/agent auto-reads a standalone config file. The skills read
-  # the intake note and pipeline.json — nothing else. Line-scoped: the filename and the
-  # read-claim must appear together, so "cf-render reads my figure from me" stays legal.
-  CFG_HITS=$(grep -rnE '(render-spec|channels)\.md' "$M" --include='*.md' 2>/dev/null \
-             | grep -E '(reads|read by|will follow|follows|auto-read)' \
-             | grep -viE 'unread|never be opened|does not read|would sit|not read')
-  if [ -n "$CFG_HITS" ]; then
-    bad "a doc claims a skill/agent auto-reads a standalone config file:"
-    printf '%s\n' "$CFG_HITS" | sed 's/^/      /'
+  # No doc may claim a skill/agent auto-reads a config file the shipped code never opens.
+  # Generalised: pull every *.md path a doc mentions, drop the ones the skills genuinely
+  # read (grep the skills themselves) and the platform-loaded CLAUDE.md, then flag any
+  # leftover that a doc pairs with a read-claim on the same line.
+  SKILL_READS=$(cat "$M"/skills/*.md 2>/dev/null)
+  CFG_HITS=""
+  # Leading char is never '-', so a filename can't be mistaken for a grep option.
+  for f in $(grep -rhoE '[A-Za-z0-9_][A-Za-z0-9_-]*\.md' "$M" --include='*.md' 2>/dev/null | sort -u); do
+    case "$f" in
+      CLAUDE.md) continue ;;                       # loaded by Claude Code itself
+      0*-*.md|README.md) continue ;;               # the product's own docs
+    esac
+    printf '%s' "$SKILL_READS" | grep -qF -- "$f" && continue   # a skill really does read it
+    H=$(grep -rnE -- "\b$f\b" "$M" --include='*.md' 2>/dev/null \
+        | grep -E '(skills? (load|read)|agents? (load|read)|/(cf|dp)-[a-z]+ (reads|loads|follows|will follow)|obeys|auto-read|every stage reads)' \
+        | grep -viE 'unread|never be opened|does not read|would sit|not read|binds nothing')
+    [ -n "$H" ] && CFG_HITS="$CFG_HITS$H"$'\n'
+  done
+  if [ -n "$(printf '%s' "$CFG_HITS" | tr -d '[:space:]')" ]; then
+    bad "a doc claims shipped code reads a file it never opens:"
+    printf '%s' "$CFG_HITS" | sed '/^$/d;s/^/      /'
   else
-    ok "no doc claims a skill/agent auto-reads a standalone config file"
+    ok "no doc claims shipped code reads a file it never opens"
   fi
 
   # Cross-machine contamination (content docs citing /dp-*, or vice versa)

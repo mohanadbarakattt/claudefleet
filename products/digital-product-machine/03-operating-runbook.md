@@ -48,6 +48,51 @@ Open the panel, **Import JSON** first so you are looking at what Claude actually
   next cycle.
 - **Export JSON** and move it back over `~/claudefleet/pipeline.json`.
 
+## Handing a launch off to Postiz
+
+`/dp-schedule` writes `notes/<slug>/schedule/postiz-plan.md` and stops. It never queues and
+never publishes; this engine holds no credentials and touches no account. A launch is a
+week of posts, not one card, so a mistake here repeats itself five times before you notice.
+Which branch you use is recorded once in `CLAUDE.md`'s Distribution section.
+
+**Before either branch — the check that catches the expensive mistake.** `ls` the assets
+folder and match every filename against `social.md`. A scheduled post pointing at a file
+that does not exist fails silently at cart-open, which is the worst possible moment.
+
+**Hosted Postiz (or self-hosted without API access) — the paste path.**
+
+1. Open `postiz-plan.md` beside the Postiz composer. Work top to bottom, never out of order.
+2. Per row, in this fixed order: channel → media file → caption → link → date, local time
+   and timezone. The fixed order is what stops a cart-close caption landing on day one.
+3. Before scheduling each item, do the visual check *inside Postiz* — its preview, not your
+   file. Wrong aspect and truncated captions only appear here.
+4. Paste the returned Postiz id into the plan's id column. A blank id means you do not
+   actually know whether that slot exists.
+
+**Self-hosted Postiz with API access — the scripted path.**
+
+1. Your token lives in your shell environment or your own secrets manager. **Never write a
+   token into any file under the fleet home, into the plan, or into anything you might
+   commit** — the fleet home is designed to be diffable and possibly git-tracked.
+2. Dry-run the whole week first: print every payload and read the channel ids and
+   timestamps before a single call is sent.
+3. Send, then write the returned ids back into the plan. A 2xx is not proof the slot is what
+   you intended — open one post in the UI and look at it.
+4. If a send fails mid-week, fix forward one row at a time. Re-running the batch is how a
+   launch double-posts to the same channel.
+
+**The failure playbook**, for the three that actually happen:
+
+| What broke | What to do | Where to record it |
+|---|---|---|
+| Expired channel token | Reconnect in Postiz, re-queue that row, verify visually | `services.postiz.note` in `pipeline.json` |
+| Media rejected on aspect | Re-cut from `assets/<slug>/`, do not re-render — the brief was fine | the card's `notes` |
+| Duplicate-content rejection | Rewrite that one caption; never strip and repost identical copy | the card's `notes` |
+
+Whatever happens, the approval gate in `CLAUDE.md` still holds: nothing is queued before
+you reply with an explicit approval line, and a previous card's approval never covers this
+one.
+
 ## When output quality drops
 
 Quality decays from the input side almost every time. Work in this order and stop when it's fixed:
@@ -71,14 +116,25 @@ Quality decays from the input side almost every time. Work in this order and sto
 half instead: read your memos, use your own product, gather customer questions for the next
 intake. Don't wait it out in front of the terminal.
 
-**Higgsfield generation comes back unusable.** Expected, not exceptional. Regenerate the
-brief with one variable changed, not five — composition, or lighting, or subject, so you learn
-which one mattered. Mangled on-screen text is the standard failure: rewrite the brief to
-exclude text from the frame entirely and add it in an editor afterwards. Two failed passes on
-the same brief means the brief is wrong; rewrite it from the product's actual promise. Out of
-credits mid-launch: the briefs are plain text and portable to any generator you already pay
-for — the machine's job ends at the brief. A stock cover shipped on time beats a perfect cover
-that misses the launch.
+**A Higgsfield batch comes back unusable.** Expected, not exceptional. Regenerate with one
+variable changed, not five, so you learn which one mattered — and change them in this order,
+cheapest and most likely first:
+
+1. **The NEVER list.** Mangled in-frame text, a stray logo, warped hands. Almost always
+   fixed by naming the thing as excluded rather than rewriting anything. Text in frame is
+   the standard failure: exclude it entirely and add captions in an editor afterwards.
+2. **Composition or lighting.** Wrong scale, muddy subject, an aspect that crops badly.
+3. **The subject line of the prompt.** Rewrite it as concrete nouns; vague adjectives are
+   why a generator improvises.
+4. **The brief itself.** Two failed passes on the same brief means the brief is wrong —
+   rewrite it from the product's actual promise, not from the previous brief.
+
+If the same fault repeats across products, stop fixing briefs: the fix belongs in
+`CLAUDE.md`'s Visual style section so it stops recurring.
+
+Out of credits mid-launch: the briefs are plain text and portable to any generator you
+already pay for — the machine's job ends at the brief. A stock cover shipped on time beats a
+perfect cover that misses the launch.
 
 **Postiz won't publish.** Expired platform tokens are the usual cause and they fail quietly.
 Reconnect the account in Postiz, re-queue, and verify the queue visually. If it stays broken,
