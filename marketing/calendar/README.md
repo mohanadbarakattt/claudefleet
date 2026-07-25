@@ -10,15 +10,15 @@ Read in this order:
 
 ## The arc
 - **Week 1 — Hook & prove**: pattern-interrupts + screen-record proof,
-  cheap products (STACK/VAULT), build initial trust.
+  pushing the Autopilot Content Machine (CONTENT), build initial trust.
 - **Week 2 — Teach & warm**: listicles, carousels, and an engagement-bait
   story to farm replies; positions the account as useful even to
   non-buyers.
 - **Week 3 — Escalate**: Skeptic POV/skit and Ava guru-guide content,
-  first tease of ClaudeFleet Machines.
+  introducing the Digital Product Machine (PRODUCT) and its validation gate.
 - **Week 4 — Cheat-code push**: heaviest hype (always paired with a real
-  screen-record "receipt"), the Machines/FLEET push, a $129 bundle close,
-  and a behind-the-scenes credibility post on Day 30.
+  screen-record "receipt"), the both-machines close at $149 (BOTH), and a
+  behind-the-scenes credibility post on Day 30.
 
 ## Before you post: 3 things only you can do
 1. **Swap in real screen recordings.** Every "Visual note" that says
