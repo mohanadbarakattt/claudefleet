@@ -1,0 +1,136 @@
+{
+  "note": "Example data. Copy to ~/claudefleet/pipeline.json and replace with your own. Key names here match what the admin panel imports and exports: cards = pipeline items, log = runs, costs = money you record yourself. Cost amounts are 0 on purpose — the engine does not know and never quotes any vendor's pricing. Fill them in from your own invoices and check current pricing on each vendor's own pricing page.",
+  "schema": 1,
+  "demo": false,
+  "machine": "content",
+  "selectedStage": 1,
+  "currency": "USD",
+  "stages": ["Idea", "Script", "Render", "Assemble", "Scheduled"],
+  "services": {
+    "claude": {
+      "connected": true,
+      "lastRun": "2026-07-24T09:12:03Z",
+      "note": "Claude Code running in ~/claudefleet/content-machine"
+    },
+    "higgsfield": {
+      "connected": true,
+      "lastRun": "2026-07-24T11:47:19Z",
+      "note": "6 clips generated for this week's batch; 2 regenerated after garbled on-screen text"
+    },
+    "postiz": {
+      "connected": false,
+      "lastRun": "2026-07-22T17:30:58Z",
+      "note": "Instagram token expired — reconnect in Postiz before the next schedule run"
+    }
+  },
+  "cards": [
+    {
+      "id": "c-0011",
+      "machine": "content",
+      "stage": 0,
+      "title": "Hook batch: 'nobody watches your first 30 posts' angle",
+      "created": "2026-07-24T08:40:00Z",
+      "notes": "Intake answers pasted into content-machine/notes/northside-intake.md. 9 hooks drafted, 3 worth scripting; hold the rest for next batch."
+    },
+    {
+      "id": "c-0010",
+      "machine": "content",
+      "stage": 1,
+      "title": "Northside Dental — week 4 batch (4 scripts)",
+      "created": "2026-07-23T15:02:44Z",
+      "notes": "20-35s read time each. Client asked for less clinical jargon than week 3. No prices in any script — the client supplies their own numbers."
+    },
+    {
+      "id": "c-0009",
+      "machine": "content",
+      "stage": 2,
+      "title": "Vela Coffee — founder-story teaser",
+      "created": "2026-07-21T10:15:00Z",
+      "notes": "Higgsfield brief: 5 shots, 9:16, warm morning light, no text in frame (captions added in the editor). First pass had unreadable on-screen text — regenerated."
+    },
+    {
+      "id": "c-0008",
+      "machine": "content",
+      "stage": 3,
+      "title": "Reel: 3 things a cleaning actually includes",
+      "created": "2026-07-19T09:00:00Z",
+      "notes": "Queued in Postiz for IG Reels + TikTok, Tue 18:00 local. Caption variant B. Blocked until the IG token is reconnected."
+    },
+    {
+      "id": "c-0007",
+      "machine": "content",
+      "stage": 4,
+      "title": "Reel: why whitening fades",
+      "created": "2026-07-18T09:00:00Z",
+      "notes": "Live since Monday. Saves outperformed the tips-style posts — repeat the explainer format next cycle."
+    },
+    {
+      "id": "p-0003",
+      "machine": "product",
+      "stage": 1,
+      "title": "Build: Client Onboarding Kit v1",
+      "created": "2026-07-20T13:20:00Z",
+      "notes": "7 templates + one written walkthrough. Scope held to 4 focused days; no video module in v1. Validation memo lives in product-machine/notes/validation-onboarding-kit.md."
+    }
+  ],
+  "log": [
+    {
+      "id": "l-0005",
+      "ts": "2026-07-24T09:12:03Z",
+      "machine": "content",
+      "stage": 0,
+      "text": "/cf-ideas — 9 hooks drafted from the intake answers, 3 promoted to Script"
+    },
+    {
+      "id": "l-0004",
+      "ts": "2026-07-23T15:02:44Z",
+      "machine": "content",
+      "stage": 1,
+      "text": "/cf-script — 4 scripts + 3 caption variants each for the week 4 batch"
+    },
+    {
+      "id": "l-0003",
+      "ts": "2026-07-24T11:47:19Z",
+      "machine": "content",
+      "stage": 2,
+      "text": "/cf-render — 5-shot Higgsfield brief written; shots 2 and 4 regenerated, second pass usable"
+    },
+    {
+      "id": "l-0002",
+      "ts": "2026-07-22T17:30:58Z",
+      "machine": "content",
+      "stage": 3,
+      "text": "/cf-schedule — TikTok queued; Instagram failed on an expired token, needs reconnecting in Postiz"
+    },
+    {
+      "id": "l-0001",
+      "ts": "2026-07-20T13:20:00Z",
+      "machine": "product",
+      "stage": 1,
+      "text": "/dp-build — Client Onboarding Kit v1 drafted against the validated problem statement"
+    }
+  ],
+  "costs": [
+    {
+      "id": "k-0001",
+      "month": "2026-07",
+      "service": "Claude",
+      "amount": 0,
+      "note": "Put your own subscription charge here, from your billing page."
+    },
+    {
+      "id": "k-0002",
+      "month": "2026-07",
+      "service": "Higgsfield",
+      "amount": 0,
+      "note": "Your own invoice amount. 156 credits used this month across 4 cards."
+    },
+    {
+      "id": "k-0003",
+      "month": "2026-07",
+      "service": "Postiz",
+      "amount": 0,
+      "note": "Your hosted-plan charge, or 0 if you self-host it."
+    }
+  ]
+}

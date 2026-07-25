@@ -1,0 +1,38 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 10,
+            "command": "python3 -c 'import json,os;h=os.path.expanduser(os.environ.get(\"CLAUDEFLEET_HOME\",\"~/claudefleet\"));p=h+\"/pipeline.json\";d=json.load(open(p)) if os.path.exists(p) else None;m=(d or {}).get(\"machine\",\"?\");cards=[c for c in (d or {}).get(\"cards\",[]) if c.get(\"machine\",m)==m];names=(d or {}).get(\"stages\") or [\"stage1\",\"stage2\",\"stage3\",\"stage4\",\"stage5\"];counts=[str(names[i] if i<len(names) else i+1)+\":\"+str(len([c for c in cards if c.get(\"stage\")==i])) for i in range(5)];log=sorted([l for l in (d or {}).get(\"log\",[]) if l.get(\"machine\",m)==m],key=lambda l:str(l.get(\"ts\",\"\")));last=str(log[-1].get(\"text\",\"\"))[:90] if log else \"no runs logged yet\";print(\"ClaudeFleet [\"+str(m)+\"] \"+\" | \".join(counts)+\" || last run: \"+last) if d else None' 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 10,
+            "command": "python3 -c 'import json,sys,os,datetime as dt;d=json.load(sys.stdin);f=(d.get(\"tool_input\") or {}).get(\"file_path\",\"\");h=os.path.realpath(os.path.expanduser(os.environ.get(\"CLAUDEFLEET_HOME\",\"~/claudefleet\")));p=os.path.realpath(f) if f else \"\";ok=bool(p) and (p+os.sep).startswith(h+os.sep);os.makedirs(h+\"/logs\",exist_ok=True) if ok else None;open(h+\"/logs/run.log\",\"a\").write(dt.datetime.now().isoformat(timespec=\"seconds\")+\"\\tfile\\t\"+str(d.get(\"tool_name\",\"?\"))+\"\\t\"+p+\"\\n\") if ok else None' 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 10,
+            "command": "python3 -c 'import json,sys,os,datetime as dt;d=json.load(sys.stdin);h=os.path.realpath(os.path.expanduser(os.environ.get(\"CLAUDEFLEET_HOME\",\"~/claudefleet\")));c=os.path.realpath(d.get(\"cwd\") or os.getcwd());ok=(c+os.sep).startswith(h+os.sep);os.makedirs(h+\"/logs\",exist_ok=True) if ok else None;open(h+\"/logs/run.log\",\"a\").write(dt.datetime.now().isoformat(timespec=\"seconds\")+\"\\tsession-end\\t\"+str(d.get(\"session_id\",\"\"))+\"\\n\") if ok else None' 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}

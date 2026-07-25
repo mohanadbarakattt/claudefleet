@@ -1,113 +1,85 @@
-# ClaudeFleet — digital product business in a box
+# ClaudeFleet — two machines, one engine
 
-Built 2026-07-12, rebranded + expanded 2026-07-12. Everything needed to sell
-digital products to Claude/AI users via Instagram reels → comment keyword →
-automated DM → storefront. Formerly "ClaudeStack" — renamed to ClaudeFleet
-because the flagship new product is about deploying a *fleet* of AI agent
-employees, and `claudefleet.com` is available to register (verified via whois,
-standard non-premium pricing).
+A digital-product business in a box. Consolidated **2026-07-25** from four small
+products into **two $99 machines** built on a shared engine, with the storefront
+reshaped around them.
 
-## What's here
-- `products/claude-power-pack/` — $19: 5 subagents + 7 slash commands + CLAUDE.md template
-- `products/prompt-vault/` — $27: 50 money-making prompts w/ pricing angles
-- `products/claude-money-os/` — $39: 8-chapter business playbook + 90-day plan
-- `products/claudefleet-machines/` — **$97, new premium tier**: 3 done-for-you AI businesses
-  (Content & Growth Agency, Lead-Gen & Outreach, Digital Product Launch), each with its own
-  playbook, 4 AI agent employees (12 total), a marketing/outreach system to land clients, a
-  `requirements.md` naming every external subscription needed (Higgsfield, Apollo.io, Resend,
-  Airtable, Calendly, Gumroad — with "verify current pricing yourself" language, never invented
-  numbers), and a setup checklist. Adversarially reviewed (3-agent audit, avg ~8.3/10) — fixes
-  applied: an explicit "don't buy this if you have zero audience" qualifier on the product-launch
-  machine, a video-generation fallback path on the two machines that lean on Higgsfield, a
-  GDPR/CAN-SPAM legal note on the lead-gen machine, and rough (heavily-caveated) monthly cost
-  ballparks in every requirements doc.
-- `site/index.html` — visual dark marketplace landing page (bundle $129): SVG fleet logo,
-  feature grid, live terminal-style product mockup, 4 product cards including the premium
-  Machines tier with a visible "Needs: Higgsfield / Apollo.io / Resend / Gumroad / Claude Code"
-  requirements strip, "Built With This Approach" portfolio section (generalized case studies),
-  honest empty-slot reviews section (no fabricated testimonials), expanded FAQ, footer
-  disclaimer ("not affiliated with/endorsed by Anthropic")
-- `site/logo.svg` — refined "fleet in echelon formation" mark (three forward chevrons), also
-  used as favicon
-- `marketing/production-scripts.md` — **canonical shooting script**, v2: 6 reels rewritten with
-  a 4-column format (timestamp/VO/Higgsfield mode/shot), one sharpened psychological hook per
-  reel, and the correct Higgsfield surface named per shot (Cinema Studio / Hyper Motion /
-  Marketing Studio / screen-record) instead of one generic "AI video" mode for everything.
-- `marketing/higgsfield-technique-guide.md` — which Higgsfield tool to use for what (incl. how
-  to run Marketing Studio "App" mode on our real live URL), and the prompt rules learned from
-  the garbled-text bug below.
-- `marketing/reel-scripts.md` — superseded v1, kept for history.
-- `marketing/higgsfield-prompts.md` — the 24 scene prompts as originally written (2 later fixed).
-- `marketing/generated/` — **the 24 scenes actually rendered** via the Higgsfield MCP
-  (`kling3_0_turbo`, 9:16, 4s), downloaded locally to `clips/` (~85MB, 24 files), 156 credits
-  spent total (144 original + 12 fixing 2 clips that had garbled on-screen text — see
-  `generated/README.md`). `manifest.json` maps reel → scene → file → job ID. Ready to import
-  straight into CapCut.
-- `marketing/dm-automation.md` — ManyChat comment→DM setup + DM copy (6 keywords)
-- `marketing/market-research.md` — real sourced research (audience segments, working content
-  formats, top objections + counters, Claude-specific niche opportunity) — figures flagged
-  where the primary source couldn't be confirmed, nothing invented
-- `marketing/content-system.md` — the content engine's spec: 3 recurring characters (The
-  Operator, Ava the AI-guide, Skeptic/Client dramatized roles), 9 format pillars, CTA keyword
-  map, and the compliance rules (no fake urgency, no fake income/bank-balance screenshots, no
-  testimonial misrepresentation) every calendar day follows
-- `marketing/calendar/` — the full 30-day content calendar (week-1.md through week-4.md, start
-  at calendar/README.md), one entry per day: hook, beats, a screen-record instruction or ready
-  Higgsfield-style AI video prompt, a ready-to-post caption, and a CTA keyword. Scanned for
-  compliance violations after writing — none found.
-- `dist/` — zipped products ready to upload to Gumroad (`claudefleet-full-bundle.zip` is all 4)
+Repo lives at `~/projects/claude-goods` · GitHub: https://github.com/mohanadbarakattt/claudefleet
+Live site: https://site-delta-hazel-30.vercel.app
 
-## Live / shipped
-- GitHub: https://github.com/mohanadbarakattt/claudefleet (renamed from claude-goods; local
-  remote already updated, `git push` works as normal)
-- Deployed: https://site-delta-hazel-30.vercel.app (redeployed after rebrand + new product)
+## What we sell now
 
-## needsUser (things only you can do — accounts/payments/domain/publishing)
-1. **Domain**: `claudefleet.com` was available at last check (whois, 2026-07-12) — register it
-   yourself at a registrar of your choice; domain availability and pricing can change, so
-   re-verify before paying. Point it at the Vercel deployment once registered.
-2. **Gumroad** (or LemonSqueezy — better for Egypt payouts, check both support your bank/Payoneer):
-   upload the 5 zips from `dist/` (4 products + bundle), set prices $19/$27/$39/$97/$129,
-   enable discount pricing display.
-3. Replace in `site/index.html`: `GUMROAD_LINK_POWER_PACK`, `GUMROAD_LINK_PROMPT_VAULT`,
-   `GUMROAD_LINK_MONEY_OS`, `GUMROAD_LINK_MACHINES`, `GUMROAD_LINK_BUNDLE`, and `FORM_ENDPOINT`
-   (free form endpoint: formspree.io or Gumroad's follow form).
-4. **Deploy site**: already deployed once via `npx vercel --prod` (see Live/shipped above). For
-   auto-deploy on every future push, link the repo in the Vercel dashboard (Import Project →
-   pick this repo → Root Directory: `site`). Otherwise redeploy manually from `site/`.
-5. **ManyChat**: 20-min setup per `marketing/dm-automation.md` (needs your IG + FB logins).
-6. **Film/generate content**: you now have two content sources — the 6 launch-reel scripts in
-   `marketing/production-scripts.md` (post order 5→1→2→3→6→4) for a quick launch burst, and
-   the full `marketing/calendar/` 30-day plan for sustained daily posting. The 6 launch reels'
-   24 AI-video scenes are **already generated** — see `marketing/generated/` (real rendered
-   clips, not just prompts). The 30-day calendar's AI-video notes are still text prompts you'd
-   generate the same way (ready Higgsfield prompts, same style anchor) — not yet rendered, to
-   keep this batch scoped. Every "screen-record" note (both launch reels and calendar) needs a
-   real recording of your actual site/product — don't fake these (see `calendar/README.md`).
-7. **Cast the recurring characters**: Ava (AI-guide), Skeptic, and Client are written as roles,
-   not scripts for a specific person — use an AI-avatar tool, a friend, or play them yourself.
-   Keep the compliance framing intact if you rewrite lines.
-8. **Real reviews**: the site ships with 3 honest "no reviews yet" placeholder cards
-   (`#reviews` section in `site/index.html`) instead of fake testimonials. As real buyers
-   send feedback, replace the `.t-empty` cards with real `.t-card` quotes + first name + role
-   (get permission before publishing anyone's words).
-9. **"Built With This Approach" section**: generalized capability showcases (autoposter, career
-   advisor, orchestration OS, etc.), written as proof-of-concept, not as claims about specific
-   existing products. Swap in real live project names/URLs if you want, only ones you're
-   comfortable making public.
-10. **Machines pricing is unverified against your actual costs**: the $97 price assumes buyers
-   already run or are willing to sign up for Higgsfield/Apollo/Resend-type tools. If you want to
-   test a lower-commitment price point before the $97 tier, that's a pricing call only you should
-   make — nothing in the copy locks you into $97.
+| Product | Price | Pipeline | Who it's for |
+|---|---|---|---|
+| **Autopilot Content Machine** | $99 | IDEA → SCRIPT → RENDER → ASSEMBLE → SCHEDULED | Creators/agencies selling attention |
+| **Digital Product Machine** | $99 | VALIDATE → BUILD → PACKAGE → LAUNCH KIT → SCHEDULED | Builders who'd rather own the product |
+| **Both machines** | $149 | — | Runs both off one engine |
 
-## Honesty notes (baked into the copy)
-- No income claims anywhere — copy sells the system, not fake results.
-- No fabricated testimonials — reviews section is honestly empty until real ones arrive.
-- No fabricated tool pricing — every requirements.md points to "verify at the vendor's page,"
-  with only heavily-caveated rough ballparks for budgeting, never presented as fact.
-- Refund promise is in the site FAQ — honor it on Gumroad (enable refunds).
-- "First 50 comments get the discounted price" in Reel 2 — actually configure a
-  Gumroad discount code with 50 uses, or cut that line.
-- Footer includes an explicit "not affiliated with/endorsed by Anthropic" disclaimer — keep it
-  if you ever revise the copy; using "Claude" in a product name works better with that disclaimer
-  present than without it.
+Both drive the same three services: **Claude** (brain) → **Higgsfield** (media) →
+**Postiz** (distribution). That requirement is stated on the sales page *above*
+the pricing, not after checkout — see "Honesty rules" below.
+
+## Layout
+
+- `products/_engine/` — **the shared core, ships inside both products.**
+  - `admin-panel/index.html` — single-file local dashboard. No build step, no
+    network requests, works from `file://`. Kanban pipeline, service status,
+    run log, cost tracker, next-action command with copy button, JSON
+    import/export, demo data on first open. Verified running in-browser.
+  - `ENGINE.md`, `INSTALL.md`, `hooks/`, `pipeline.example.json`
+- `products/autopilot-content-machine/` — machine 1 (docs, 18 prompts, 5 skills, 5 agents)
+- `products/digital-product-machine/` — machine 2 (same shape)
+- `products/_archive/` — the four retired products. Not sold, not listed. The
+  genuinely useful parts ship as bonuses inside the machines — see
+  `_archive/README.md` for the mapping.
+- `site/index.html` — the storefront, rebuilt around the standard high-converting
+  landing anatomy: headline → supporting copy → CTA → hero visual → subheading →
+  features (with live mini-mockups) → requirements → products → social proof →
+  reinforcing statement → benefits → FAQ → capture.
+- `site/logo.svg` — chevron fleet mark, also the favicon.
+- `marketing/` — production scripts, Higgsfield technique guide, market research,
+  content system, 30-day calendar, DM automation, and 24 rendered launch clips
+  in `marketing/generated/`.
+
+## Canonical naming (don't let these drift again)
+
+Stage names and slash commands must match across the admin panel, the skills
+files, and the site. One drift bug already shipped and was caught in review
+(the panel showed `/cf-*` commands for the product machine):
+
+- Content: `/cf-ideas` `/cf-script` `/cf-render` `/cf-assemble` `/cf-schedule`
+- Product: `/dp-validate` `/dp-build` `/dp-package` `/dp-launch` `/dp-schedule`
+
+## Honesty rules (baked into every file — keep them)
+
+- **No income claims anywhere.** The only guarantee is a 30-day **money-back**
+  guarantee, which is about refunds, never about earnings.
+- **No fabricated third-party pricing.** We never print Claude/Higgsfield/Postiz
+  prices — they change, and a stale number on a sales page is how people get
+  burned. Every requirements doc names the service and sends the buyer to the
+  vendor's own pricing page.
+- **No invented value anchor.** The value-stack table itemises components and
+  says plainly that we won't invent a strike-through number. If you want to
+  harden the "commissioned" column into real figures, get real quotes first.
+- **No fabricated testimonials.** The proof section ships as three honest empty
+  slots. Replace them only with real buyer quotes, with permission.
+- **Subscriptions disclosed before the price**, not after.
+
+## needsUser (only you can do these)
+
+1. **Domain** — `claudefleet.com` was available at last check (whois, 2026-07-12).
+   Re-verify before paying; point it at the Vercel deployment once registered.
+2. **Gumroad / LemonSqueezy** — upload the zips from `dist/`, set $99 / $99 / $149.
+3. **Replace in `site/index.html`**: `GUMROAD_LINK_CONTENT_MACHINE`,
+   `GUMROAD_LINK_PRODUCT_MACHINE`, `GUMROAD_LINK_BUNDLE`, `FORM_ENDPOINT`.
+4. **ManyChat** — the keywords changed to **CONTENT / PRODUCT / BOTH / START**.
+   Delete or repoint the old STACK/VAULT/OS/FLEET/FULL automations so old reels
+   don't DM dead offers. Copy is in `marketing/dm-automation.md`.
+5. **Reshoot the launch reels** — the 24 clips in `marketing/generated/` were cut
+   for the old four-product catalog. The visuals mostly still work (abstract
+   pipeline/hologram footage), but the voiceover and CTA keywords in
+   `marketing/production-scripts.md` now reference retired products and need a
+   pass before posting.
+6. **Free lead magnet** — the capture section promises "the engine architecture
+   as a PDF". `products/_engine/ENGINE.md` is that content; export it to PDF and
+   wire it to the form, or change the promise.

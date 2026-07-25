@@ -16,8 +16,13 @@ Alternative if you outgrow it: Chatfuel or a custom Meta app later.
 3. Create a ManyChat account → connect Instagram → grant all messaging permissions.
 4. In ManyChat: **Automation → New Automation → Instagram → "User comments on your post"**.
 
-## Build 6 automations (one per keyword)
-For each keyword (STACK, VAULT, OS, FLEET, FULL, START):
+## Build 4 automations (one per keyword)
+For each keyword (CONTENT, PRODUCT, BOTH, START):
+
+> **Catalog changed 2026-07-25.** The store is now two machines, not four small
+> products. The old keywords (STACK / VAULT / OS / FLEET / FULL) are retired —
+> if you already built those automations in ManyChat, either delete them or
+> repoint them at the new links so old reels don't DM dead offers.
 
 - **Trigger:** comment contains the keyword → on *specific post* (attach after posting) or *any post*.
 - **Step 1 — public reply** (builds social proof, rotates automatically):
@@ -29,38 +34,27 @@ For each keyword (STACK, VAULT, OS, FLEET, FULL, START):
 
 ## DM copy per keyword
 
-**STACK →**
-> Here's the Claude Code Power Pack 🔧 — 5 AI employees + 7 commands, 2-minute install:
-> [LINK]
-> Quick q so I send you the right stuff next time: are you already using Claude Code, or just regular Claude?
+**CONTENT →**
+> The Autopilot Content Machine ⚙️ — idea → script → render → assemble → scheduled, running on Claude + Higgsfield + Postiz. $99:
+> [LINK_CONTENT]
+> One thing up front so there's no surprise: the $99 is the system, not the subscriptions. It drives three paid services and the requirements doc inside names every one of them.
 
-**VAULT →**
-> The AI Income Prompt Vault 💰 — 50 prompts that produce sellable work, each with a "sell it as" price angle:
-> [LINK]
-> Tip: start with prompt #1 in the freelance file — it's the fastest one to turn into cash.
+**PRODUCT →**
+> The Digital Product Machine 📦 — validate → build → package → launch kit → scheduled. Same engine, but it ships products instead of posts. $99:
+> [LINK_PRODUCT]
+> The validation stage is the actual point: it stops you building things nobody asked for. Same honesty note — it needs Claude, Higgsfield and Postiz running underneath.
 
-**OS →**
-> Claude Money OS 🧠 — the full playbook: lane → offer → clients → scale, with a 90-day plan:
-> [LINK]
-> Chapter 1 helps you pick your lane in ~10 minutes. Start there tonight.
-
-**FLEET →**
-> ClaudeFleet Machines 🏢 — 3 done-for-you AI businesses, each with its own agent employees + an outreach system to land clients: $97:
-> [LINK]
-> Heads up before you buy: this one needs a few outside tools running underneath it (Higgsfield, Apollo.io, Resend, etc.) — full breakdown of what and why is inside, so there's no surprise cost.
-
-**FULL →**
-> The Full Stack 📦 — all 4 products, $129 instead of $182:
-> [LINK]
-> This is everything I showed in the reel: the tools, the prompts, the plan, and the done-for-you machines.
+**BOTH →**
+> Both machines 🔧 — they share one engine, so running the pair is less than twice the work. $149 instead of $198:
+> [LINK_BUNDLE]
+> You get the admin panel, 10 agent employees, 10 skills, the hooks, and 34 prompts across the two.
 
 **START →**
-> Depends where you are 👇
-> Total beginner → Claude Money OS: [LINK_OS]
-> Already freelancing → Prompt Vault: [LINK_VAULT]
-> Using Claude Code → Power Pack: [LINK_STACK]
-> Want a run business, not just tools → ClaudeFleet Machines: [LINK_FLEET]
-> Want it all → Full Stack ($129): [LINK_BUNDLE]
+> Depends what you want coming out the other end 👇
+> Attention / audience / content → Autopilot Content Machine: [LINK_CONTENT]
+> Something you own and sell → Digital Product Machine: [LINK_PRODUCT]
+> Both, one engine, $149 → [LINK_BUNDLE]
+> Not sure yet? Tell me what you're trying to build and I'll tell you honestly if either fits — some people should buy neither.
 
 ## Follow-up sequence (set in ManyChat, huge conversion lift)
 - **+23 hours** (must be <24h per Meta rules), only if link not clicked:

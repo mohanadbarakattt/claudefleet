@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClaudeFleet Engine — Admin Panel</title>
+<style>
+/* ---------------------------------------------------------------------------
+   ClaudeFleet Engine — Admin Panel
+   Single file. No build step. No network. Opens from file://
+--------------------------------------------------------------------------- */
+:root{
+  --bg:#0a0a0f;
+  --panel:#12121a;
+  --panel2:#171722;
+  --border:#26263a;
+  --text:#e8e8f0;
+  --muted:#9a9ab0;
+  --accent:#d97748;
+  --accent2:#e8955f;
+  --green:#4ade80;
+  --blue:#5b9dd9;
+  --purple:#a78bfa;
+
+  --r-sm:6px; --r:10px; --r-lg:14px;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:14px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:64px;
+}
+body::before{ /* subtle top glow, pure CSS, no assets */
+  content:"";position:fixed;inset:0 0 auto 0;height:320px;pointer-events:none;z-index:0;
+  background:radial-gradient(900px 260px at 18% -60px, rgba(217,119,72,.16), transparent 70%);
+}
+.wrap{position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:0 var(--s5)}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.01em}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+code,.mono{font-family:var(--mono)}
+::placeholder{color:#5f5f78}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:var(--r-sm)}
+
+/* ---------- primitives ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--panel2);border:1px solid var(--border);color:var(--text);
+  padding:7px 12px;border-radius:var(--r-sm);cursor:pointer;
+  transition:background .15s ease,border-color .15s ease,transform .06s ease;
+  white-space:nowrap;
+}
+.btn:hover{background:#1e1e2c;border-color:#333350}
+.btn:active{transform:translateY(1px)}
+.btn[disabled]{opacity:.35;cursor:not-allowed}
+.btn[disabled]:hover{background:var(--panel2);border-color:var(--border)}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:#16100b;font-weight:600}
+.btn-primary:hover{background:var(--accent2);border-color:var(--accent2)}
+.btn-sm{padding:3px 8px;font-size:12px}
+.btn-icon{padding:3px 7px;font-size:12px;line-height:1.4}
+.btn-danger:hover{background:#2a1414;border-color:#5a2a2a;color:#ff9d9d}
+
+.field{
+  background:#0d0d14;border:1px solid var(--border);color:var(--text);
+  padding:7px 10px;border-radius:var(--r-sm);width:100%;
+  transition:border-color .15s ease;
+}
+.field:hover{border-color:#333350}
+.field:focus{border-color:var(--accent);outline:none}
+textarea.field{resize:vertical;min-height:64px;line-height:1.45}
+select.field{cursor:pointer;appearance:none;padding-right:28px;
+  background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+  background-position:calc(100% - 15px) 50%,calc(100% - 10px) 50%;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+
+.card-panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--r-lg)}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;margin-bottom:var(--s3)}
+.sec-title{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:600}
+.hint{color:var(--muted);font-size:12px}
+.empty{color:var(--muted);font-size:12.5px;padding:var(--s4);text-align:center;border:1px dashed var(--border);border-radius:var(--r);background:#0d0d14}
+
+.tag{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:600;padding:2px 7px;border-radius:999px;border:1px solid var(--border);color:var(--muted);background:#0d0d14}
+.tag-claude{color:var(--purple);border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.08)}
+.tag-higgsfield{color:var(--blue);border-color:rgba(91,157,217,.35);background:rgba(91,157,217,.08)}
+.tag-postiz{color:var(--green);border-color:rgba(74,222,128,.32);background:rgba(74,222,128,.08)}
+
+/* ---------- header ---------- */
+header.top{
+  position:sticky;top:0;z-index:20;
+  background:rgba(10,10,15,.86);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.top-inner{display:flex;align-items:center;gap:var(--s4);padding:var(--s3) var(--s5);max-width:1440px;margin:0 auto;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.mark{
+  width:30px;height:30px;border-radius:9px;flex:none;
+  background:linear-gradient(145deg,var(--accent),#a8532c);
+  display:grid;place-items:center;color:#160f0a;font-weight:800;font-size:14px;
+  box-shadow:0 0 0 1px rgba(232,149,95,.35),0 6px 18px -8px rgba(217,119,72,.9);
+}
+.wordmark{font-size:16px;font-weight:650;letter-spacing:-.02em;line-height:1.15}
+.wordmark span{color:var(--accent2)}
+.brand-sub{font-size:11px;color:var(--muted);line-height:1.15}
+.top-controls{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap}
+.top-controls select.field{width:auto;min-width:220px}
+
+/* ---------- demo banner ---------- */
+.banner{
+  display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap;
+  margin-top:var(--s4);padding:10px var(--s4);
+  border:1px solid rgba(217,119,72,.35);background:rgba(217,119,72,.07);
+  border-radius:var(--r);font-size:12.5px;color:var(--accent2);
+}
+.banner b{color:var(--text)}
+.banner .btn{margin-left:auto}
+
+/* ---------- services ---------- */
+section{margin-top:var(--s6)}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
+.svc{padding:var(--s4);display:flex;flex-direction:column;gap:10px}
+.svc-top{display:flex;align-items:center;gap:var(--s2)}
+.svc-name{font-weight:650;font-size:13px;letter-spacing:.06em}
+.dot{width:8px;height:8px;border-radius:50%;flex:none;background:#3a3a4e;transition:background .2s,box-shadow .2s}
+.dot.on{background:var(--green);box-shadow:0 0 0 3px rgba(74,222,128,.16)}
+.switch{
+  margin-left:auto;position:relative;width:40px;height:22px;border-radius:999px;
+  background:#22222f;border:1px solid var(--border);cursor:pointer;padding:0;transition:background .18s
+}
+.switch::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;
+  background:var(--muted);transition:transform .18s ease,background .18s}
+.switch[aria-checked="true"]{background:rgba(74,222,128,.22);border-color:rgba(74,222,128,.45)}
+.switch[aria-checked="true"]::after{transform:translateX(18px);background:var(--green)}
+.svc-meta{display:flex;align-items:center;gap:var(--s2);font-size:12px;color:var(--muted)}
+.svc-meta .val{color:var(--text);font-family:var(--mono);font-size:11.5px}
+.svc-meta .btn{margin-left:auto}
+
+/* ---------- next action ---------- */
+.next{padding:var(--s4) var(--s5);display:grid;grid-template-columns:1fr auto;gap:var(--s4);align-items:center}
+.next-l{min-width:0}
+.next-stage{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap;margin-bottom:6px}
+.next-stage strong{font-size:15px}
+.stage-no{font-family:var(--mono);font-size:11px;color:var(--accent2);border:1px solid rgba(217,119,72,.4);
+  background:rgba(217,119,72,.08);padding:1px 6px;border-radius:999px}
+.next-does{color:var(--muted);font-size:12.5px;max-width:78ch}
+.next-r{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap;justify-content:flex-end}
+.cmd{
+  font-family:var(--mono);font-size:14px;color:var(--accent2);
+  background:#0d0d14;border:1px solid rgba(217,119,72,.32);
+  padding:8px 12px;border-radius:var(--r-sm);white-space:nowrap;user-select:all;
+}
+
+/* ---------- board ---------- */
+.board{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,1fr);gap:var(--s3);overflow-x:auto;padding-bottom:var(--s2)}
+.board::-webkit-scrollbar{height:8px}
+.board::-webkit-scrollbar-thumb{background:#25253a;border-radius:99px}
+.col{background:var(--panel);border:1px solid var(--border);border-radius:var(--r-lg);display:flex;flex-direction:column;min-height:180px;transition:border-color .15s,background .15s}
+.col.sel{border-color:rgba(217,119,72,.55)}
+.col.drop{border-color:var(--accent);background:#15121a}
+.col-head{
+  width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--border);
+  padding:11px var(--s3);cursor:pointer;display:flex;align-items:center;gap:var(--s2);border-radius:var(--r-lg) var(--r-lg) 0 0
+}
+.col-head:hover{background:var(--panel2)}
+.col-head .n{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.col.sel .col-head .n{color:var(--accent2)}
+.col-head .nm{font-weight:600;font-size:13px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.count{font-family:var(--mono);font-size:11px;color:var(--muted);background:#0d0d14;border:1px solid var(--border);
+  border-radius:999px;padding:0 7px;line-height:18px}
+.col-body{padding:var(--s3);display:flex;flex-direction:column;gap:var(--s2);flex:1}
+.col-foot{padding:0 var(--s3) var(--s3)}
+.col-foot .btn{width:100%;justify-content:center;color:var(--muted);border-style:dashed}
+.col-foot .btn:hover{color:var(--text)}
+
+.item{background:var(--panel2);border:1px solid var(--border);border-radius:var(--r);padding:10px;transition:border-color .15s,transform .06s}
+.item:hover{border-color:#35354f}
+.item.dragging{opacity:.45}
+.item-title{font-size:13px;font-weight:550;line-height:1.35;word-break:break-word}
+.item-meta{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:11px;color:var(--muted);font-family:var(--mono)}
+.item-actions{display:flex;gap:4px;margin-top:8px;align-items:center}
+.item-actions .sp{flex:1}
+details.notes{margin-top:8px}
+details.notes>summary{
+  cursor:pointer;font-size:11px;color:var(--muted);list-style:none;display:flex;align-items:center;gap:5px;padding:2px 0
+}
+details.notes>summary::-webkit-details-marker{display:none}
+details.notes>summary::before{content:"▸";font-size:9px;transition:transform .15s;display:inline-block}
+details.notes[open]>summary::before{transform:rotate(90deg)}
+details.notes>summary:hover{color:var(--text)}
+details.notes textarea{margin-top:6px;font-size:12px;min-height:74px}
+
+/* ---------- bottom grid ---------- */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);align-items:start}
+.grid2>*{min-width:0}
+.pad{padding:var(--s4)}
+.log-list{list-style:none;margin:0;padding:0;max-height:400px;overflow-y:auto}
+.log-list li{display:flex;gap:var(--s3);padding:9px 2px;border-bottom:1px solid #1d1d2a;font-size:12.5px}
+.log-list li:last-child{border-bottom:0}
+.log-ts{font-family:var(--mono);font-size:11px;color:var(--muted);flex:none;width:104px;padding-top:1px}
+.log-body{min-width:0}
+.log-stage{font-size:11px;color:var(--accent2);font-weight:600;margin-bottom:1px}
+.log-text{color:var(--text);word-break:break-word;overflow-wrap:anywhere}
+.row-form{display:flex;gap:var(--s2);margin-top:var(--s3);flex-wrap:wrap}
+.row-form select.field{width:auto;flex:0 0 auto;max-width:44%}
+.row-form input.field{flex:1;min-width:120px}
+
+.tbl-wrap{overflow-x:auto}
+.tbl-wrap::-webkit-scrollbar{height:8px}
+.tbl-wrap::-webkit-scrollbar-thumb{background:#25253a;border-radius:99px}
+table{width:100%;min-width:420px;border-collapse:collapse;font-size:12.5px}
+th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);
+  font-weight:600;padding:0 6px 8px;border-bottom:1px solid var(--border)}
+td{padding:5px 6px;border-bottom:1px solid #1a1a26;vertical-align:middle}
+tr:last-child td{border-bottom:0}
+td .field{padding:5px 7px;font-size:12.5px}
+td.num .field{text-align:right;font-family:var(--mono)}
+.totals{margin-top:var(--s3);border-top:1px solid var(--border);padding-top:var(--s3);display:flex;flex-direction:column;gap:5px}
+.tot-row{display:flex;justify-content:space-between;font-size:12.5px}
+.tot-row .m{font-family:var(--mono);color:var(--muted)}
+.tot-row .v{font-family:var(--mono);color:var(--text);font-weight:600}
+.tot-row.grand .v{color:var(--accent2)}
+
+footer{max-width:1440px;margin:var(--s6) auto 0;padding:var(--s4) var(--s5) 0;border-top:1px solid var(--border);
+  color:var(--muted);font-size:11.5px;display:flex;gap:var(--s4);flex-wrap:wrap;justify-content:space-between}
+
+#toast{
+  position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);z-index:60;
+  background:var(--panel2);border:1px solid var(--border);border-radius:var(--r);
+  padding:10px 16px;font-size:13px;box-shadow:0 12px 32px -12px #000;
+  opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:90vw;text-align:center
+}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+#toast.err{border-color:#5a2a2a;color:#ff9d9d}
+
+@media (max-width:1080px){
+  .services{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr}
+  .next{grid-template-columns:1fr}
+  .next-r{justify-content:flex-start}
+}
+@media (max-width:720px){
+  .wrap{padding:0 var(--s3)}
+  .top-inner{padding:var(--s3)}
+  .top-controls{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
+  .top-controls>label{display:none}
+  .top-controls select.field{grid-column:1/-1;width:100%;min-width:0}
+  .top-controls .btn{justify-content:center}
+  .board{grid-auto-flow:row;grid-auto-columns:auto;overflow-x:visible}
+  .log-ts{width:88px}
+  footer{padding:var(--s4) var(--s3) 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">CF</div>
+      <div>
+        <div class="wordmark">ClaudeFleet <span>Engine</span></div>
+        <div class="brand-sub">Local operator console</div>
+      </div>
+    </div>
+    <div class="top-controls">
+      <label class="hint" for="machineSelect" style="margin-right:2px">Machine</label>
+      <select id="machineSelect" class="field" aria-label="Active machine"></select>
+      <button class="btn" id="btnImport" title="Load a pipeline.json exported by Claude Code">Import JSON</button>
+      <button class="btn btn-primary" id="btnExport" title="Download pipeline.json">Export JSON</button>
+      <input type="file" id="fileInput" accept="application/json,.json" hidden>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div id="banner"></div>
+
+  <section id="servicesSection">
+    <div class="sec-head">
+      <div>
+        <h2 class="sec-title">Service status</h2>
+        <p class="hint" style="margin-top:4px">Operator-maintained. This panel makes no network requests and never checks these services &mdash; you set the state after you run them.</p>
+      </div>
+    </div>
+    <div class="services" id="services"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2 class="sec-title">Next action</h2></div>
+    <div class="card-panel next" id="next"></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2 class="sec-title">Pipeline</h2>
+      <p class="hint" id="boardHint"></p>
+    </div>
+    <div class="board" id="board"></div>
+  </section>
+
+  <section class="grid2">
+    <div>
+      <div class="sec-head">
+        <h2 class="sec-title">Run log</h2>
+        <p class="hint">Append-only</p>
+      </div>
+      <div class="card-panel pad">
+        <div id="log"></div>
+        <form class="row-form" id="logForm">
+          <select class="field" id="logStage" aria-label="Stage"></select>
+          <input class="field" id="logText" placeholder="What happened?" maxlength="240" aria-label="What happened">
+          <button class="btn" type="submit">Add</button>
+        </form>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-head">
+        <h2 class="sec-title">Cost tracker</h2>
+        <div style="display:flex;align-items:center;gap:8px">
+          <label class="hint" for="currency">Currency</label>
+          <input class="field" id="currency" style="width:72px;padding:4px 8px;font-size:12px" maxlength="6" aria-label="Currency label">
+        </div>
+      </div>
+      <div class="card-panel pad">
+        <div class="tbl-wrap">
+        <table>
+          <thead><tr>
+            <th style="width:112px">Month</th><th style="width:112px">Service</th>
+            <th class="num" style="text-align:right;width:96px">Amount</th><th>Note</th><th style="width:28px"></th>
+          </tr></thead>
+          <tbody id="costBody"></tbody>
+        </table>
+        </div>
+        <div class="totals" id="costTotals"></div>
+        <button class="btn btn-sm" id="btnAddCost" style="margin-top:var(--s3)">+ Add cost row</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>ClaudeFleet Engine &mdash; state lives in <code class="mono">pipeline.json</code> + this browser's local storage. Fully offline.</span>
+    <span id="storageNote"></span>
+  </footer>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ===========================================================================
+   MACHINE CONFIG — edit here to change stage names or slash commands.
+   Each machine has exactly 5 stages. `command` is the Claude Code skill you
+   run to advance an item OUT of that stage. `service` is which of the three
+   external services that stage leans on.
+   =========================================================================== */
+var MACHINES = {
+  content: {
+    label: "Autopilot Content Machine",
+    dir: "~/claudefleet/content-machine",
+    stages: [
+      { name:"Idea", command:"/cf-ideas",
+        service:"CLAUDE",
+        does:"Strategist agent turns the niche + offer into a batch of hooks and angles, then writes each one into pipeline.json as a new card." },
+      { name:"Script", command:"/cf-script",
+        service:"CLAUDE",
+        does:"Script-writer agent drafts the hook, the full script, and caption variants for the selected card, and saves them beside the card." },
+      { name:"Render", command:"/cf-render",
+        service:"HIGGSFIELD",
+        does:"Render engineer converts the script into a shot-by-shot generation brief. You paste the prompts into Higgsfield and generate the clips." },
+      { name:"Assemble", command:"/cf-assemble",
+        service:"CLAUDE",
+        does:"Picks the caption variant, writes the on-screen text cards, and assembles the cut order so the clips drop straight into an editor." },
+      { name:"Scheduled", command:"/cf-schedule",
+        service:"POSTIZ",
+        does:"Hands the approved asset to Postiz to queue on each platform, then appends the run to the log for the next planning cycle." }
+    ]
+  },
+  product: {
+    label: "Digital Product Machine",
+    dir: "~/claudefleet/product-machine",
+    stages: [
+      { name:"Validate", command:"/dp-validate",
+        service:"CLAUDE",
+        does:"Researcher agent gathers demand signals and comparable paid products, then writes a validation memo. No memo, no build." },
+      { name:"Build", command:"/dp-build",
+        service:"CLAUDE",
+        does:"Product-builder agent drafts the actual deliverable — templates, lessons, or the guide — against the validated problem statement." },
+      { name:"Package", command:"/dp-package",
+        service:"HIGGSFIELD",
+        does:"Packager assembles the sellable bundle and writes the cover-art and promo-still briefs that get generated in Higgsfield." },
+      { name:"Launch Kit", command:"/dp-launch",
+        service:"CLAUDE",
+        does:"Launch marketer writes the sales page, the email sequence and the launch-week posts against the validated problem statement." },
+      { name:"Scheduled", command:"/dp-schedule",
+        service:"POSTIZ",
+        does:"Schedules the launch sequence through Postiz, then files what to change for the next product cycle." }
+    ]
+  }
+};
+
+var SERVICES = [
+  { key:"claude",     name:"CLAUDE",     tag:"tag-claude",     role:"Brain — plans, writes, reviews, runs the skills" },
+  { key:"higgsfield", name:"HIGGSFIELD", tag:"tag-higgsfield", role:"Media factory — generates video and image assets" },
+  { key:"postiz",     name:"POSTIZ",     tag:"tag-postiz",     role:"Distribution — schedules and publishes the assets" }
+];
+
+var STORE_KEY = "claudefleet.pipeline.v1";
+var SCHEMA = 1;
+
+/* ===========================================================================
+   Tiny DOM helper
+   =========================================================================== */
+function el(tag, props, children){
+  var n = document.createElement(tag);
+  props = props || {};
+  for (var k in props){
+    var v = props[k];
+    if (v === null || v === undefined || v === false) continue;
+    if (k === "class") n.className = v;
+    else if (k === "text") n.textContent = v;
+    else if (k === "value") n.value = v;
+    else if (k.slice(0,2) === "on" && typeof v === "function") n.addEventListener(k.slice(2).toLowerCase(), v);
+    else if (v === true) n.setAttribute(k, "");
+    else n.setAttribute(k, v);
+  }
+  var kids = Array.isArray(children) ? children : (children != null ? [children] : []);
+  for (var i=0;i<kids.length;i++){
+    var c = kids[i];
+    if (c === null || c === undefined || c === false) continue;
+    n.appendChild(typeof c === "string" || typeof c === "number" ? document.createTextNode(String(c)) : c);
+  }
+  return n;
+}
+function clear(node){ while(node.firstChild) node.removeChild(node.firstChild); }
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+function nowISO(){ return new Date().toISOString(); }
+function daysAgo(n){ return new Date(Date.now() - n*86400000).toISOString(); }
+function thisMonth(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0"); }
+
+function fmtDate(iso){
+  if (!iso) return "—";
+  var d = new Date(iso);
+  if (isNaN(d.getTime())) return "—";
+  try { return d.toLocaleDateString(undefined,{month:"short",day:"numeric"}); }
+  catch(e){ return iso.slice(0,10); }
+}
+function fmtStamp(iso){
+  if (!iso) return "—";
+  var d = new Date(iso);
+  if (isNaN(d.getTime())) return "—";
+  try { return d.toLocaleString(undefined,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}); }
+  catch(e){ return iso.slice(0,16).replace("T"," "); }
+}
+function money(n){
+  if (!isFinite(n)) n = 0;
+  return n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+var toastTimer = null;
+function toast(msg, isErr){
+  var t = document.getElementById("toast");
+  t.textContent = msg;
+  t.className = "show" + (isErr ? " err" : "");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.className = ""; }, 2600);
+}
+
+/* ===========================================================================
+   State: seed / load / normalize / save
+   =========================================================================== */
+function seed(){
+  return {
+    schema: SCHEMA,
+    demo: true,
+    machine: "content",
+    selectedStage: 1,
+    currency: "USD",
+    services: {
+      claude:     { connected:true,  lastRun:daysAgo(0), note:"Claude Code CLI running in the content-machine folder" },
+      higgsfield: { connected:true,  lastRun:daysAgo(1), note:"Batch of 5 clips generated for this week's scripts" },
+      postiz:     { connected:false, lastRun:daysAgo(3), note:"Instagram account needs re-auth before the next schedule" }
+    },
+    cards: [
+      { id:uid(), machine:"content", stage:0, title:"Hook batch: 'the first 100 followers' angle", created:daysAgo(1),
+        notes:"8 hooks drafted, 3 look strong. Pick two for this week, hold the rest for next batch." },
+      { id:uid(), machine:"content", stage:1, title:"Client: Nadia Fitness — week 31 batch", created:daysAgo(3),
+        notes:"4 scripts, gym/coaching niche, 20-35s read time each. Client wants less jargon than last week." },
+      { id:uid(), machine:"content", stage:2, title:"Reel: 3 mistakes new coaches make", created:daysAgo(4),
+        notes:"Higgsfield brief: 5 shots, 9:16 vertical, warm gym lighting, no on-screen text (captions added later)." },
+      { id:uid(), machine:"content", stage:3, title:"Carousel: post like a studio, not a solo", created:daysAgo(6),
+        notes:"Caption variant B picked, on-screen text cards written, cut order set. Ready to hand to Postiz." },
+      { id:uid(), machine:"content", stage:4, title:"Reel: behind the batch (studio process)", created:daysAgo(9),
+        notes:"Queued in Postiz for IG + TikTok, Tuesday 18:00 local. Last cycle the BTS angle beat the tips angle on saves — repeating it." },
+      { id:uid(), machine:"product", stage:0, title:"Idea: client onboarding kit for freelance designers", created:daysAgo(2),
+        notes:"2 independent demand signals + 1 comparable paid product found. Angle: designer-specific, not generic freelancer." },
+      { id:uid(), machine:"product", stage:1, title:"Build: Client Onboarding Kit v1", created:daysAgo(5),
+        notes:"7 templates + 1 written walkthrough. Scope held to 4 focused days — no video module in v1." },
+      { id:uid(), machine:"product", stage:2, title:"Package: Client Onboarding Kit bundle", created:daysAgo(7),
+        notes:"Templates exported + zipped with the walkthrough. Higgsfield: cover mockup + 3 promo stills from the brief." },
+      { id:uid(), machine:"product", stage:3, title:"Launch kit: sales page + 5-email sequence", created:daysAgo(8),
+        notes:"Sales page draft needs a shorter above-the-fold. Cart-close email set for Friday. 30-day money-back terms stated on the page." },
+      { id:uid(), machine:"product", stage:4, title:"Launch week: Client Onboarding Kit", created:daysAgo(14),
+        notes:"Postiz: 6 posts across launch week, email 1 sends Tuesday 09:00. 3 testimonials from beta readers already collected." }
+    ],
+    log: [
+      { id:uid(), ts:daysAgo(0),  machine:"content", stage:1, text:"/cf-script — drafted 4 scripts + caption variants for the week 31 batch" },
+      { id:uid(), ts:daysAgo(1),  machine:"content", stage:2, text:"/cf-render — 5-shot Higgsfield brief written; 2 shots regenerated, second pass usable" },
+      { id:uid(), ts:daysAgo(2),  machine:"product", stage:0, text:"/dp-validate — validation memo passed the gate (2 signals, 1 paid comparable)" },
+      { id:uid(), ts:daysAgo(3),  machine:"content", stage:3, text:"/cf-assemble — cut order + on-screen text cards written for the carousel" },
+      { id:uid(), ts:daysAgo(6),  machine:"content", stage:4, text:"/cf-schedule — Postiz queue failed on IG (expired token), TikTok queued fine" }
+    ],
+    costs: []
+  };
+}
+
+function normalize(raw){
+  var base = seed();
+  if (!raw || typeof raw !== "object") return base;
+  var s = {
+    schema: SCHEMA,
+    demo: raw.demo === true,
+    machine: MACHINES[raw.machine] ? raw.machine : "content",
+    selectedStage: 0,
+    currency: typeof raw.currency === "string" && raw.currency.trim() ? raw.currency.trim().slice(0,6) : "USD",
+    services: {},
+    cards: [],
+    log: [],
+    costs: []
+  };
+  var sel = parseInt(raw.selectedStage, 10);
+  s.selectedStage = (isFinite(sel) && sel >= 0 && sel <= 4) ? sel : 0;
+
+  SERVICES.forEach(function(sv){
+    var r = (raw.services && typeof raw.services === "object") ? raw.services[sv.key] : null;
+    r = (r && typeof r === "object") ? r : {};
+    s.services[sv.key] = {
+      connected: r.connected === true,
+      lastRun: typeof r.lastRun === "string" ? r.lastRun : "",
+      note: typeof r.note === "string" ? r.note.slice(0,300) : ""
+    };
+  });
+
+  if (Array.isArray(raw.cards)) raw.cards.forEach(function(c){
+    if (!c || typeof c !== "object") return;
+    var st = parseInt(c.stage, 10);
+    s.cards.push({
+      id: typeof c.id === "string" && c.id ? c.id : uid(),
+      machine: MACHINES[c.machine] ? c.machine : s.machine,
+      stage: (isFinite(st) && st >= 0 && st <= 4) ? st : 0,
+      title: String(c.title == null ? "Untitled item" : c.title).slice(0,200) || "Untitled item",
+      created: typeof c.created === "string" ? c.created : nowISO(),
+      notes: typeof c.notes === "string" ? c.notes.slice(0,4000) : ""
+    });
+  });
+
+  if (Array.isArray(raw.log)) raw.log.forEach(function(l){
+    if (!l || typeof l !== "object") return;
+    var st = parseInt(l.stage, 10);
+    s.log.push({
+      id: typeof l.id === "string" && l.id ? l.id : uid(),
+      ts: typeof l.ts === "string" ? l.ts : nowISO(),
+      machine: MACHINES[l.machine] ? l.machine : s.machine,
+      stage: (isFinite(st) && st >= 0 && st <= 4) ? st : 0,
+      text: String(l.text == null ? "" : l.text).slice(0,400)
+    });
+  });
+
+  if (Array.isArray(raw.costs)) raw.costs.forEach(function(c){
+    if (!c || typeof c !== "object") return;
+    var amt = parseFloat(c.amount);
+    s.costs.push({
+      id: typeof c.id === "string" && c.id ? c.id : uid(),
+      month: /^\d{4}-\d{2}$/.test(c.month) ? c.month : thisMonth(),
+      service: typeof c.service === "string" ? c.service.slice(0,40) : "Claude",
+      amount: isFinite(amt) ? amt : 0,
+      note: typeof c.note === "string" ? c.note.slice(0,200) : ""
+    });
+  });
+
+  return s;
+}
+
+var storageOK = true;
+function load(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return seed();
+    return normalize(JSON.parse(raw));
+  } catch(e){
+    // Corrupt JSON, or storage blocked (some browsers on file://). Never throw.
+    if (e && e.name === "SecurityError") storageOK = false;
+    console.warn("ClaudeFleet: falling back to demo data —", e && e.message);
+    return seed();
+  }
+}
+function save(){
+  if (!storageOK) return;
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+  catch(e){
+    storageOK = false;
+    console.warn("ClaudeFleet: local storage unavailable —", e && e.message);
+    renderStorageNote();
+    toast("Local storage unavailable — use Export JSON to keep your state.", true);
+  }
+}
+
+var state = load();
+function machine(){ return MACHINES[state.machine] || MACHINES.content; }
+function stages(){ return machine().stages; }
+function cardsFor(stageIdx){
+  return state.cards.filter(function(c){ return c.machine === state.machine && c.stage === stageIdx; });
+}
+
+/* ===========================================================================
+   Clipboard (navigator.clipboard is unavailable on some file:// contexts)
+   =========================================================================== */
+function copyText(txt){
+  function fallback(){
+    var ta = document.createElement("textarea");
+    ta.value = txt;
+    ta.setAttribute("readonly","");
+    ta.style.cssText = "position:fixed;top:-1000px;opacity:0";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch(e){ ok = false; }
+    document.body.removeChild(ta);
+    toast(ok ? "Copied  " + txt : "Copy blocked — select the command and copy manually.", !ok);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ toast("Copied  " + txt); }, fallback);
+  } else fallback();
+}
+
+/* ===========================================================================
+   Render: header + banner
+   =========================================================================== */
+var machineSelect = document.getElementById("machineSelect");
+Object.keys(MACHINES).forEach(function(k){
+  machineSelect.appendChild(el("option",{value:k,text:MACHINES[k].label}));
+});
+machineSelect.addEventListener("change", function(){
+  state.machine = MACHINES[machineSelect.value] ? machineSelect.value : "content";
+  if (state.selectedStage > 4) state.selectedStage = 0;
+  save(); render();
+});
+
+function renderBanner(){
+  var host = document.getElementById("banner");
+  clear(host);
+  if (!state.demo) return;
+  host.appendChild(el("div",{class:"banner"},[
+    el("span",{},[ el("b",{text:"Demo data. "}), "Everything below is sample content so the panel is explorable on first open. Clear it before you run your own pipeline." ]),
+    el("button",{class:"btn btn-sm",onclick:function(){
+      if (!confirm("Clear all demo cards, log entries and service notes? This cannot be undone.")) return;
+      state.cards = []; state.log = []; state.demo = false;
+      SERVICES.forEach(function(sv){ state.services[sv.key] = {connected:false,lastRun:"",note:""}; });
+      save(); render(); toast("Demo data cleared.");
+    },text:"Clear demo data"})
+  ]));
+}
+
+/* ===========================================================================
+   Render: services
+   =========================================================================== */
+function renderServices(){
+  var host = document.getElementById("services");
+  clear(host);
+  SERVICES.forEach(function(sv){
+    var s = state.services[sv.key];
+    var dot = el("span",{class:"dot" + (s.connected ? " on" : ""),"aria-hidden":"true"});
+    var sw = el("button",{
+      class:"switch", role:"switch", "aria-checked": s.connected ? "true" : "false",
+      "aria-label": sv.name + " connected", title:"Toggle operator-maintained status",
+      onclick:function(){
+        s.connected = !s.connected;
+        sw.setAttribute("aria-checked", s.connected ? "true" : "false");
+        dot.className = "dot" + (s.connected ? " on" : "");
+        save();
+      }
+    });
+    var stampEl = el("span",{class:"val",text:fmtStamp(s.lastRun)});
+
+    host.appendChild(el("div",{class:"card-panel svc"},[
+      el("div",{class:"svc-top"},[
+        dot,
+        el("span",{class:"svc-name",text:sv.name}),
+        el("span",{class:"tag " + sv.tag,text:sv.key === "claude" ? "brain" : (sv.key === "higgsfield" ? "media" : "distribution")}),
+        sw
+      ]),
+      el("p",{class:"hint",text:sv.role}),
+      el("div",{class:"svc-meta"},[
+        el("span",{text:"Last run"}), stampEl,
+        el("button",{class:"btn btn-sm",text:"Set to now",onclick:function(){
+          s.lastRun = nowISO(); stampEl.textContent = fmtStamp(s.lastRun); save();
+        }})
+      ]),
+      el("input",{class:"field",value:s.note,maxlength:"300",placeholder:"Operator note (account, workspace, what to fix)…",
+        "aria-label":sv.name + " note",
+        oninput:function(e){ s.note = e.target.value; save(); }})
+    ]));
+  });
+}
+
+/* ===========================================================================
+   Render: next action
+   =========================================================================== */
+function renderNext(){
+  var host = document.getElementById("next");
+  clear(host);
+  var idx = state.selectedStage;
+  var st = stages()[idx];
+  var waiting = cardsFor(idx).length;
+  var svcTag = st.service === "CLAUDE" ? "tag-claude" : (st.service === "HIGGSFIELD" ? "tag-higgsfield" : "tag-postiz");
+
+  host.appendChild(el("div",{class:"next-l"},[
+    el("div",{class:"next-stage"},[
+      el("span",{class:"stage-no",text:"stage " + (idx+1) + "/5"}),
+      el("strong",{text:st.name}),
+      el("span",{class:"tag " + svcTag,text:st.service}),
+      el("span",{class:"hint",text:waiting === 1 ? "1 card here" : waiting + " cards here"})
+    ]),
+    el("p",{class:"next-does",text:st.does}),
+    el("p",{class:"hint",style:"margin-top:6px",text:"Run it from " + machine().dir + " in Claude Code. The skill writes the result into pipeline.json — re-import that file here to sync."})
+  ]));
+  host.appendChild(el("div",{class:"next-r"},[
+    el("code",{class:"cmd",text:st.command}),
+    el("button",{class:"btn btn-primary",text:"Copy command",onclick:function(){ copyText(st.command); }})
+  ]));
+}
+
+/* ===========================================================================
+   Render: board
+   =========================================================================== */
+var dragId = null;
+
+function cardNode(card){
+  var node = el("div",{class:"item",draggable:"true"},[
+    el("div",{class:"item-title",text:card.title}),
+    el("div",{class:"item-meta"},[
+      el("span",{text:stages()[card.stage].name}),
+      el("span",{text:"·"}),
+      el("span",{text:fmtDate(card.created)})
+    ]),
+    el("details",{class:"notes"},[
+      el("summary",{text: card.notes ? "Notes" : "Add notes"}),
+      el("textarea",{class:"field",placeholder:"Brief, blockers, links…",maxlength:"4000","aria-label":"Notes for " + card.title,
+        oninput:function(e){ card.notes = e.target.value; save(); }},card.notes)
+    ]),
+    el("div",{class:"item-actions"},[
+      el("button",{class:"btn btn-icon",text:"◀",title:"Move back a stage","aria-label":"Move back a stage",
+        disabled: card.stage === 0, onclick:function(){ move(card,-1); }}),
+      el("button",{class:"btn btn-icon",text:"▶",title:"Move forward a stage","aria-label":"Move forward a stage",
+        disabled: card.stage === 4, onclick:function(){ move(card,1); }}),
+      el("span",{class:"sp"}),
+      el("button",{class:"btn btn-icon btn-danger",text:"✕",title:"Delete card","aria-label":"Delete " + card.title,
+        onclick:function(){
+          if (!confirm('Delete "' + card.title + '"?')) return;
+          state.cards = state.cards.filter(function(c){ return c.id !== card.id; });
+          save(); render(); toast("Card deleted.");
+        }})
+    ])
+  ]);
+
+  node.addEventListener("dragstart", function(e){
+    dragId = card.id;
+    node.classList.add("dragging");
+    try { e.dataTransfer.setData("text/plain", card.id); e.dataTransfer.effectAllowed = "move"; } catch(err){}
+  });
+  node.addEventListener("dragend", function(){ dragId = null; node.classList.remove("dragging"); });
+  return node;
+}
+
+function move(card, delta){
+  var next = card.stage + delta;
+  if (next < 0 || next > 4) return;
+  card.stage = next;
+  logRun(card.stage, "Moved “" + card.title + "” to " + stages()[next].name);
+  save(); render();
+}
+
+function logRun(stageIdx, text){
+  state.log.unshift({ id:uid(), ts:nowISO(), machine:state.machine, stage:stageIdx, text:text });
+  if (state.log.length > 500) state.log.length = 500;
+}
+
+function renderBoard(){
+  var host = document.getElementById("board");
+  clear(host);
+  document.getElementById("boardHint").textContent =
+    machine().label + " · " + state.cards.filter(function(c){ return c.machine === state.machine; }).length + " cards · drag a card or use ◀ ▶";
+
+  stages().forEach(function(st, idx){
+    var list = cardsFor(idx);
+    var col = el("div",{class:"col" + (state.selectedStage === idx ? " sel" : "")});
+
+    col.appendChild(el("button",{class:"col-head",title:"Show the next command for this stage",
+      "aria-pressed": state.selectedStage === idx ? "true" : "false",
+      onclick:function(){ state.selectedStage = idx; save(); render(); }},[
+      el("span",{class:"n",text:String(idx+1)}),
+      el("span",{class:"nm",text:st.name}),
+      el("span",{class:"count",text:String(list.length)})
+    ]));
+
+    var body = el("div",{class:"col-body"});
+    if (!list.length) body.appendChild(el("div",{class:"empty",text:"Nothing here yet"}));
+    else list.forEach(function(c){ body.appendChild(cardNode(c)); });
+    col.appendChild(body);
+
+    col.appendChild(el("div",{class:"col-foot"},[
+      el("button",{class:"btn btn-sm",text:"+ Add card",onclick:function(){
+        var title = prompt("Card title — what is moving through " + st.name + "?");
+        if (title === null) return;
+        title = title.trim();
+        if (!title) return;
+        state.cards.unshift({ id:uid(), machine:state.machine, stage:idx, title:title.slice(0,200), created:nowISO(), notes:"" });
+        logRun(idx, "Added “" + title.slice(0,200) + "” to " + st.name);
+        save(); render();
+      }})
+    ]));
+
+    col.addEventListener("dragover", function(e){ e.preventDefault(); col.classList.add("drop"); try{ e.dataTransfer.dropEffect="move"; }catch(err){} });
+    col.addEventListener("dragleave", function(e){ if (!col.contains(e.relatedTarget)) col.classList.remove("drop"); });
+    col.addEventListener("drop", function(e){
+      e.preventDefault();
+      col.classList.remove("drop");
+      var id = dragId;
+      try { id = e.dataTransfer.getData("text/plain") || dragId; } catch(err){}
+      var card = state.cards.filter(function(c){ return c.id === id; })[0];
+      if (!card || card.stage === idx) return;
+      card.stage = idx;
+      logRun(idx, "Moved “" + card.title + "” to " + st.name);
+      save(); render();
+    });
+
+    host.appendChild(col);
+  });
+}
+
+/* ===========================================================================
+   Render: run log
+   =========================================================================== */
+function renderLog(){
+  var host = document.getElementById("log");
+  clear(host);
+  var entries = state.log.filter(function(l){ return l.machine === state.machine; });
+
+  if (!entries.length){
+    host.appendChild(el("div",{class:"empty",text:"No runs logged for this machine yet. Hooks append here automatically once you import a pipeline.json written by Claude Code."}));
+  } else {
+    var ul = el("ul",{class:"log-list"});
+    entries.forEach(function(l){
+      ul.appendChild(el("li",{},[
+        el("span",{class:"log-ts",text:fmtStamp(l.ts)}),
+        el("span",{class:"log-body"},[
+          el("div",{class:"log-stage",text:(stages()[l.stage] || {name:"—"}).name}),
+          el("div",{class:"log-text",text:l.text || "(no detail)"})
+        ])
+      ]));
+    });
+    host.appendChild(ul);
+  }
+
+  var sel = document.getElementById("logStage");
+  clear(sel);
+  stages().forEach(function(st,i){ sel.appendChild(el("option",{value:String(i),text:st.name})); });
+  sel.value = String(state.selectedStage);
+}
+
+document.getElementById("logForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var input = document.getElementById("logText");
+  var text = input.value.trim();
+  if (!text){ input.focus(); return; }
+  logRun(parseInt(document.getElementById("logStage").value,10) || 0, text);
+  input.value = "";
+  save(); render();
+  toast("Logged.");
+});
+
+/* ===========================================================================
+   Render: cost tracker
+   =========================================================================== */
+var COST_SERVICES = ["Claude","Higgsfield","Postiz","Other"];
+
+function renderCosts(){
+  var body = document.getElementById("costBody");
+  clear(body);
+  document.getElementById("currency").value = state.currency;
+
+  if (!state.costs.length){
+    body.appendChild(el("tr",{},[
+      el("td",{colspan:"5",style:"padding:14px 6px"},[
+        el("div",{class:"empty",style:"text-align:left",text:
+          "No spend logged yet. Add a row and type your own actual invoice amounts — this panel ships with no prices on purpose. Claude, Higgsfield and Postiz all bill on their own plans and those change; check each vendor's pricing page for current rates."})
+      ])
+    ]));
+  }
+
+  state.costs.forEach(function(c){
+    var row = el("tr",{},[
+      el("td",{},[ el("input",{type:"month",class:"field",value:c.month,"aria-label":"Month",
+        oninput:function(e){ c.month = e.target.value; save(); renderTotals(); }}) ]),
+      el("td",{},[ (function(){
+        var s = el("select",{class:"field","aria-label":"Service",onchange:function(e){ c.service = e.target.value; save(); }});
+        var known = false;
+        COST_SERVICES.forEach(function(n){ if (n === c.service) known = true; s.appendChild(el("option",{value:n,text:n})); });
+        if (!known) s.appendChild(el("option",{value:c.service,text:c.service}));
+        s.value = c.service;
+        return s;
+      })() ]),
+      el("td",{class:"num"},[ el("input",{type:"number",step:"0.01",min:"0",class:"field",value:String(c.amount || ""),
+        placeholder:"0.00","aria-label":"Amount",
+        oninput:function(e){ var v = parseFloat(e.target.value); c.amount = isFinite(v) ? v : 0; save(); renderTotals(); }}) ]),
+      el("td",{},[ el("input",{class:"field",value:c.note,maxlength:"200",placeholder:"Plan, seats, credits…","aria-label":"Note",
+        oninput:function(e){ c.note = e.target.value; save(); }}) ]),
+      el("td",{},[ el("button",{class:"btn btn-icon btn-danger",text:"✕",title:"Remove row","aria-label":"Remove cost row",
+        onclick:function(){
+          state.costs = state.costs.filter(function(x){ return x.id !== c.id; });
+          save(); renderCosts();
+        }}) ])
+    ]);
+    body.appendChild(row);
+  });
+
+  renderTotals();
+}
+
+function renderTotals(){
+  var host = document.getElementById("costTotals");
+  clear(host);
+  if (!state.costs.length){
+    host.appendChild(el("div",{class:"hint",text:"Monthly totals appear here once you log rows."}));
+    return;
+  }
+  var byMonth = {};
+  state.costs.forEach(function(c){
+    byMonth[c.month] = (byMonth[c.month] || 0) + (isFinite(c.amount) ? c.amount : 0);
+  });
+  var months = Object.keys(byMonth).sort().reverse();
+  var grand = 0;
+  months.forEach(function(m){
+    grand += byMonth[m];
+    host.appendChild(el("div",{class:"tot-row"},[
+      el("span",{class:"m",text:m}),
+      el("span",{class:"v",text:state.currency + " " + money(byMonth[m])})
+    ]));
+  });
+  host.appendChild(el("div",{class:"tot-row grand"},[
+    el("span",{class:"m",text:"all logged months"}),
+    el("span",{class:"v",text:state.currency + " " + money(grand)})
+  ]));
+}
+
+document.getElementById("btnAddCost").addEventListener("click", function(){
+  state.costs.push({ id:uid(), month:thisMonth(), service:"Claude", amount:0, note:"" });
+  save(); renderCosts();
+});
+document.getElementById("currency").addEventListener("input", function(e){
+  state.currency = e.target.value.slice(0,6) || "USD";
+  save(); renderTotals();
+});
+
+/* ===========================================================================
+   Import / Export
+   =========================================================================== */
+document.getElementById("btnExport").addEventListener("click", function(){
+  var blob, url, a;
+  try {
+    blob = new Blob([JSON.stringify(state, null, 2)], {type:"application/json"});
+    url = URL.createObjectURL(blob);
+    a = el("a",{href:url,download:"pipeline.json"});
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    toast("Exported pipeline.json");
+  } catch(e){
+    toast("Export failed: " + (e && e.message ? e.message : "unknown error"), true);
+  }
+});
+
+document.getElementById("btnImport").addEventListener("click", function(){
+  document.getElementById("fileInput").click();
+});
+document.getElementById("fileInput").addEventListener("change", function(e){
+  var file = e.target.files && e.target.files[0];
+  e.target.value = "";
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onerror = function(){ toast("Could not read that file.", true); };
+  reader.onload = function(){
+    var parsed;
+    try { parsed = JSON.parse(String(reader.result)); }
+    catch(err){ toast("Not valid JSON — nothing was changed.", true); return; }
+    if (!parsed || typeof parsed !== "object" || (!Array.isArray(parsed.cards) && !parsed.services)){
+      toast("That JSON is not a ClaudeFleet pipeline file.", true); return;
+    }
+    if (!confirm("Replace the current panel state with " + file.name + "?")) return;
+    state = normalize(parsed);
+    save(); render();
+    toast("Imported " + file.name);
+  };
+  reader.readAsText(file);
+});
+
+/* ===========================================================================
+   Render root
+   =========================================================================== */
+function renderStorageNote(){
+  document.getElementById("storageNote").textContent = storageOK
+    ? "Saved locally in this browser."
+    : "Local storage unavailable — export before closing this tab.";
+}
+
+function render(){
+  machineSelect.value = state.machine;
+  renderBanner();
+  renderServices();
+  renderNext();
+  renderBoard();
+  renderLog();
+  renderCosts();
+  renderStorageNote();
+}
+
+render();
+save();
+})();
+</script>
+</body>
+</html>
