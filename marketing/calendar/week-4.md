@@ -12,18 +12,18 @@ urgency, no income guarantees anywhere in this file.
 ---
 
 ## Day 22 — CHEAT-CODE
-**Hook:** "This is the part of the Content Machine nobody screenshots — the render stage actually building the shots."
+**Hook:** "Everyone shows the finished post. Nobody shows this."
 
 **Beats:**
 1. On-screen text: "the stage most people skip explaining."
 2. The Operator runs /cf-render live on a real script from a prior step — screen-record shows the actual 4-shot brief coming together, unedited.
-3. Cut to /cf-assemble running next — the actual assembled draft appearing on screen.
+3. Same unbroken take: `/cf-assemble` runs next, the actual assembled draft appearing on screen. Do not stop the recording between the two commands.
 4. Operator, voiceover: "That's not a trick prompt. That's four commands, one job each, handing off to the next."
 5. Quick text overlay: "Idea → Script → Render → Assemble → Scheduled. This is stage 3 and 4, live."
 
 **Visual note:** Real screen-record — The Operator's actual terminal/Claude window, actual /cf-render then /cf-assemble output scrolling in real time. Do not simulate or mock up the UI. Keep the on-screen timestamp/clock visible in a corner if possible to reinforce "unedited."
 
-**Caption:** Everyone shows the finished post. Nobody shows the render stage actually building the shots. This is /cf-render into /cf-assemble, live, no cuts — this is what's actually happening between "idea" and "scheduled." Comment CONTENT and I'll send you the exact setup.
+**Caption:** Everyone shows the finished post. Nobody shows the render stage actually building the shots. This is `/cf-render` straight into `/cf-assemble` in one unbroken take — what actually happens between "idea" and "scheduled." Comment CONTENT and I'll send you the exact setup.
 
 **CTA keyword:** CONTENT
 
@@ -90,7 +90,7 @@ urgency, no income guarantees anywhere in this file.
 1. On-screen text: "BEFORE" over a blank notes app, one scribbled idea, cursor blinking.
 2. Real screen-record, timestamped: Operator runs the Autopilot Content Machine's full pipeline against that real idea — /cf-ideas through /cf-schedule.
 3. Show the transformation landing — a script, a render brief, an assembled post, and a genuinely scheduled slot in the dashboard — "AFTER" text overlay.
-4. Operator, voiceover: "Nobody typed all of that by hand. Five commands did, and I watched it happen in real time — this clip isn't cut."
+4. Operator, voiceover: "Nobody typed any of that. Five commands did. This is sped up — it is not cut."
 5. Close on the dashboard showing the post actually scheduled, no edits hidden.
 
 **Visual note:** Screen-record, real product/dashboard, time-lapse effect only via playback speed (not cuts) so it reads as "sped up, not edited." Keep a visible clock/timestamp to reinforce it's not staged.
@@ -102,7 +102,7 @@ urgency, no income guarantees anywhere in this file.
 ---
 
 ## Day 27 — CHEAT-CODE
-**Hook:** "The most expensive mistake in this niche is doing manually what a $99 pipeline already does for you."
+**Hook:** "You are doing by hand the boring part a checklist already does."
 
 **Beats:**
 1. On-screen text: "nobody tells you this part."
@@ -120,7 +120,7 @@ urgency, no income guarantees anywhere in this file.
 ---
 
 ## Day 28 — LISTICLE
-**Hook:** "3 things a Machine actually does that a single prompt never will."
+**Hook:** "Three things a prompt can't do, no matter how good it is."
 
 **Beats:**
 1. "One: it holds a checklist across the whole pipeline, not just the first message — idea to scheduled, or validate to launch."
@@ -138,7 +138,7 @@ urgency, no income guarantees anywhere in this file.
 ---
 
 ## Day 29 — BEFORE/AFTER (bundle close)
-**Hook:** "I stopped selling these as two separate decisions. Here's both, together, once."
+**Hook:** "I stopped making you pick one."
 
 **Beats:**
 1. On-screen text: "BEFORE" — quick flash of the two machines shown as two separate real screen-recorded folders/dashboards, $99 and $99.
@@ -155,19 +155,25 @@ urgency, no income guarantees anywhere in this file.
 
 ---
 
-## Day 30 — GURU-GUIDE / SCREEN-RECORD PROOF (The Operator, behind-the-scenes — closes the month)
-**Hook:** "Before this launched, I ran it myself end to end — here's exactly what happened, bugs included."
+## Day 30 — SCREEN-RECORD PROOF (The Operator, no character — closes the month)
+**Hook:** "No pitch today. Here's what this thing doesn't do."
+
+> **Why this isn't the install-bugs story again.** Day 7 already spent that receipt
+> ("found 3 real bugs, fixed all 3"). Retelling it as if it were new — and framing it
+> as pre-launch, when the funnel has been running since Day 1 — reads as recycled
+> proof to exactly the people who followed all month. Day 30 references it in one line
+> and spends its own, harder currency instead: the limitations.
 
 **Beats:**
-1. The Operator, on camera, unscripted tone: "Before I sold a single copy, I installed the actual shipped zip and ran it myself, start to finish. Let me actually show you."
-2. Real screen-record: unzip the real Content Machine package, walk through the actual folder structure it creates.
-3. Run /cf-script live — a real script lands on screen. Run /cf-render next — the real 4-shot Higgsfield brief comes back, shown plainly, no embellishment.
-4. Round-trip that output into the actual single-file admin panel, showing it land in the dashboard.
-5. Operator, plainly naming the three real bugs the run surfaced and fixed before launch — leading with the first: the quickstart doc pointed the very first command at a folder the zip doesn't actually create. "Found it, fixed it, before anyone else could hit it."
-6. Soft close — no hard pitch: "That's the actual process, not a highlight reel. If that's more useful to you than the sales stuff, stick around — I'll keep showing how this gets built."
+1. Operator on camera, no character, no music bed: "Thirty days of showing you the folder. Last one's the other side of it."
+2. "It does not publish for you. Every stage stops at a gate and waits. If you want set-and-forget, this is the wrong thing and I'd rather you kept your money."
+3. "It runs on three paid subscriptions that aren't in the $99 — Claude, Higgsfield, Postiz. That's a real recurring cost and it's yours, not mine."
+4. "It won't tell you what to sell. It'll stop you building something nobody asked for — that's the gate I showed you on Day 15 — but the idea is still on you."
+5. The honest one: "And I don't have customer results to show you. It's new. Day 7 I showed you three install bugs I found in my own product and fixed — that's the receipt I actually have. Not a revenue screenshot, because I don't have one."
+6. Close, soft: "That's the whole pitch: a folder that works, and a list of what it isn't. If that's more useful to you than the hype, stick around — I'll keep showing the build."
 
-**Visual note:** Full real screen-record — Operator's face on camera at the open and close, live terminal/folder/dashboard walkthrough in the middle, no AI-generated or dramatized segments this day (this is the credibility post, keep it maximally real per market-research.md's "named, visible operator beats anonymous" finding).
+**Visual note:** Full real screen-record with the Operator on camera at open and close. No AI-generated footage, no character, no music bed — the flatness is the point on this day. Under beat 2, show a real approval gate actually halting and waiting. Under beat 5, show the Day 7 clip for one second as a callback, clearly framed as a callback, not replayed as new footage. Per market-research.md, a named visible operator beats an anonymous account, and stating limitations plainly is the strongest available counter to the "this is a scam" objection.
 
-**Caption:** Closing out the month with the actual test run: installed the real shipped zip, ran /cf-script and /cf-render myself, watched the output round-trip into the dashboard — and hit three real bugs along the way, including one where the first documented command pointed at a folder the zip never creates. Fixed all three before this went out. No pitch today — if you want to keep seeing how this actually gets built, stick around.
+**Caption:** Last one of the month, and it's the anti-pitch. What this doesn't do: it doesn't publish for you, it doesn't come with the Claude/Higgsfield/Postiz subscriptions it runs on, and it won't tell you what to sell. What I've got instead of a revenue screenshot: three install bugs I found in my own product and fixed on camera back on Day 7. That's the receipt I actually have. No link today — if the honest version is more useful to you than the hype, stick around.
 
 **CTA keyword:** START
