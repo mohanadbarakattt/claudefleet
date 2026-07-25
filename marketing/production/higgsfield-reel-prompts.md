@@ -111,7 +111,7 @@ is exactly what Cinema Studio is for, and there is no CGI reveal here that would
 justify Hyper Motion's cost.
 
 ```
-A man in his early thirties, medium build, light-tan skin, short dark-brown hair cropped close at the sides and slightly longer on top, clean-shaven, no glasses, wearing a plain dark charcoal crew-neck top with no print, pattern, slogan or logo of any kind, no watch and no jewellery, sits alone at a dark desk, shoulders slowly dropping as he stares at a monitor; the monitor shows only a blank glowing panel with a single blinking vertical bar, no interface of any kind. He does not move his hands. Setting: a small home office at night, the monitor is the only real light source, one warm practical lamp far behind him thrown out of focus. Lighting: hard cool monitor key raking across his face, warm amber rim from the practical behind, deep falloff into black on both sides. Framing: medium close-up, chest to head, subject slightly off-centre, screen glow blooming into the edge of frame. Camera move: slow push-in toward his face, settling tight on his eyes. Mood: quiet defeat, the second before someone gives up on a task. cinematic, moody teal-and-orange grade, shallow depth of field, 35mm lens, soft practical lighting, photorealistic. 9:16 vertical, 4 seconds. Negative: no text, no letters, no numbers, no words, no captions, no subtitles, no UI labels, no interface chrome, no icons with writing, no signage, no watermarks, no logos, no readable screen content.
+An empty desk in a small dark home office at night, no person anywhere in the room. An office chair sits pushed back and unoccupied, turned slightly away from the desk. The monitor is the only real light source and shows a blank glowing panel with a single blinking vertical bar, no interface of any kind. One warm practical lamp far behind the desk is thrown out of focus. Lighting: hard cool monitor key raking across the empty chair and desk surface, warm amber rim from the practical behind, deep falloff into black on both sides. Framing: medium shot of desk and empty chair, screen glow blooming into the edge of frame. Camera move: slow push-in toward the monitor, settling tight on the blinking bar. Mood: quiet abandonment, a task left unfinished. cinematic, moody teal-and-orange grade, shallow depth of field, 35mm lens, soft practical lighting, photorealistic. 9:16 vertical, 4 seconds. Negative: no text, no letters, no numbers, no words, no captions, no subtitles, no UI labels, no interface chrome, no icons with writing, no signage, no watermarks, no logos, no readable screen content, no people in frame, no faces, no silhouettes, no human reflections in any screen.
 ```
 
 **Cut note:** two cards, hard cut between them on the VO beat —
@@ -165,7 +165,7 @@ matters more than polish here. **Requires the approved start image** (see the
 continuity block).
 
 ```
-A man in his early thirties, medium build, light-tan skin, short dark-brown hair cropped close at the sides and slightly longer on top, clean-shaven, no glasses, wearing a plain dark charcoal crew-neck top with no print, pattern, slogan or logo of any kind, no watch and no jewellery. He leans back in his chair and folds his arms, watching the row of blank glowing glass panels keep pulsing and shifting in front of him without him touching anything; his hands stay off the desk for the entire shot. Setting: the same dark home office, same desk, the blank panels floating at roughly eye level between him and camera. Lighting: panel glow acting as the key on his face, warm amber practical rim from behind, deep black surround. Framing: medium shot, the panels sharp in the near plane, the man behind them. Camera move: static locked-off frame with a single focus pull from the panels back to his face. Mood: calm, hands-off, unhurried authority — not smug. cinematic, moody teal-and-orange grade, shallow depth of field, 35mm lens, soft practical lighting, photorealistic. 9:16 vertical, 4 seconds. Negative: no text, no letters, no numbers, no words, no captions, no subtitles, no UI labels, no interface chrome, no icons with writing, no signage, no watermarks, no logos, no readable screen content, nothing written on the panels.
+Two hands lift off a keyboard and withdraw out of the bottom of frame; the chair rolls back and comes to rest empty. In front of the now-unoccupied desk a row of blank glowing glass panels keeps pulsing and shifting on its own with nobody touching it. The frame ends at the wrists — no arms above the forearm, no torso, no head, no person visible at any point after the hands leave. Setting: the same dark home office, same desk. Lighting: panel glow as key across the empty desk, warm amber practical rim from behind, deep black surround. Framing: medium shot, the panels sharp in the near plane, the empty chair behind them. Camera move: static locked-off frame with a single focus pull from the hands to the panels as the hands exit. Mood: calm, hands-off, the work continuing without anyone. cinematic, moody teal-and-orange grade, shallow depth of field, 35mm lens, soft practical lighting, photorealistic. 9:16 vertical, 4 seconds. Negative: no text, no letters, no numbers, no words, no captions, no subtitles, no UI labels, no interface chrome, no icons with writing, no signage, no watermarks, no logos, no readable screen content, no people in frame, no faces, no silhouettes, no human reflections in any screen. Nothing written on the panels.
 ```
 
 **Cut note:** the reel's payoff card, held to the end —
@@ -257,12 +257,12 @@ frame anywhere in this reel — the negative on every shot enforces it.
 ### Reel 5 · shot 1 · 0:00–0:02
 > "Four hundred saved AI tips. Nothing shipped. Here's the part every tip leaves out."
 
-**Surface: Cinema Studio.** Macro on a real hand and a real face. **Uses the
+**Surface: Cinema Studio.** Macro on a hand and a phone, cropped at the wrist — no face, no body. **Uses the
 approved start image** — this is the operator's third appearance and the one most
 likely to drift, because only his thumb and eyes are in frame.
 
 ```
-Extreme macro on a thumb flicking endlessly upward across a phone screen in a dark bedroom; the screen is a smeared blur of moving light with nothing readable on it. Small glowing ribbon-shaped glyphs peel off the screen and pile up in the corner of frame as he scrolls — abstract shapes only, no interface. Setting: in bed at night, the edge of a duvet and a pillow soft in frame, room otherwise black. Lighting: the phone screen is the only source, cool light strobing across the tired face of a man in his early thirties, medium build, light-tan skin, short dark-brown hair cropped close at the sides and slightly longer on top, clean-shaven, no glasses, wearing a plain dark charcoal crew-neck top with no print, pattern, slogan or logo of any kind, no watch and no jewellery, no fill. Framing: tight macro on the thumb and the phone edge, the face soft and half out of frame behind it. Camera move: static macro on the thumb, then a slow tilt up to his eyes. Mood: numb compulsion, late-night fatigue, nothing being decided. cinematic, moody teal-and-orange grade, shallow depth of field, 35mm lens, soft practical lighting, photorealistic. 9:16 vertical, 4 seconds. Negative: no text, no letters, no numbers, no words, no captions, no subtitles, no UI labels, no interface chrome, no icons with writing, no signage, no watermarks, no logos, no readable screen content, no app interface, no notification badges, no counters.
+Extreme macro on a thumb flicking endlessly upward across a phone screen in a dark bedroom; the screen is a smeared blur of moving light with nothing readable on it. Small glowing ribbon-shaped glyphs peel off the screen and pile up in the corner of frame as the scrolling continues — abstract shapes only, no interface. The frame ends at the wrist: only the thumb, the hand edge and the phone are ever visible, no arm, no face, no body, no part of a person beyond the hand. Setting: in bed at night, the edge of a duvet and a pillow soft in frame, room otherwise black. Lighting: the phone screen is the only source, cool light spilling onto the duvet and the hand, no fill. Framing: tight macro on the thumb and the phone edge, held throughout. Camera move: static macro on the thumb, then a slow push-in on the screen as the glyphs stack — never tilt up, never widen. Mood: numb compulsion, late-night fatigue, nothing being decided. cinematic, moody teal-and-orange grade, shallow depth of field, 35mm lens, soft practical lighting, photorealistic. 9:16 vertical, 4 seconds. Negative: no text, no letters, no numbers, no words, no captions, no subtitles, no UI labels, no interface chrome, no icons with writing, no signage, no watermarks, no logos, no readable screen content, no people in frame, no faces, no silhouettes, no human reflections in any screen. No app interface, no notification badges, no counters.
 ```
 
 **Cut note:** two cards, fast —
@@ -355,47 +355,25 @@ Pricing, then the CTA card: `Comment BOTH.`
 
 ---
 
-# Continuity — the recurring operator
+# Continuity — the world, not a person
 
-He appears **on camera in three generated shots only**: `Reel 1 · shot 1`,
-`Reel 1 · shot 5`, and `Reel 5 · shot 1` (thumb and eyes). **Reel 3 has no
-on-camera human in any generated shot** — do not add him there; the script
-deliberately makes the argument with objects. What carries across Reel 3 is the
-world, not the face: same grade, same practical-lamp warmth against cool key,
-same haze, same fall-to-black surround.
-
-**This has already gone wrong once.** The first 24 clips were generated with no
-reference image and the "man in a home office" character's appearance drifted
-between scenes inside the same reel. That is the failure this block exists to
-prevent.
-
-**Locked spec — do not vary between shots:**
+**There is no recurring human character in these reels.** The account is faceless
+(`content-system.md` → the faceless rule), so nothing here locks a casting sheet and
+no reference still of a person is exported or reused. Continuity is carried by the
+*world* instead, and it holds across every cinematic shot in this file:
 
 | | Locked value |
 |---|---|
-| Casting | A man in his early thirties, medium build, light-tan skin, short dark-brown hair cropped close at the sides and slightly longer on top, clean-shaven, no glasses, wearing a plain dark charcoal crew-neck top with no print, pattern, slogan or logo of any kind, no watch and no jewellery. **Paste this sentence verbatim into every operator prompt — do not paraphrase it, and do not add or remove an attribute (facial hair especially).** |
-| Wardrobe | Plain dark crew-neck top, no print, no graphics, no visible branding (also forced by the no-text rule). No watch, no jewellery, no lanyard. |
-| Location | One small home office: same desk, same single monitor, same warm practical lamp behind the subject. Reel 5 shot 1 is the bedroom in the *same* apartment — same warm practical, same black surround. |
-| Palette | Cool monitor/panel key on the face, warm amber practical rim from behind, everything else black. |
-| Lighting | Single hard key + single warm rim + no fill. Never add a soft box, never light the back wall. |
-| Performance | Hands still and off the desk in every shot he's in. He never types, never gestures at the panels. That restraint *is* the "approve, don't operate" argument. |
+| Grade | `cinematic, moody teal-and-orange grade, shallow depth of field, 35mm lens, soft practical lighting, photorealistic` — pasted verbatim, never paraphrased. |
+| Light | One cool key (a screen), one warm amber practical behind, deep falloff to black on both sides. Never flat, never top-lit. |
+| Space | One small dark home office: same desk, same monitor, same chair, same lamp. Reel 5's bedroom is the same apartment — same warm practical, same black surround. |
+| Air | Faint haze holding the light. Present in every wide, absent in the macros. |
+| Bodies | Hands only, cropped at the wrist. No arms above the forearm, no torso, no head, no silhouette, no reflection of a person in any screen. |
 
-**Start-image rule (non-negotiable):**
-
-1. Generate `Reel 1 · shot 1` first (it is also the style test — see below).
-2. Scrub it, export **one clean frame** where the face is undistorted and the
-   hands are correct. Save it as `[OPERATOR_REFERENCE_STILL]`.
-3. Upload that same still as the **start image / reference** on **every later
-   shot he appears in** — `Reel 1 · shot 5`, `Reel 5 · shot 1`. In the web app
-   that's the reference-image slot; via the MCP it was
-   `medias: [{role: "start_image", value: <uploaded reference photo>}]`.
-4. Never re-approve a second reference still mid-run. One still, whole set. If
-   shot 1 has to be regenerated, the reference still is regenerated with it and
-   any shot already made from the old one is now inconsistent — which is another
-   reason shot 1 is the style test and gets judged hard before anything else
-   runs.
-
----
+**Every Cinema Studio prompt in this file already ends with `no people in frame, no
+faces, no silhouettes, no human reflections in any screen`.** If you write a new shot,
+carry that negative over. If a generated clip comes back with a legible face or a
+recognisable figure, it does not ship — re-prompt or recrop.
 
 # Generation order — style test first, then load-bearing
 
@@ -405,8 +383,8 @@ before opening the next.
 
 **Tier 0 — the style test (ONE clip): `Reel 1 · shot 1`.**
 It is the only shot that tests everything at once: the grade, the practical-vs-
-monitor lighting, the operator's face, a blank screen the model wanted to write
-on, and a slow push-in. It is also the first frame of the first reel in the
+monitor lighting, an empty chair the model will want to put a person in, a blank
+screen it will want to write on, and a slow push-in. It is also the first frame of the first reel in the
 posting order (1 → 3 → 5 → 2 → 4 → 6), so it is the shot with the most riding on
 it either way.
 
@@ -483,7 +461,8 @@ Reject and re-prompt (don't "fix in post") if any of these are true:
 - Any letter, digit, or interface label is visible anywhere in frame.
 - The grade drifted off teal-and-orange.
 - The camera move is different from the one named, or barely moves.
-- The operator's face or wardrobe doesn't match `[OPERATOR_REFERENCE_STILL]`.
+- **Any person, face, silhouette or human reflection appears in frame.** The account
+  is faceless — this is an automatic reject, re-prompt or recrop, never ship it.
 - Hands are malformed in a shot where hands are in focus (shots 1·2 and 5·1).
 
 Everything else — pacing, retiming a 4s clip to cover an 8s beat, text cards,

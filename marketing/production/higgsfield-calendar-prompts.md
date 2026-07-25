@@ -307,12 +307,18 @@ whose entire credibility comes from looking unproduced.
 fallbacks:**
 1. Re-use the Day 10 Ava clip under new VO with the text cards on top. Costs
    nothing. Loses the "different, plainer set" signal that the note wanted.
-2. **Shoot it as the Operator instead of Ava, on a real phone.** Worth thinking
-   about even if credits were unlimited: beat 4 has Ava pointing out that "the
-   account is run by a named, visible operator — not anonymous," and having an AI
-   avatar deliver that line is the weakest possible messenger for it. A real
-   face saying it is stronger content *and* free. Flagging it as an editorial
-   observation about the source day — not changing the calendar.
+2. **Shoot it as a screen-only piece with voiceover.** Costs nothing. Beat 4 is
+   the "named, contactable brand" line, and the honest faceless way to carry it
+   is to *show* the thing rather than have a figure assert it: hold on the real
+   bio, the real contact address, the live site and the refund terms while the
+   voiceover says it. Evidence on screen is a stronger messenger for that
+   particular claim than any presenter, avatar or otherwise.
+
+   > **Not an option: shooting a real face.** The account is faceless
+   > (`../content-system.md` → the faceless rule) — no operator, no hired
+   > performer, no AI-generated photoreal person, on any day. Day 14 is the day
+   > that *explains* why there's no face, so putting one on it is the one place
+   > it would do the most damage.
 
 ---
 
@@ -441,7 +447,7 @@ above and still ships.
 | **5** | **Day 19 Shot A** — Ava between the pipelines | Puts Ava on the BOTH-keyword day for continuity with 10 and 23. | Re-use the Day 10 medium under her VO and cut straight to the convergence. Barely noticeable. |
 | **6** | **Day 10 Shot B** — five panels alone | Pacing variety on a monologue day. | Hold on Shot A and cut to the real `/cf-script` screen-record. The screen-record is stronger anyway. |
 | **7** | **Day 1 Shot B** — folder power-on | Completes the snap-cut. | `../generated/clips/reel2-scene1.mp4` already does this, or screen-record the real folder. Almost certainly never worth generating. |
-| **8** | **Day 14 Shot A** — Ava plain and level | Lowest value of the eight: the day deliberately wants the least cinematic look in the month, so generation buys the least here. | Re-use Day 10, or — better — shoot it as the Operator on a real phone. Beat 4 is about there being a real named person behind the account; a real face delivering it is the stronger version. |
+| **8** | **Day 14 Shot A** — Ava plain and level | Lowest value of the eight: the day deliberately wants the least cinematic look in the month, so generation buys the least here. | Re-use Day 10, or — better — run it screen-only with voiceover, holding on the real bio, contact address, live site and refund terms while beat 4 is spoken. The account is faceless; showing the evidence carries that claim better than any presenter could. |
 
 **Not on the ladder, on purpose:** Day 21's cutaway (the calendar marks it
 optional and the day is a screen-record without it) and Day 23 Shot B (reuse

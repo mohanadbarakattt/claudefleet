@@ -221,7 +221,7 @@ zero credits. Slot column is the §2.2 default, not a recommendation.
 | 27 | CHEAT-CODE | BOTH | SR `day-27.mp4` — full run; highest-scrutiny day of the month | 18:00 |
 | 28 | LISTICLE | BOTH | SR `day-28.mp4` — 3 points, real cutaways | 18:00 |
 | 29 | BEFORE/AFTER | BOTH | SR `day-29.mp4` — two folders → one engine | 18:00 |
-| 30 | SCREEN-RECORD PROOF | START | SR `day-30.mp4` — on camera, no AI footage, no music bed | 18:00 |
+| 30 | SCREEN-RECORD PROOF | START | SR `day-30.mp4` — screen-only + voiceover, nobody in frame, no AI footage, no music bed | 18:00 |
 
 ### 2.5 Credit triage
 

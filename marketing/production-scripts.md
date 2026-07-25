@@ -14,6 +14,11 @@ those that bite hardest here:
    at something that actually exists — the live site, the real admin panel, the
    real fleet home. Faking one is the exact scam tell this audience is trained
    to spot.
+3. **Faceless: no recognisable human face in any shot, ever.** The Operator is
+   a voice and a screen, not a performer. Where a body is needed for motion or
+   scale it is hands-only, over-the-shoulder with the head out of frame, or an
+   unlit silhouette. If a generated clip comes back with a legible face,
+   re-prompt or recrop it — do not ship it.
 
 **Reel 4 is the most valuable one in this set and the least obvious.** Reels
 1–3 and 6 sell the product; Reel 4 buys trust, which in this niche is the
@@ -29,11 +34,11 @@ this doc.
 
 | Time | VO / on-screen | Mode | Shot |
 |---|---|---|---|
-| 0:00–0:02 | "You don't have a prompting problem. You have an amnesia problem." | Cinema Studio | Man at a dark desk lit only by a monitor, staring at a blinking cursor in an empty chat input, shoulders dropping. Slow push-in. |
+| 0:00–0:02 | "You don't have a prompting problem. You have an amnesia problem." | Cinema Studio | Empty desk in a dark room, lit only by a monitor. Nobody in frame — just an unoccupied chair pushed back and a blinking cursor in an empty chat input. Slow push-in on the screen. |
 | 0:02–0:08 | "Every session you re-explain the business, re-find where you stopped, and redo thinking you already paid for." | Cinema Studio | Macro at speed: hands reopening the same folders, papers sliding in a loop, clock hand sweeping. Locked-off, timelapse feel. |
 | 0:08–0:16 | "The model isn't the bottleneck. State is. Nothing between one session and the next remembers what stage anything was at." | Cinema Studio | Five translucent cards materialise in a row, lighting up left to right, one pulse travelling along them. Lateral dolly. |
 | 0:16–0:24 | "So I gave it a pipeline. Idea, script, render, assemble, scheduled. It survives closing the laptop." | Screen-record | The **real** admin panel: the five-column board with cards sitting in different stages. |
-| 0:24–0:30 | "I don't operate it. I approve at the gates and it holds the rest." | Cinema Studio | Man leans back, arms folded, watching the row keep moving without him. Static, focus pull cards→face. |
+| 0:24–0:30 | "I don't operate it. I approve at the gates and it holds the rest." | Cinema Studio | Hands lift off the keyboard and leave frame; the chair rolls back empty. The row of cards keeps advancing on the monitor with nobody at the desk. Static, focus pull hands→screen. Hands only, no face, no torso above the shoulder. |
 
 **Text card:** APPROVE, DON'T OPERATE
 **CTA:** "Comment **CONTENT** and I'll send you what it is."
@@ -41,7 +46,9 @@ this doc.
 ---
 
 ## Reel 2 — "I made the machine write its own ad" · CONTENT
-**Angle: recursive proof.** Screen-record only. No stylized footage.
+**Angle: recursive proof.** Screen-record only. No stylized footage, no
+on-camera narrator — the voice is over the capture, the capture is the whole
+frame.
 
 | Time | VO | Mode | Shot |
 |---|---|---|---|
@@ -63,7 +70,7 @@ this doc.
 | 0:00–0:02 | "Most digital products fail before anyone writes a word of them." | Cinema Studio | A finished product box sitting alone under a single hard light, dust settling. Slow push-in. |
 | 0:02–0:10 | "Not because they're bad. Because nobody checked whether anyone wanted the thing first." | Cinema Studio | Shelves of identical unopened boxes receding into darkness. Slow lateral dolly. |
 | 0:10–0:18 | "So the build stage is locked. It will not run until validation returns a GO — two independent demand signals and one comparable product people already pay for." | Screen-record | The real `dp-validate` skill file, on the precondition line: *no GO, no build*. |
-| 0:18–0:26 | "That's not a feature I added. It's a gate I can't talk my way past at 1am when I'm excited about an idea." | Cinema Studio | A heavy door with one green indicator, staying shut. Static, slight push-in. |
+| 0:18–0:26 | "That's not a feature I added. It's a gate I can't talk my way past at 1am when I'm excited about an idea." | Cinema Studio | A heavy door with one green indicator, staying shut. Empty corridor, nobody in frame. Static, slight push-in. |
 | 0:26–0:32 | "The machine's job is to stop me building things nobody asked for." | — | Text card in edit. |
 
 **CTA:** "Comment **PRODUCT** and I'll send you the gate."
@@ -92,7 +99,7 @@ it feel like an ad.
 
 | Time | VO | Mode | Shot |
 |---|---|---|---|
-| 0:00–0:02 | "Four hundred saved AI tips. Nothing shipped. Here's the part every tip leaves out." | Cinema Studio | Macro thumb doom-scrolling in bed, bookmark icons piling in the corner. Tilt up to the eyes. |
+| 0:00–0:02 | "Four hundred saved AI tips. Nothing shipped. Here's the part every tip leaves out." | Cinema Studio | Macro of a thumb doom-scrolling a phone in a dark room, bookmark icons piling in the corner. Hands and phone only — frame ends at the wrist, no face, no body. Push in on the screen as the icons stack. |
 | 0:02–0:10 | "A tip is a thing you do once. It doesn't tell you what happens to the output, or where it goes next." | Cinema Studio | Bookmark icons piled like clutter on a desk, gathering dust. Slow lateral dolly. |
 | 0:10–0:18 | "A system has stages. Something enters, something leaves, and the thing in between remembers where it got to." | Cinema Studio | Four abstract glowing nodes connected by a pulse travelling in sequence — **no words in frame**. Top-down descend. |
 | 0:18–0:26 | "That's the whole difference. Not better prompts. State." | Screen-record | The real board, a card visibly sitting in one column. |
@@ -122,6 +129,10 @@ it feel like an ad.
   soft-entry START, then proof, then trust, then the close.
 - Reels 2 and 4 are screen-record only by design. Do not cut AI-generated
   footage into them — the whole value is that they're unfaked.
+- Every Cinema Studio / Hyper Motion prompt in this file carries the style
+  anchor **plus** "no people in frame, no faces" (or "hands only, frame ends
+  at the wrist" where hands are the subject). Faces are the one thing to
+  check on every returned clip before it goes in the edit.
 - Reel 6 carries the subscription disclosure. If you only ever post one reel
   that mentions cost, make it that one.
 - Reply to keyword comments within the hour; automation covers it (see

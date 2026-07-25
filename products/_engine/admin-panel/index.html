@@ -240,6 +240,146 @@ footer{max-width:1440px;margin:var(--s6) auto 0;padding:var(--s4) var(--s5) 0;bo
 #toast.show{opacity:1;transform:translate(-50%,0)}
 #toast.err{border-color:#5a2a2a;color:#ff9d9d}
 
+/* ---------- header status strip ---------- */
+.statusbar{border-top:1px solid var(--border);background:rgba(13,13,20,.55)}
+.sb-inner{max-width:1440px;margin:0 auto;padding:6px var(--s5);display:flex;align-items:center;
+  gap:var(--s3);flex-wrap:wrap;font-size:11.5px;color:var(--muted)}
+.sb-item{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.sb-item b{color:var(--text);font-weight:600}
+.sb-sep{width:1px;height:12px;background:var(--border);flex:none}
+.sb-stages{display:flex;gap:5px;flex-wrap:wrap}
+.sb-chip{font-family:var(--mono);font-size:10.5px;color:var(--muted);background:#0d0d14;
+  border:1px solid var(--border);border-radius:999px;padding:1px 8px;white-space:nowrap}
+.sb-chip b{color:var(--text)}
+.sb-dot{width:6px;height:6px;border-radius:50%;background:#3a3a4e;flex:none}
+.sb-dot.sim{background:var(--purple);animation:pulse 1.4s ease-in-out infinite}
+.sb-clock{margin-left:auto;font-family:var(--mono);color:var(--text);white-space:nowrap}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ---------- simulation banner (must never be subtle) ---------- */
+.simbar{border-top:1px solid rgba(167,139,250,.5);border-bottom:1px solid rgba(167,139,250,.5);
+  background:repeating-linear-gradient(135deg,rgba(167,139,250,.16) 0 10px,rgba(167,139,250,.05) 10px 20px)}
+.simbar-inner{max-width:1440px;margin:0 auto;padding:8px var(--s5);display:flex;align-items:center;
+  gap:var(--s3);flex-wrap:wrap;font-size:12.5px;color:#cdbcff}
+.simbar b{color:#ece4ff;letter-spacing:.06em}
+.simbar-c{margin-left:auto;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.simbar .btn{padding:3px 9px;font-size:12px;background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.45);color:#ece4ff}
+.simbar .btn:hover{background:rgba(167,139,250,.24);border-color:rgba(167,139,250,.7)}
+
+/* ---------- SIM markers (survive export/import, visible without the banner) ---------- */
+.simbadge{display:inline-flex;align-items:center;flex:none;font-family:var(--mono);font-size:9.5px;font-weight:700;
+  letter-spacing:.14em;color:#cdbcff;border:1px solid rgba(167,139,250,.6);border-radius:4px;padding:0 5px;line-height:15px;
+  background:repeating-linear-gradient(135deg,rgba(167,139,250,.26) 0 4px,rgba(167,139,250,.07) 4px 8px)}
+.is-sim{border-left:3px solid var(--purple);
+  background-image:repeating-linear-gradient(135deg,rgba(167,139,250,.09) 0 7px,transparent 7px 14px)}
+tr.is-sim td{background-image:repeating-linear-gradient(135deg,rgba(167,139,250,.09) 0 7px,transparent 7px 14px)}
+tr.is-sim td:first-child{box-shadow:inset 3px 0 0 var(--purple)}
+.sim-note{border:1px solid rgba(167,139,250,.45);background:rgba(167,139,250,.08);color:#cdbcff;
+  border-radius:var(--r);padding:9px 12px;font-size:12px}
+
+/* ---------- view tabs ---------- */
+.tabs{display:flex;gap:2px;margin-top:var(--s4);border-bottom:1px solid var(--border);overflow-x:auto}
+.tabs::-webkit-scrollbar{height:0}
+.tab{background:transparent;border:0;border-bottom:2px solid transparent;color:var(--muted);
+  padding:9px 14px;cursor:pointer;font-size:13px;font-weight:550;white-space:nowrap;
+  display:flex;align-items:center;gap:7px;border-radius:var(--r-sm) var(--r-sm) 0 0;transition:color .15s,background .15s}
+.tab:hover{color:var(--text);background:var(--panel)}
+.tab[aria-selected="true"]{color:var(--text);border-bottom-color:var(--accent)}
+.tab .pill{font-family:var(--mono);font-size:10.5px;background:rgba(217,119,72,.15);
+  border:1px solid rgba(217,119,72,.45);color:var(--accent2);border-radius:999px;padding:0 6px;line-height:15px}
+.view{display:none}
+.view.on{display:block}
+.view>section:first-child{margin-top:var(--s5)}
+
+/* ---------- status pills ---------- */
+.st{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid var(--border);
+  color:var(--muted);background:#0d0d14;white-space:nowrap}
+.st::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.st-queued{border-style:dashed}
+.st-running{color:var(--blue);border-color:rgba(91,157,217,.45);background:rgba(91,157,217,.09)}
+.st-running::before{animation:pulse 1.2s ease-in-out infinite}
+.st-awaiting{color:var(--accent2);border-color:rgba(217,119,72,.45);background:rgba(217,119,72,.09)}
+.st-done{color:var(--green);border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.08)}
+.st-failed{color:#ff9d9d;border-color:#5a2a2a;background:rgba(255,157,157,.07)}
+.st-blocked{color:var(--purple);border-color:rgba(167,139,250,.45);background:rgba(167,139,250,.09)}
+
+/* ---------- job queue ---------- */
+.sum{display:flex;gap:var(--s2);flex-wrap:wrap;margin-bottom:var(--s3)}
+.sum-btn{display:inline-flex;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--border);
+  border-radius:999px;padding:4px 12px;cursor:pointer;font-size:12px;color:var(--muted);transition:border-color .15s,color .15s}
+.sum-btn:hover{border-color:#333350;color:var(--text)}
+.sum-btn[aria-pressed="true"]{border-color:var(--accent);color:var(--text);background:#15121a}
+.sum-btn b{font-family:var(--mono);color:var(--text);font-size:12.5px}
+.jobs-tbl{min-width:940px}
+tr.job-row{cursor:pointer}
+tr.job-row:hover td{background:var(--panel2)}
+tr.job-row:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.jid{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.jcmd{font-family:var(--mono);font-size:11.5px;color:var(--accent2);white-space:nowrap}
+.jpath{font-family:var(--mono);font-size:11px;color:var(--muted);display:block;max-width:230px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.jcard{display:flex;align-items:center;gap:6px;min-width:0}
+.jcard span.t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:230px;display:block}
+.jnum{font-family:var(--mono);font-size:11.5px;color:var(--muted);white-space:nowrap}
+
+/* ---------- simulate panel ---------- */
+.simpanel{padding:var(--s4);display:grid;gap:var(--s3)}
+.simpanel .row{display:flex;gap:var(--s2);align-items:center;flex-wrap:wrap}
+.simpanel select.field{width:auto;min-width:200px;max-width:100%}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden;flex:none}
+.seg button{background:transparent;border:0;color:var(--muted);padding:6px 11px;cursor:pointer;font-size:12px}
+.seg button:hover{color:var(--text);background:var(--panel2)}
+.seg button+button{border-left:1px solid var(--border)}
+.seg button[aria-pressed="true"]{background:rgba(167,139,250,.16);color:#cdbcff}
+
+/* ---------- approvals ---------- */
+.apv-list{display:grid;gap:var(--s3)}
+.apv{padding:var(--s4);display:grid;gap:10px}
+.apv-head{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap}
+.apv-title{font-weight:600;font-size:14px;min-width:0;word-break:break-word}
+.apv-what{font-size:12.5px;color:var(--muted)}
+.apv-what b{color:var(--text);font-weight:600}
+.apv-path{font-family:var(--mono);font-size:11.5px;color:var(--muted);background:#0d0d14;
+  border:1px solid var(--border);border-radius:var(--r-sm);padding:7px 10px;word-break:break-all}
+.apv-actions{display:flex;gap:var(--s2);flex-wrap:wrap;align-items:center}
+
+/* ---------- activity feed ---------- */
+.feed{list-style:none;margin:0;padding:0;max-height:640px;overflow-y:auto}
+.feed li{display:flex;gap:var(--s3);align-items:flex-start;padding:9px 4px;border-bottom:1px solid #1d1d2a}
+.feed li:last-child{border-bottom:0}
+.feed-ic{width:22px;height:22px;border-radius:6px;flex:none;display:grid;place-items:center;font-size:11px;
+  background:#0d0d14;border:1px solid var(--border);color:var(--muted)}
+.feed-b{min-width:0;flex:1}
+.feed-t{font-size:12.5px;word-break:break-word;overflow-wrap:anywhere}
+.feed-m{font-size:11px;color:var(--muted);font-family:var(--mono);margin-top:3px;
+  display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* ---------- artifact drawer ---------- */
+.drawer-back{position:fixed;inset:0;background:rgba(4,4,8,.62);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
+.drawer-back.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(460px,100%);z-index:50;
+  background:var(--panel);border-left:1px solid var(--border);box-shadow:-24px 0 60px -34px #000;
+  transform:translateX(104%);transition:transform .22s ease;overflow-y:auto;display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.drawer-head{display:flex;align-items:flex-start;gap:var(--s3);padding:var(--s4);
+  border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--panel);z-index:1}
+.drawer-head .t{font-size:14px;font-weight:600;font-family:var(--mono);word-break:break-all}
+.drawer-body{padding:var(--s4);display:grid;gap:var(--s4);align-content:start}
+.kv{display:grid;grid-template-columns:96px 1fr;gap:8px var(--s3);font-size:12.5px;margin:0}
+.kv dt{color:var(--muted);font-size:11.5px}
+.kv dd{margin:0;word-break:break-word}
+
+.log-list li.is-sim{padding-left:8px}
+.item.is-sim{padding-left:9px}
+.item-title{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+details.disc{margin-top:var(--s4);border-top:1px solid var(--border);padding-top:var(--s3)}
+details.disc>summary{cursor:pointer;font-size:12px;color:var(--muted);list-style:none;display:flex;align-items:center;gap:6px}
+details.disc>summary::-webkit-details-marker{display:none}
+details.disc>summary::before{content:"▸";font-size:9px;transition:transform .15s;display:inline-block}
+details.disc[open]>summary::before{transform:rotate(90deg)}
+details.disc>summary:hover{color:var(--text)}
+
 @media (max-width:1080px){
   .services{grid-template-columns:1fr}
   .grid2{grid-template-columns:1fr}
@@ -256,6 +396,15 @@ footer{max-width:1440px;margin:var(--s6) auto 0;padding:var(--s4) var(--s5) 0;bo
   .board{grid-auto-flow:row;grid-auto-columns:auto;overflow-x:visible}
   .log-ts{width:88px}
   footer{padding:var(--s4) var(--s3) 0}
+  .sb-inner{padding:6px var(--s3);gap:var(--s2);font-size:11px}
+  .sb-sep{display:none}
+  .sb-clock{margin-left:0}
+  .simbar-inner{padding:8px var(--s3)}
+  .simbar-c{margin-left:0;width:100%}
+  .tab{padding:9px 11px;font-size:12.5px}
+  .kv{grid-template-columns:1fr;gap:2px var(--s3)}
+  .kv dd{margin-bottom:6px}
+  .simpanel select.field{width:100%;min-width:0}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -279,80 +428,158 @@ footer{max-width:1440px;margin:var(--s6) auto 0;padding:var(--s4) var(--s5) 0;bo
       <input type="file" id="fileInput" accept="application/json,.json" hidden>
     </div>
   </div>
+  <div class="statusbar" id="statusbar"></div>
+  <div id="simBanner"></div>
 </header>
 
 <div class="wrap">
 
   <div id="banner"></div>
 
-  <section id="servicesSection">
-    <div class="sec-head">
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Console views"></nav>
+
+  <!-- ============================ OPERATIONS ============================ -->
+  <div class="view" id="view-ops" role="tabpanel" aria-labelledby="tab-ops">
+
+    <section id="servicesSection">
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title">Service status</h2>
+          <p class="hint" style="margin-top:4px">Operator-maintained. This panel makes no network requests and never checks these services &mdash; you set the state after you run them.</p>
+        </div>
+      </div>
+      <div class="services" id="services"></div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Job queue</h2>
+        <p class="hint" id="jobsHint"></p>
+      </div>
+      <div class="sum" id="jobSum"></div>
+      <div class="card-panel pad">
+        <div class="row-form" id="jobFilters" style="margin-top:0"></div>
+        <div class="tbl-wrap" style="margin-top:var(--s3)">
+          <table class="jobs-tbl">
+            <thead><tr>
+              <th style="width:96px">Job</th>
+              <th style="width:110px">Machine</th>
+              <th>Card</th>
+              <th style="width:104px">Stage</th>
+              <th style="width:118px">Command</th>
+              <th style="width:132px">Status</th>
+              <th style="width:104px">Started</th>
+              <th style="width:78px">Duration</th>
+              <th style="width:180px">Artifact</th>
+            </tr></thead>
+            <tbody id="jobBody"></tbody>
+          </table>
+        </div>
+        <details class="disc">
+          <summary>Record a run you actually ran</summary>
+          <div id="recForm"></div>
+        </details>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Simulate mode</h2>
+        <p class="hint">For demos and screen recordings &mdash; walks a card through the five stages on a timer. Nothing is executed.</p>
+      </div>
+      <div class="card-panel simpanel" id="simPanel"></div>
+    </section>
+  </div>
+
+  <!-- ============================== BOARD ============================== -->
+  <div class="view" id="view-board" role="tabpanel" aria-labelledby="tab-board">
+    <section>
+      <div class="sec-head"><h2 class="sec-title">Next action</h2></div>
+      <div class="card-panel next" id="next"></div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Pipeline</h2>
+        <p class="hint" id="boardHint"></p>
+      </div>
+      <div class="board" id="board"></div>
+    </section>
+  </div>
+
+  <!-- ============================ APPROVALS ============================ -->
+  <div class="view" id="view-approvals" role="tabpanel" aria-labelledby="tab-approvals">
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Approval inbox</h2>
+        <p class="hint">Human gates across every machine. Nothing advances until you act here.</p>
+      </div>
+      <div id="approvals"></div>
+    </section>
+  </div>
+
+  <!-- ============================= ACTIVITY ============================ -->
+  <div class="view" id="view-activity" role="tabpanel" aria-labelledby="tab-activity">
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Activity feed</h2>
+        <p class="hint" id="feedHint"></p>
+      </div>
+      <div class="card-panel pad" id="feedWrap"></div>
+    </section>
+  </div>
+
+  <!-- ============================== LEDGER ============================= -->
+  <div class="view" id="view-ledger" role="tabpanel" aria-labelledby="tab-ledger">
+    <section class="grid2">
       <div>
-        <h2 class="sec-title">Service status</h2>
-        <p class="hint" style="margin-top:4px">Operator-maintained. This panel makes no network requests and never checks these services &mdash; you set the state after you run them.</p>
-      </div>
-    </div>
-    <div class="services" id="services"></div>
-  </section>
-
-  <section>
-    <div class="sec-head"><h2 class="sec-title">Next action</h2></div>
-    <div class="card-panel next" id="next"></div>
-  </section>
-
-  <section>
-    <div class="sec-head">
-      <h2 class="sec-title">Pipeline</h2>
-      <p class="hint" id="boardHint"></p>
-    </div>
-    <div class="board" id="board"></div>
-  </section>
-
-  <section class="grid2">
-    <div>
-      <div class="sec-head">
-        <h2 class="sec-title">Run log</h2>
-        <p class="hint">Append-only</p>
-      </div>
-      <div class="card-panel pad">
-        <div id="log"></div>
-        <form class="row-form" id="logForm">
-          <select class="field" id="logStage" aria-label="Stage"></select>
-          <input class="field" id="logText" placeholder="What happened?" maxlength="240" aria-label="What happened">
-          <button class="btn" type="submit">Add</button>
-        </form>
-      </div>
-    </div>
-
-    <div>
-      <div class="sec-head">
-        <h2 class="sec-title">Cost tracker</h2>
-        <div style="display:flex;align-items:center;gap:8px">
-          <label class="hint" for="currency">Currency</label>
-          <input class="field" id="currency" style="width:72px;padding:4px 8px;font-size:12px" maxlength="6" aria-label="Currency label">
+        <div class="sec-head">
+          <h2 class="sec-title">Run log</h2>
+          <p class="hint">Append-only</p>
+        </div>
+        <div class="card-panel pad">
+          <div id="log"></div>
+          <form class="row-form" id="logForm">
+            <select class="field" id="logStage" aria-label="Stage"></select>
+            <input class="field" id="logText" placeholder="What happened?" maxlength="240" aria-label="What happened">
+            <button class="btn" type="submit">Add</button>
+          </form>
         </div>
       </div>
-      <div class="card-panel pad">
-        <div class="tbl-wrap">
-        <table>
-          <thead><tr>
-            <th style="width:112px">Month</th><th style="width:112px">Service</th>
-            <th class="num" style="text-align:right;width:96px">Amount</th><th>Note</th><th style="width:28px"></th>
-          </tr></thead>
-          <tbody id="costBody"></tbody>
-        </table>
+
+      <div>
+        <div class="sec-head">
+          <h2 class="sec-title">Cost tracker</h2>
+          <div style="display:flex;align-items:center;gap:8px">
+            <label class="hint" for="currency">Currency</label>
+            <input class="field" id="currency" style="width:72px;padding:4px 8px;font-size:12px" maxlength="6" aria-label="Currency label">
+          </div>
         </div>
-        <div class="totals" id="costTotals"></div>
-        <button class="btn btn-sm" id="btnAddCost" style="margin-top:var(--s3)">+ Add cost row</button>
+        <div class="card-panel pad">
+          <div class="tbl-wrap">
+          <table>
+            <thead><tr>
+              <th style="width:112px">Month</th><th style="width:112px">Service</th>
+              <th class="num" style="text-align:right;width:96px">Amount</th><th>Note</th><th style="width:28px"></th>
+            </tr></thead>
+            <tbody id="costBody"></tbody>
+          </table>
+          </div>
+          <div class="totals" id="costTotals"></div>
+          <button class="btn btn-sm" id="btnAddCost" style="margin-top:var(--s3)">+ Add cost row</button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <footer>
-    <span>ClaudeFleet Engine &mdash; state lives in <code class="mono">pipeline.json</code> + this browser's local storage. Fully offline.</span>
+    <span>ClaudeFleet Engine &mdash; state lives in <code class="mono">pipeline.json</code> + this browser's local storage. Fully offline: no backend, no network requests, and no command is ever executed from this page.</span>
     <span id="storageNote"></span>
   </footer>
 </div>
+
+<div class="drawer-back" id="drawerBack"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true" tabindex="-1"></aside>
 
 <div id="toast" role="status" aria-live="polite"></div>
 
@@ -420,6 +647,18 @@ var SERVICES = [
 var STORE_KEY = "claudefleet.pipeline.v1";
 var SCHEMA = 1;
 
+/* Job statuses. A job is a RECORD of a stage run — this panel never runs anything. */
+var JOB_STATUSES = ["queued","running","awaiting approval","done","failed","blocked"];
+var VIEWS = [
+  { key:"ops",       label:"Operations" },
+  { key:"board",     label:"Board" },
+  { key:"approvals", label:"Approvals" },
+  { key:"activity",  label:"Activity" },
+  { key:"ledger",    label:"Ledger" }
+];
+var FEED_ICON = { job:"▸", artifact:"◆", approval:"✓", changes:"↺", advance:"→", cost:"$", sim:"◇", system:"•" };
+var FEED_KINDS = ["job","artifact","approval","changes","advance","cost","sim","system"];
+
 /* ===========================================================================
    Tiny DOM helper
    =========================================================================== */
@@ -448,7 +687,45 @@ function clear(node){ while(node.firstChild) node.removeChild(node.firstChild); 
 function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
 function nowISO(){ return new Date().toISOString(); }
 function daysAgo(n){ return new Date(Date.now() - n*86400000).toISOString(); }
+function minsAgo(n){ return new Date(Date.now() - n*60000).toISOString(); }
 function thisMonth(){ var d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0"); }
+
+function relTime(iso){
+  var t = new Date(iso).getTime();
+  if (!isFinite(t)) return "—";
+  var s = Math.round((Date.now() - t)/1000);
+  if (s < 0) s = 0;
+  if (s < 45) return s + "s ago";
+  var m = Math.round(s/60);  if (m < 60) return m + "m ago";
+  var h = Math.round(m/60);  if (h < 24) return h + "h ago";
+  return Math.round(h/24) + "d ago";
+}
+function fmtDur(ms){
+  if (!isFinite(ms) || ms < 0) return "—";
+  var s = Math.round(ms/1000);
+  if (s < 60) return s + "s";
+  var m = Math.floor(s/60);
+  if (m < 60) return m + "m " + String(s % 60).padStart(2,"0") + "s";
+  return Math.floor(m/60) + "h " + String(m % 60).padStart(2,"0") + "m";
+}
+function fmtClock(){
+  var d = new Date();
+  try { return d.toLocaleTimeString(undefined,{hour:"2-digit",minute:"2-digit",second:"2-digit"}); }
+  catch(e){ return d.toISOString().slice(11,19); }
+}
+function slug(s){
+  return String(s == null ? "" : s).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,44) || "card";
+}
+/* The path a stage run WRITES TO on disk. This panel only records it — it cannot read files. */
+function artifactPath(machineKey, stageIdx, title, iso){
+  var m  = MACHINES[machineKey] || MACHINES.content;
+  var st = m.stages[stageIdx] || m.stages[0];
+  var day = String(iso || nowISO()).slice(0,10);
+  return m.dir + "/runs/" + day + "/" + st.command.replace(/^\//,"") + "/" + slug(title) + ".md";
+}
+function stKey(s){ return s === "awaiting approval" ? "awaiting" : s; }
+function stagesOf(k){ return (MACHINES[k] || MACHINES.content).stages; }
+function stageName(k, i){ var st = stagesOf(k)[i]; return st ? st.name : "—"; }
 
 function fmtDate(iso){
   if (!iso) return "—";
@@ -481,46 +758,94 @@ function toast(msg, isErr){
 /* ===========================================================================
    State: seed / load / normalize / save
    =========================================================================== */
+function freshSim(){
+  return { active:false, paused:false, done:false, gate:false, speed:1,
+           machine:"content", cardId:"", jobId:"", phase:"", nextAt:0, rest:0 };
+}
+
 function seed(){
+  var cards = [
+    { id:"c-ct-idea",   machine:"content", stage:0, title:"Hook batch: 'the first 100 followers' angle", created:daysAgo(1), sim:false,
+      notes:"8 hooks drafted, 3 look strong. Pick two for this week, hold the rest for next batch." },
+    { id:"c-ct-script", machine:"content", stage:1, title:"Client: Nadia Fitness — week 31 batch", created:daysAgo(3), sim:false,
+      notes:"4 scripts, gym/coaching niche, 20-35s read time each. Client wants less jargon than last week." },
+    { id:"c-ct-render", machine:"content", stage:2, title:"Reel: 3 mistakes new coaches make", created:daysAgo(4), sim:false,
+      notes:"Higgsfield brief: 5 shots, 9:16 vertical, warm gym lighting, no on-screen text (captions added later)." },
+    { id:"c-ct-asm",    machine:"content", stage:3, title:"Carousel: post like a studio, not a solo", created:daysAgo(6), sim:false,
+      notes:"Caption variant B picked, on-screen text cards written, cut order set. Ready to hand to Postiz." },
+    { id:"c-ct-sched",  machine:"content", stage:4, title:"Reel: behind the batch (studio process)", created:daysAgo(9), sim:false,
+      notes:"Queued in Postiz for IG + TikTok, Tuesday 18:00 local. Last cycle the BTS angle beat the tips angle on saves — repeating it." },
+    { id:"c-dp-idea",   machine:"product", stage:0, title:"Idea: client onboarding kit for freelance designers", created:daysAgo(2), sim:false,
+      notes:"2 independent demand signals + 1 comparable paid product found. Angle: designer-specific, not generic freelancer." },
+    { id:"c-dp-build",  machine:"product", stage:1, title:"Build: Client Onboarding Kit v1", created:daysAgo(5), sim:false,
+      notes:"7 templates + 1 written walkthrough. Scope held to 4 focused days — no video module in v1." },
+    { id:"c-dp-pack",   machine:"product", stage:2, title:"Package: Client Onboarding Kit bundle", created:daysAgo(7), sim:false,
+      notes:"Templates exported + zipped with the walkthrough. Higgsfield: cover mockup + 3 promo stills from the brief." },
+    { id:"c-dp-launch", machine:"product", stage:3, title:"Launch kit: sales page + 5-email sequence", created:daysAgo(8), sim:false,
+      notes:"Sales page draft needs a shorter above-the-fold. Cart-close email set for Friday. 30-day money-back terms stated on the page." },
+    { id:"c-dp-sched",  machine:"product", stage:4, title:"Launch week: Client Onboarding Kit", created:daysAgo(14), sim:false,
+      notes:"Postiz: 6 posts across launch week, email 1 sends Tuesday 09:00. 3 testimonials from beta readers already collected." }
+  ];
+
+  function job(id, cardId, status, startedMins, ranMins, note){
+    var c = null;
+    for (var i=0;i<cards.length;i++) if (cards[i].id === cardId) c = cards[i];
+    var startedAt = minsAgo(startedMins);
+    return {
+      id: id, machine: c.machine, cardId: c.id, card: c.title, stage: c.stage,
+      command: stagesOf(c.machine)[c.stage].command,
+      status: status,
+      queuedAt: minsAgo(startedMins + 1),
+      startedAt: startedAt,
+      endedAt: minsAgo(startedMins - ranMins),
+      artifact: artifactPath(c.machine, c.stage, c.title, startedAt),
+      note: note || "",
+      sim: false
+    };
+  }
+
+  /* Demo jobs are historical records only — no "queued" or "running" state is seeded,
+     so a screenshot of the demo data can never be mistaken for live activity. */
+  var jobs = [
+    job("job-4f21a9", "c-ct-render", "awaiting approval", 214,  6, ""),
+    job("job-91c07e", "c-dp-launch", "awaiting approval", 356, 11, ""),
+    job("job-2b8d13", "c-dp-pack",   "blocked",           690,  7, "Cover mockup came back with a busy background — regenerate before the launch kit runs."),
+    job("job-7ac550", "c-ct-sched",  "failed",            980,  2, "Postiz rejected the Instagram token (expired). TikTok queued fine; IG needs re-auth."),
+    job("job-1de6b2", "c-ct-script", "done",             1290,  9, ""),
+    job("job-83f0aa", "c-ct-asm",    "done",             2760,  5, ""),
+    job("job-05e7cd", "c-dp-idea",   "done",             3100, 14, "")
+  ];
+
   return {
     schema: SCHEMA,
     demo: true,
+    view: "ops",
     machine: "content",
     selectedStage: 1,
     currency: "USD",
+    filters: { status:"all", machine:"current" },
+    sim: freshSim(),
     services: {
       claude:     { connected:true,  lastRun:daysAgo(0), note:"Claude Code CLI running in the content-machine folder" },
       higgsfield: { connected:true,  lastRun:daysAgo(1), note:"Batch of 5 clips generated for this week's scripts" },
       postiz:     { connected:false, lastRun:daysAgo(3), note:"Instagram account needs re-auth before the next schedule" }
     },
-    cards: [
-      { id:uid(), machine:"content", stage:0, title:"Hook batch: 'the first 100 followers' angle", created:daysAgo(1),
-        notes:"8 hooks drafted, 3 look strong. Pick two for this week, hold the rest for next batch." },
-      { id:uid(), machine:"content", stage:1, title:"Client: Nadia Fitness — week 31 batch", created:daysAgo(3),
-        notes:"4 scripts, gym/coaching niche, 20-35s read time each. Client wants less jargon than last week." },
-      { id:uid(), machine:"content", stage:2, title:"Reel: 3 mistakes new coaches make", created:daysAgo(4),
-        notes:"Higgsfield brief: 5 shots, 9:16 vertical, warm gym lighting, no on-screen text (captions added later)." },
-      { id:uid(), machine:"content", stage:3, title:"Carousel: post like a studio, not a solo", created:daysAgo(6),
-        notes:"Caption variant B picked, on-screen text cards written, cut order set. Ready to hand to Postiz." },
-      { id:uid(), machine:"content", stage:4, title:"Reel: behind the batch (studio process)", created:daysAgo(9),
-        notes:"Queued in Postiz for IG + TikTok, Tuesday 18:00 local. Last cycle the BTS angle beat the tips angle on saves — repeating it." },
-      { id:uid(), machine:"product", stage:0, title:"Idea: client onboarding kit for freelance designers", created:daysAgo(2),
-        notes:"2 independent demand signals + 1 comparable paid product found. Angle: designer-specific, not generic freelancer." },
-      { id:uid(), machine:"product", stage:1, title:"Build: Client Onboarding Kit v1", created:daysAgo(5),
-        notes:"7 templates + 1 written walkthrough. Scope held to 4 focused days — no video module in v1." },
-      { id:uid(), machine:"product", stage:2, title:"Package: Client Onboarding Kit bundle", created:daysAgo(7),
-        notes:"Templates exported + zipped with the walkthrough. Higgsfield: cover mockup + 3 promo stills from the brief." },
-      { id:uid(), machine:"product", stage:3, title:"Launch kit: sales page + 5-email sequence", created:daysAgo(8),
-        notes:"Sales page draft needs a shorter above-the-fold. Cart-close email set for Friday. 30-day money-back terms stated on the page." },
-      { id:uid(), machine:"product", stage:4, title:"Launch week: Client Onboarding Kit", created:daysAgo(14),
-        notes:"Postiz: 6 posts across launch week, email 1 sends Tuesday 09:00. 3 testimonials from beta readers already collected." }
+    cards: cards,
+    jobs: jobs,
+    feed: [
+      { id:uid(), ts:minsAgo(208), machine:"content", kind:"approval", text:"Human gate: “Reel: 3 mistakes new coaches make” at Render is awaiting your approval.", sim:false },
+      { id:uid(), ts:minsAgo(214), machine:"content", kind:"artifact", text:"Artifact path recorded — " + jobs[0].artifact, sim:false },
+      { id:uid(), ts:minsAgo(345), machine:"product", kind:"approval", text:"Human gate: “Launch kit: sales page + 5-email sequence” at Launch Kit is awaiting your approval.", sim:false },
+      { id:uid(), ts:minsAgo(683), machine:"product", kind:"changes",  text:"Changes requested on job-2b8d13 — cover mockup background too busy.", sim:false },
+      { id:uid(), ts:minsAgo(978), machine:"content", kind:"job",      text:"Job job-7ac550 failed — /cf-schedule could not reach the Instagram account.", sim:false },
+      { id:uid(), ts:minsAgo(1281),machine:"content", kind:"advance",  text:"“Client: Nadia Fitness — week 31 batch” advanced to Script.", sim:false }
     ],
     log: [
-      { id:uid(), ts:daysAgo(0),  machine:"content", stage:1, text:"/cf-script — drafted 4 scripts + caption variants for the week 31 batch" },
-      { id:uid(), ts:daysAgo(1),  machine:"content", stage:2, text:"/cf-render — 5-shot Higgsfield brief written; 2 shots regenerated, second pass usable" },
-      { id:uid(), ts:daysAgo(2),  machine:"product", stage:0, text:"/dp-validate — validation memo passed the gate (2 signals, 1 paid comparable)" },
-      { id:uid(), ts:daysAgo(3),  machine:"content", stage:3, text:"/cf-assemble — cut order + on-screen text cards written for the carousel" },
-      { id:uid(), ts:daysAgo(6),  machine:"content", stage:4, text:"/cf-schedule — Postiz queue failed on IG (expired token), TikTok queued fine" }
+      { id:uid(), ts:daysAgo(0),  machine:"content", stage:1, sim:false, text:"/cf-script — drafted 4 scripts + caption variants for the week 31 batch" },
+      { id:uid(), ts:daysAgo(1),  machine:"content", stage:2, sim:false, text:"/cf-render — 5-shot Higgsfield brief written; 2 shots regenerated, second pass usable" },
+      { id:uid(), ts:daysAgo(2),  machine:"product", stage:0, sim:false, text:"/dp-validate — validation memo passed the gate (2 signals, 1 paid comparable)" },
+      { id:uid(), ts:daysAgo(3),  machine:"content", stage:3, sim:false, text:"/cf-assemble — cut order + on-screen text cards written for the carousel" },
+      { id:uid(), ts:daysAgo(6),  machine:"content", stage:4, sim:false, text:"/cf-schedule — Postiz queue failed on IG (expired token), TikTok queued fine" }
     ],
     costs: []
   };
@@ -532,16 +857,28 @@ function normalize(raw){
   var s = {
     schema: SCHEMA,
     demo: raw.demo === true,
+    view: "ops",
     machine: MACHINES[raw.machine] ? raw.machine : "content",
     selectedStage: 0,
     currency: typeof raw.currency === "string" && raw.currency.trim() ? raw.currency.trim().slice(0,6) : "USD",
+    filters: { status:"all", machine:"current" },
+    sim: freshSim(),
     services: {},
     cards: [],
+    jobs: [],
+    feed: [],
     log: [],
     costs: []
   };
   var sel = parseInt(raw.selectedStage, 10);
   s.selectedStage = (isFinite(sel) && sel >= 0 && sel <= 4) ? sel : 0;
+
+  for (var vi=0; vi<VIEWS.length; vi++) if (VIEWS[vi].key === raw.view) s.view = raw.view;
+
+  if (raw.filters && typeof raw.filters === "object"){
+    if (raw.filters.status === "all" || JOB_STATUSES.indexOf(raw.filters.status) >= 0) s.filters.status = raw.filters.status;
+    if (raw.filters.machine === "all" || raw.filters.machine === "current") s.filters.machine = raw.filters.machine;
+  }
 
   SERVICES.forEach(function(sv){
     var r = (raw.services && typeof raw.services === "object") ? raw.services[sv.key] : null;
@@ -562,7 +899,42 @@ function normalize(raw){
       stage: (isFinite(st) && st >= 0 && st <= 4) ? st : 0,
       title: String(c.title == null ? "Untitled item" : c.title).slice(0,200) || "Untitled item",
       created: typeof c.created === "string" ? c.created : nowISO(),
-      notes: typeof c.notes === "string" ? c.notes.slice(0,4000) : ""
+      notes: typeof c.notes === "string" ? c.notes.slice(0,4000) : "",
+      sim: c.sim === true            /* SIM marker survives export → import */
+    });
+  });
+
+  if (Array.isArray(raw.jobs)) raw.jobs.forEach(function(j){
+    if (!j || typeof j !== "object") return;
+    var mk = MACHINES[j.machine] ? j.machine : s.machine;
+    var st = parseInt(j.stage, 10);
+    st = (isFinite(st) && st >= 0 && st <= 4) ? st : 0;
+    s.jobs.push({
+      id: typeof j.id === "string" && j.id ? j.id.slice(0,40) : ("job-" + uid()),
+      machine: mk,
+      cardId: typeof j.cardId === "string" ? j.cardId.slice(0,40) : "",
+      card: String(j.card == null ? "Untitled item" : j.card).slice(0,200) || "Untitled item",
+      stage: st,
+      command: typeof j.command === "string" && j.command ? j.command.slice(0,48) : stagesOf(mk)[st].command,
+      status: JOB_STATUSES.indexOf(j.status) >= 0 ? j.status : "queued",
+      queuedAt: typeof j.queuedAt === "string" ? j.queuedAt : "",
+      startedAt: typeof j.startedAt === "string" ? j.startedAt : "",
+      endedAt: typeof j.endedAt === "string" ? j.endedAt : "",
+      artifact: typeof j.artifact === "string" ? j.artifact.slice(0,300) : "",
+      note: typeof j.note === "string" ? j.note.slice(0,300) : "",
+      sim: j.sim === true            /* SIM marker survives export → import */
+    });
+  });
+
+  if (Array.isArray(raw.feed)) raw.feed.forEach(function(f){
+    if (!f || typeof f !== "object") return;
+    s.feed.push({
+      id: typeof f.id === "string" && f.id ? f.id : uid(),
+      ts: typeof f.ts === "string" ? f.ts : nowISO(),
+      machine: MACHINES[f.machine] ? f.machine : s.machine,
+      kind: FEED_KINDS.indexOf(f.kind) >= 0 ? f.kind : "system",
+      text: String(f.text == null ? "" : f.text).slice(0,400),
+      sim: f.sim === true            /* SIM marker survives export → import */
     });
   });
 
@@ -574,9 +946,32 @@ function normalize(raw){
       ts: typeof l.ts === "string" ? l.ts : nowISO(),
       machine: MACHINES[l.machine] ? l.machine : s.machine,
       stage: (isFinite(st) && st >= 0 && st <= 4) ? st : 0,
-      text: String(l.text == null ? "" : l.text).slice(0,400)
+      text: String(l.text == null ? "" : l.text).slice(0,400),
+      sim: l.sim === true            /* SIM marker survives export → import */
     });
   });
+
+  /* Simulation control. Never resume a timer we did not start: a restored
+     simulation always comes back PAUSED so nothing moves unattended. */
+  if (raw.sim && typeof raw.sim === "object"){
+    var rs = raw.sim, sm = s.sim;
+    var hasCard = false, hasJob = false;
+    for (var ci=0; ci<s.cards.length; ci++) if (s.cards[ci].id === rs.cardId) hasCard = true;
+    for (var ji=0; ji<s.jobs.length; ji++) if (s.jobs[ji].id === rs.jobId) hasJob = true;
+    if (rs.active === true && hasCard){
+      sm.active = true;
+      sm.paused = true;                       /* forced */
+      sm.done  = rs.done === true;
+      sm.gate  = rs.gate === true;
+      sm.machine = MACHINES[rs.machine] ? rs.machine : s.machine;
+      sm.cardId = rs.cardId;
+      sm.jobId  = hasJob ? rs.jobId : "";
+      sm.phase  = (rs.phase === "start" || rs.phase === "gate" || rs.phase === "wait") ? rs.phase : "";
+      sm.rest   = 0;
+      sm.nextAt = 0;
+    }
+    sm.speed = (rs.speed === 0 || rs.speed === 4) ? rs.speed : 1;
+  }
 
   if (Array.isArray(raw.costs)) raw.costs.forEach(function(c){
     if (!c || typeof c !== "object") return;
@@ -623,6 +1018,45 @@ function stages(){ return machine().stages; }
 function cardsFor(stageIdx){
   return state.cards.filter(function(c){ return c.machine === state.machine && c.stage === stageIdx; });
 }
+function cardById(id){
+  for (var i=0;i<state.cards.length;i++) if (state.cards[i].id === id) return state.cards[i];
+  return null;
+}
+function jobById(id){
+  for (var i=0;i<state.jobs.length;i++) if (state.jobs[i].id === id) return state.jobs[i];
+  return null;
+}
+function pendingApprovals(){
+  return state.jobs.filter(function(j){ return j.status === "awaiting approval"; });
+}
+function blockedJobs(){
+  return state.jobs.filter(function(j){ return j.status === "blocked"; });
+}
+function simRecordCount(){
+  var n = 0;
+  ["cards","jobs","log","feed"].forEach(function(k){
+    for (var i=0;i<state[k].length;i++) if (state[k][i].sim === true) n++;
+  });
+  return n;
+}
+/* Append to the activity feed. `sim` is persisted so the SIM marker survives export. */
+function pushFeed(kind, text, sim, machineKey){
+  state.feed.unshift({
+    id: uid(), ts: nowISO(), machine: machineKey || state.machine,
+    kind: FEED_KINDS.indexOf(kind) >= 0 ? kind : "system",
+    text: String(text).slice(0,400), sim: sim === true
+  });
+  if (state.feed.length > 400) state.feed.length = 400;
+}
+function simBadge(){ return el("span",{class:"simbadge",title:"Simulated record — no command was executed"},"SIM"); }
+function jobDuration(j){
+  if (!j.startedAt) return "—";
+  var a = new Date(j.startedAt).getTime();
+  if (!isFinite(a)) return "—";
+  var b = j.endedAt ? new Date(j.endedAt).getTime() : Date.now();
+  if (!isFinite(b)) b = Date.now();
+  return fmtDur(b - a);
+}
 
 /* ===========================================================================
    Clipboard (navigator.clipboard is unavailable on some file:// contexts)
@@ -665,9 +1099,11 @@ function renderBanner(){
   host.appendChild(el("div",{class:"banner"},[
     el("span",{},[ el("b",{text:"Demo data. "}), "Everything below is sample content so the panel is explorable on first open. Clear it before you run your own pipeline." ]),
     el("button",{class:"btn btn-sm",onclick:function(){
-      if (!confirm("Clear all demo cards, log entries and service notes? This cannot be undone.")) return;
-      state.cards = []; state.log = []; state.demo = false;
+      if (!confirm("Clear all demo cards, jobs, activity, log entries and service notes? This cannot be undone.")) return;
+      state.cards = []; state.jobs = []; state.feed = []; state.log = [];
+      state.sim = freshSim(); state.demo = false;
       SERVICES.forEach(function(sv){ state.services[sv.key] = {connected:false,lastRun:"",note:""}; });
+      closeDrawer();
       save(); render(); toast("Demo data cleared.");
     },text:"Clear demo data"})
   ]));
@@ -748,8 +1184,8 @@ function renderNext(){
 var dragId = null;
 
 function cardNode(card){
-  var node = el("div",{class:"item",draggable:"true"},[
-    el("div",{class:"item-title",text:card.title}),
+  var node = el("div",{class:"item" + (card.sim ? " is-sim" : ""),draggable:"true"},[
+    el("div",{class:"item-title"},[ card.sim ? simBadge() : null, el("span",{text:card.title}) ]),
     el("div",{class:"item-meta"},[
       el("span",{text:stages()[card.stage].name}),
       el("span",{text:"·"}),
@@ -770,6 +1206,7 @@ function cardNode(card){
         onclick:function(){
           if (!confirm('Delete "' + card.title + '"?')) return;
           state.cards = state.cards.filter(function(c){ return c.id !== card.id; });
+          if (state.sim.active && state.sim.cardId === card.id) simReset(true);
           save(); render(); toast("Card deleted.");
         }})
     ])
@@ -788,12 +1225,16 @@ function move(card, delta){
   var next = card.stage + delta;
   if (next < 0 || next > 4) return;
   card.stage = next;
-  logRun(card.stage, "Moved “" + card.title + "” to " + stages()[next].name);
+  logRun(card.stage, "Moved “" + card.title + "” to " + stages()[next].name, card.sim);
+  pushFeed("advance", "“" + card.title + "” moved to " + stages()[next].name + " (manual)", card.sim);
   save(); render();
 }
 
-function logRun(stageIdx, text){
-  state.log.unshift({ id:uid(), ts:nowISO(), machine:state.machine, stage:stageIdx, text:text });
+function logRun(stageIdx, text, sim, machineKey){
+  state.log.unshift({
+    id:uid(), ts:nowISO(), machine: MACHINES[machineKey] ? machineKey : state.machine,
+    stage:stageIdx, text:text, sim: sim === true
+  });
   if (state.log.length > 500) state.log.length = 500;
 }
 
@@ -842,7 +1283,8 @@ function renderBoard(){
       var card = state.cards.filter(function(c){ return c.id === id; })[0];
       if (!card || card.stage === idx) return;
       card.stage = idx;
-      logRun(idx, "Moved “" + card.title + "” to " + st.name);
+      logRun(idx, "Moved “" + card.title + "” to " + st.name, card.sim);
+      pushFeed("advance", "“" + card.title + "” moved to " + st.name + " (manual)", card.sim);
       save(); render();
     });
 
@@ -863,10 +1305,13 @@ function renderLog(){
   } else {
     var ul = el("ul",{class:"log-list"});
     entries.forEach(function(l){
-      ul.appendChild(el("li",{},[
+      ul.appendChild(el("li",{class: l.sim ? "is-sim" : null},[
         el("span",{class:"log-ts",text:fmtStamp(l.ts)}),
         el("span",{class:"log-body"},[
-          el("div",{class:"log-stage",text:(stages()[l.stage] || {name:"—"}).name}),
+          el("div",{class:"log-stage"},[
+            l.sim ? simBadge() : null, l.sim ? " " : null,
+            (stages()[l.stage] || {name:"—"}).name
+          ]),
           el("div",{class:"log-text",text:l.text || "(no detail)"})
         ])
       ]));
@@ -1006,16 +1451,754 @@ document.getElementById("fileInput").addEventListener("change", function(e){
     var parsed;
     try { parsed = JSON.parse(String(reader.result)); }
     catch(err){ toast("Not valid JSON — nothing was changed.", true); return; }
-    if (!parsed || typeof parsed !== "object" || (!Array.isArray(parsed.cards) && !parsed.services)){
+    if (!parsed || typeof parsed !== "object" ||
+        (!Array.isArray(parsed.cards) && !Array.isArray(parsed.jobs) && !parsed.services)){
       toast("That JSON is not a ClaudeFleet pipeline file.", true); return;
     }
     if (!confirm("Replace the current panel state with " + file.name + "?")) return;
     state = normalize(parsed);
+    closeDrawer();
+    recFormSig = null;
     save(); render();
-    toast("Imported " + file.name);
+    var simN = simRecordCount();
+    toast("Imported " + file.name + (simN ? " — includes " + simN + " simulated (SIM) records." : ""));
   };
   reader.readAsText(file);
 });
+
+/* ===========================================================================
+   Jobs — the operations queue.
+   A job is a RECORD of one stage run. This page has no backend and cannot
+   execute anything; statuses are written by you, by an imported pipeline.json,
+   or by simulate mode (which marks everything it writes with sim:true).
+   =========================================================================== */
+function jobsInScope(){
+  return state.jobs.filter(function(j){
+    return state.filters.machine === "all" || j.machine === state.machine;
+  });
+}
+function jobsFiltered(){
+  return jobsInScope().filter(function(j){
+    return state.filters.status === "all" || j.status === state.filters.status;
+  });
+}
+
+function renderJobSummary(){
+  var host = document.getElementById("jobSum");
+  clear(host);
+  var scope = jobsInScope();
+  var counts = {};
+  scope.forEach(function(j){ counts[j.status] = (counts[j.status] || 0) + 1; });
+
+  function chip(key, label, count){
+    return el("button",{class:"sum-btn","aria-pressed": state.filters.status === key ? "true" : "false",
+      title:"Filter the queue by " + label,
+      onclick:function(){ state.filters.status = key; save(); renderJobs(); }},[
+      el("b",{text:String(count)}),
+      key === "all" ? el("span",{text:"total"}) : el("span",{class:"st st-" + stKey(key),text:label})
+    ]);
+  }
+  host.appendChild(chip("all","total",scope.length));
+  JOB_STATUSES.forEach(function(s){ if (counts[s]) host.appendChild(chip(s, s, counts[s])); });
+  if (!scope.length) host.appendChild(el("span",{class:"hint",style:"align-self:center",text:"No job records in scope yet."}));
+}
+
+function renderJobFilters(){
+  var host = document.getElementById("jobFilters");
+  clear(host);
+  var mSel = el("select",{class:"field","aria-label":"Filter jobs by machine",onchange:function(e){
+    state.filters.machine = e.target.value === "all" ? "all" : "current"; save(); renderJobs();
+  }},[
+    el("option",{value:"current",text:"This machine — " + machine().label}),
+    el("option",{value:"all",text:"All machines"})
+  ]);
+  mSel.value = state.filters.machine;
+
+  var sSel = el("select",{class:"field","aria-label":"Filter jobs by status",onchange:function(e){
+    state.filters.status = e.target.value; save(); renderJobs();
+  }},[el("option",{value:"all",text:"Any status"})].concat(JOB_STATUSES.map(function(s){
+    return el("option",{value:s,text:s.charAt(0).toUpperCase() + s.slice(1)});
+  })));
+  sSel.value = state.filters.status;
+
+  host.appendChild(mSel);
+  host.appendChild(sSel);
+  if (state.filters.status !== "all" || state.filters.machine !== "current"){
+    host.appendChild(el("button",{class:"btn",text:"Clear filters",onclick:function(){
+      state.filters = { status:"all", machine:"current" }; save(); renderJobs();
+    }}));
+  }
+}
+
+function renderJobs(){
+  renderJobSummary();
+  renderJobFilters();
+
+  var body = document.getElementById("jobBody");
+  var active = document.activeElement;
+  var refocus = active && active.getAttribute ? active.getAttribute("data-job") : null;
+  clear(body);
+
+  document.getElementById("jobsHint").textContent =
+    "Stage runs recorded as jobs — click a row for its artifact path. This console records runs; it never executes them.";
+
+  var list = jobsFiltered();
+  if (!list.length){
+    body.appendChild(el("tr",{},[
+      el("td",{colspan:"9",style:"padding:14px 6px"},[
+        el("div",{class:"empty",style:"text-align:left",text: state.jobs.length
+          ? "No jobs match these filters. Clear them to see the whole queue."
+          : "No job records yet. Jobs appear when you import a pipeline.json written by Claude Code, record a run you actually ran, or start simulate mode."})
+      ])
+    ]));
+    return;
+  }
+
+  list.forEach(function(j){
+    var row = el("tr",{class:"job-row" + (j.sim ? " is-sim" : ""),tabindex:"0","data-job":j.id,
+      title:"Open job details","aria-label":"Job " + j.id + " — " + j.card + " — " + j.status + " — open details",
+      onclick:function(){ openDrawer(j.id); },
+      onkeydown:function(e){ if (e.key === "Enter" || e.key === " "){ e.preventDefault(); openDrawer(j.id); } }},[
+      el("td",{},[ el("span",{class:"jid",text:j.id}) ]),
+      el("td",{},[ el("span",{class:"jnum",text:(MACHINES[j.machine]||{label:j.machine}).label.replace(" Machine","")}) ]),
+      el("td",{},[ el("span",{class:"jcard"},[ j.sim ? simBadge() : null, el("span",{class:"t",text:j.card,title:j.card}) ]) ]),
+      el("td",{},[ el("span",{class:"jnum",text:(j.stage+1) + " · " + stageName(j.machine, j.stage)}) ]),
+      el("td",{},[ el("span",{class:"jcmd",text:j.command}) ]),
+      el("td",{},[ el("span",{class:"st st-" + stKey(j.status),text:j.status}) ]),
+      el("td",{},[ el("span",{class:"jnum","data-rel": j.startedAt || null,
+        text: j.startedAt ? relTime(j.startedAt) : "—"}) ]),
+      el("td",{},[ el("span",{class:"jnum","data-dur": (j.startedAt && !j.endedAt) ? j.startedAt : null,
+        text: jobDuration(j)}) ]),
+      el("td",{},[ j.artifact
+        ? el("span",{class:"jpath",title:j.artifact,text:j.artifact.replace(/^.*\//,"")})
+        : el("span",{class:"jnum",text:"—"}) ])
+    ]);
+    body.appendChild(row);
+    if (refocus && refocus === j.id) row.focus();
+  });
+}
+
+/* ---- record a run the operator actually ran (real, never marked SIM) ---- */
+var recFormSig = null;
+function renderRecForm(){
+  var mine = state.cards.filter(function(c){ return c.machine === state.machine; });
+  var sig = state.machine + ":" + mine.map(function(c){ return c.id + c.stage; }).join(",");
+  if (recFormSig === sig) return;   /* rebuild only when the card list changed — never mid-typing */
+  recFormSig = sig;
+  var host = document.getElementById("recForm");
+  clear(host);
+  host.appendChild(el("p",{class:"hint",style:"margin:8px 0 10px",
+    text:"You ran the skill in Claude Code; this writes the matching job record here. It does not run anything."}));
+
+  if (!mine.length){
+    host.appendChild(el("div",{class:"empty",text:"Add a card on the Board first — a job is always recorded against a card."}));
+    return;
+  }
+
+  var cardSel = el("select",{class:"field","aria-label":"Card"}, mine.map(function(c){
+    return el("option",{value:c.id,text:(c.stage+1) + " · " + stageName(c.machine,c.stage) + " — " + c.title});
+  }));
+  var statusSel = el("select",{class:"field","aria-label":"Status"}, JOB_STATUSES.map(function(s){
+    return el("option",{value:s,text:s.charAt(0).toUpperCase() + s.slice(1)});
+  }));
+  statusSel.value = "done";
+  var pathIn = el("input",{class:"field",maxlength:"300","aria-label":"Artifact path",placeholder:"Artifact path written by the run"});
+  var noteIn = el("input",{class:"field",maxlength:"300","aria-label":"Note",placeholder:"Note (optional)"});
+
+  function fillPath(){
+    var c = cardById(cardSel.value);
+    if (c) pathIn.value = artifactPath(c.machine, c.stage, c.title, nowISO());
+  }
+  cardSel.addEventListener("change", fillPath);
+  fillPath();
+
+  host.appendChild(el("div",{class:"row-form",style:"margin-top:0"},[ cardSel, statusSel ]));
+  host.appendChild(el("div",{class:"row-form"},[ pathIn ]));
+  host.appendChild(el("div",{class:"row-form"},[ noteIn,
+    el("button",{class:"btn btn-primary",text:"Record job",onclick:function(){
+      var c = cardById(cardSel.value);
+      if (!c){ toast("Pick a card first.", true); return; }
+      var st = statusSel.value;
+      var terminal = st === "done" || st === "failed" || st === "blocked";
+      var j = {
+        id:"job-" + uid().slice(-6), machine:c.machine, cardId:c.id, card:c.title, stage:c.stage,
+        command: stagesOf(c.machine)[c.stage].command, status: st,
+        queuedAt: nowISO(), startedAt: st === "queued" ? "" : nowISO(),
+        endedAt: terminal ? nowISO() : "",
+        artifact: pathIn.value.trim().slice(0,300), note: noteIn.value.trim().slice(0,300), sim:false
+      };
+      state.jobs.unshift(j);
+      pushFeed("job","Recorded " + j.id + " — " + j.command + " · " + j.card + " (" + st + ")", false, j.machine);
+      logRun(j.stage, "Recorded " + j.command + " for “" + j.card + "” — " + st, false);
+      noteIn.value = "";
+      save(); render();
+      toast("Job recorded.");
+    }})
+  ]));
+}
+
+/* ===========================================================================
+   Approvals — the human gates. Acting here mutates the same cards the board
+   renders, so the board moves when you approve.
+   =========================================================================== */
+function approveJob(j){
+  if (j.status !== "awaiting approval") return;
+  j.status = "done";
+  j.note = "";
+  if (!j.endedAt) j.endedAt = nowISO();
+
+  var card = cardById(j.cardId);
+  var advanced = false;
+  if (card && card.stage === j.stage && j.stage < 4){ card.stage = j.stage + 1; advanced = true; }
+
+  var prefix = j.sim ? "SIMULATION · " : "";
+  logRun(j.stage, prefix + "Approved " + j.command + " for “" + j.card + "” at " + stageName(j.machine, j.stage) +
+    (advanced ? " → moved to " + stageName(j.machine, j.stage + 1) : ""), j.sim, j.machine);
+  pushFeed("approval", "Approved " + j.id + " — “" + j.card + "” at " + stageName(j.machine, j.stage), j.sim, j.machine);
+  if (advanced) pushFeed("advance", "“" + j.card + "” advanced to " + stageName(j.machine, j.stage + 1), j.sim, j.machine);
+
+  var s = state.sim;
+  if (j.sim && s.active && s.jobId === j.id){
+    s.gate = false;
+    if (j.stage < 4){ simBeginStage(j.stage + 1); }
+    else {
+      s.done = true; s.nextAt = 0; s.phase = "";
+      pushFeed("sim","Simulation complete — 5 of 5 stages walked. Nothing was executed.", true, s.machine);
+      logRun(4, "SIMULATION complete — no commands were executed.", true, s.machine);
+    }
+  }
+  save(); render();
+  toast(advanced ? "Approved — card advanced." : "Approved.");
+}
+
+function requestChanges(j, note){
+  if (j.status !== "awaiting approval") return;
+  j.status = "blocked";
+  j.note = note.slice(0,300);
+  if (!j.endedAt) j.endedAt = nowISO();
+  var prefix = j.sim ? "SIMULATION · " : "";
+  logRun(j.stage, prefix + "Changes requested on " + j.command + " for “" + j.card + "” — " + j.note, j.sim, j.machine);
+  pushFeed("changes","Changes requested on " + j.id + " — " + j.note, j.sim, j.machine);
+  var s = state.sim;
+  if (j.sim && s.active && s.jobId === j.id){ s.gate = false; s.nextAt = 0; s.phase = "blocked"; }
+  save(); render();
+  toast("Sent back as blocked.");
+}
+
+function requeueJob(j){
+  if (j.status !== "blocked" && j.status !== "failed") return;
+  j.status = "queued";
+  j.startedAt = ""; j.endedAt = ""; j.queuedAt = nowISO();
+  logRun(j.stage, (j.sim ? "SIMULATION · " : "") + "Re-queued " + j.command + " for “" + j.card + "”", j.sim, j.machine);
+  pushFeed("job","Re-queued " + j.id + " — " + j.command + " · " + j.card, j.sim, j.machine);
+  var s = state.sim;
+  if (j.sim && s.active && s.jobId === j.id){
+    s.gate = false; s.phase = "start";
+    s.nextAt = s.paused ? 0 : Date.now() + SIM_STEP.queue * simMult();
+    if (s.paused) s.rest = SIM_STEP.queue * simMult();
+  }
+  save(); render();
+  toast(j.sim ? "Re-queued in the simulation." : "Re-queued. Run the command in Claude Code, then update the record.");
+}
+
+function approvalCard(j){
+  var changeBox = el("div",{style:"display:none"});
+  var ta = el("textarea",{class:"field",maxlength:"300",placeholder:"What has to change before this can be approved? (required)",
+    "aria-label":"Requested changes for " + j.card});
+  changeBox.appendChild(ta);
+  changeBox.appendChild(el("div",{class:"apv-actions",style:"margin-top:8px"},[
+    el("button",{class:"btn btn-primary",text:"Send change request",onclick:function(){
+      var note = ta.value.trim();
+      if (!note){ toast("A note is required when you request changes.", true); ta.focus(); return; }
+      requestChanges(j, note);
+    }}),
+    el("button",{class:"btn",text:"Cancel",onclick:function(){ changeBox.style.display = "none"; }})
+  ]));
+
+  return el("div",{class:"card-panel apv" + (j.sim ? " is-sim" : "")},[
+    el("div",{class:"apv-head"},[
+      j.sim ? simBadge() : null,
+      el("span",{class:"apv-title",text:j.card}),
+      el("span",{class:"st st-awaiting",text:"awaiting approval"}),
+      el("span",{class:"tag",text:(MACHINES[j.machine]||{label:j.machine}).label})
+    ]),
+    el("p",{class:"apv-what"},[
+      "Approving marks ", el("b",{text:j.command}), " at stage " + (j.stage+1) + " · ",
+      el("b",{text:stageName(j.machine, j.stage)}),
+      j.stage < 4 ? " as done and moves the card to " : " as done. This is the last stage, so the card stays at ",
+      el("b",{text:stageName(j.machine, Math.min(4, j.stage + 1))}), "."
+    ]),
+    el("div",{class:"apv-path",text: j.artifact || "No artifact path recorded for this job."}),
+    el("div",{class:"apv-actions"},[
+      el("button",{class:"btn btn-primary",text:"Approve",onclick:function(){ approveJob(j); }}),
+      el("button",{class:"btn",text:"Request changes",onclick:function(){
+        changeBox.style.display = changeBox.style.display === "none" ? "block" : "none";
+        if (changeBox.style.display === "block") ta.focus();
+      }}),
+      el("button",{class:"btn btn-sm",text:"Copy path",disabled: !j.artifact,
+        onclick:function(){ if (j.artifact) copyText(j.artifact); }}),
+      el("button",{class:"btn btn-sm",text:"Details",onclick:function(){ openDrawer(j.id); }}),
+      el("span",{class:"sp",style:"flex:1"}),
+      el("span",{class:"hint","data-rel": j.endedAt || j.startedAt || null,
+        text: relTime(j.endedAt || j.startedAt || j.queuedAt)})
+    ]),
+    changeBox
+  ]);
+}
+
+function renderApprovals(){
+  var host = document.getElementById("approvals");
+  clear(host);
+  var pending = pendingApprovals();
+  var blocked = blockedJobs();
+
+  if (!pending.length){
+    host.appendChild(el("div",{class:"empty",text:
+      "Nothing is waiting on you. Gates land here when a stage run finishes and needs a human decision — the pipeline never advances on its own."}));
+  } else {
+    var list = el("div",{class:"apv-list"});
+    pending.forEach(function(j){ list.appendChild(approvalCard(j)); });
+    host.appendChild(list);
+  }
+
+  if (blocked.length){
+    host.appendChild(el("div",{class:"sec-head",style:"margin-top:var(--s5)"},[
+      el("h2",{class:"sec-title",text:"Blocked — changes requested"}),
+      el("p",{class:"hint",text:"Re-queue once the change is made."})
+    ]));
+    var bl = el("div",{class:"apv-list"});
+    blocked.forEach(function(j){
+      bl.appendChild(el("div",{class:"card-panel apv" + (j.sim ? " is-sim" : "")},[
+        el("div",{class:"apv-head"},[
+          j.sim ? simBadge() : null,
+          el("span",{class:"apv-title",text:j.card}),
+          el("span",{class:"st st-blocked",text:"blocked"}),
+          el("span",{class:"tag",text:(MACHINES[j.machine]||{label:j.machine}).label})
+        ]),
+        el("p",{class:"apv-what"},[ el("b",{text:j.command}), " at " + stageName(j.machine, j.stage) ]),
+        el("div",{class:"apv-path",text: j.note || "No note recorded."}),
+        el("div",{class:"apv-actions"},[
+          el("button",{class:"btn",text:"Re-queue stage",onclick:function(){ requeueJob(j); }}),
+          el("button",{class:"btn btn-sm",text:"Details",onclick:function(){ openDrawer(j.id); }})
+        ])
+      ]));
+    });
+    host.appendChild(bl);
+  }
+}
+
+/* ===========================================================================
+   Activity feed — state changes, newest first. Distinct from the run log.
+   =========================================================================== */
+function renderFeed(){
+  var host = document.getElementById("feedWrap");
+  clear(host);
+  var items = state.feed.filter(function(f){ return f.machine === state.machine; });
+  document.getElementById("feedHint").textContent =
+    machine().label + " · " + items.length + (items.length === 1 ? " event" : " events");
+
+  if (!items.length){
+    host.appendChild(el("div",{class:"empty",text:
+      "No activity for this machine yet. Jobs, approvals, card moves and simulation steps all show up here as they happen."}));
+    return;
+  }
+  var ul = el("ul",{class:"feed"});
+  items.forEach(function(f){
+    ul.appendChild(el("li",{class: f.sim ? "is-sim" : null,style: f.sim ? "padding-left:8px" : null},[
+      el("span",{class:"feed-ic","aria-hidden":"true",text:FEED_ICON[f.kind] || "•"}),
+      el("span",{class:"feed-b"},[
+        el("div",{class:"feed-t",text:f.text}),
+        el("div",{class:"feed-m"},[
+          f.sim ? simBadge() : null,
+          el("span",{"data-rel":f.ts,text:relTime(f.ts)}),
+          el("span",{text:"·"}),
+          el("span",{text:f.kind})
+        ])
+      ])
+    ]));
+  });
+  host.appendChild(ul);
+}
+
+/* ===========================================================================
+   Artifact drawer — metadata + the recorded path. Never a file preview:
+   the panel is offline and cannot read your filesystem.
+   =========================================================================== */
+var openJobId = null;
+var drawerReturn = null;
+
+function openDrawer(id){
+  var j = jobById(id);
+  if (!j) return;
+  drawerReturn = document.activeElement;
+  openJobId = id;
+  renderDrawer();
+  var d = document.getElementById("drawer");
+  d.classList.add("on");
+  d.setAttribute("aria-hidden","false");
+  document.getElementById("drawerBack").classList.add("on");
+  d.focus();
+}
+function closeDrawer(){
+  openJobId = null;
+  var d = document.getElementById("drawer");
+  d.classList.remove("on");
+  d.setAttribute("aria-hidden","true");
+  document.getElementById("drawerBack").classList.remove("on");
+  if (drawerReturn && document.contains(drawerReturn)) { try { drawerReturn.focus(); } catch(e){} }
+  drawerReturn = null;
+}
+
+function renderDrawer(){
+  var d = document.getElementById("drawer");
+  if (!openJobId){ clear(d); return; }
+  var j = jobById(openJobId);
+  if (!j){ closeDrawer(); clear(d); return; }
+  clear(d);
+
+  d.appendChild(el("div",{class:"drawer-head"},[
+    el("div",{style:"flex:1;min-width:0"},[
+      el("div",{style:"display:flex;align-items:center;gap:8px;flex-wrap:wrap"},[
+        j.sim ? simBadge() : null,
+        el("span",{class:"t",id:"drawerTitle",text:j.id})
+      ]),
+      el("div",{class:"hint",style:"margin-top:4px",text:j.command + " · stage " + (j.stage+1) + " · " + stageName(j.machine, j.stage)})
+    ]),
+    el("button",{class:"btn btn-icon",text:"✕",title:"Close (Esc)","aria-label":"Close job details",onclick:closeDrawer})
+  ]));
+
+  var kv = el("dl",{class:"kv"});
+  function kvRow(k, v){ kv.appendChild(el("dt",{text:k})); kv.appendChild(el("dd",{},v)); }
+  kvRow("Status",  [ el("span",{class:"st st-" + stKey(j.status),text:j.status}) ]);
+  kvRow("Card",    [ el("span",{text:j.card}) ]);
+  kvRow("Machine", [ el("span",{text:(MACHINES[j.machine]||{label:j.machine}).label}) ]);
+  kvRow("Command", [ el("code",{class:"jcmd",text:j.command}) ]);
+  kvRow("Queued",  [ el("span",{text: j.queuedAt ? fmtStamp(j.queuedAt) : "—"}) ]);
+  kvRow("Started", [ el("span",{text: j.startedAt ? fmtStamp(j.startedAt) : "—"}) ]);
+  kvRow("Ended",   [ el("span",{text: j.endedAt ? fmtStamp(j.endedAt) : "—"}) ]);
+  kvRow("Duration",[ el("span",{"data-dur": (j.startedAt && !j.endedAt) ? j.startedAt : null, text: jobDuration(j)}) ]);
+
+  var body = el("div",{class:"drawer-body"});
+  if (j.sim) body.appendChild(el("div",{class:"sim-note",
+    text:"Simulated record. This job was created by simulate mode — no command was executed and no file was written."}));
+  body.appendChild(kv);
+
+  body.appendChild(el("div",{},[
+    el("div",{class:"sec-title",style:"margin-bottom:8px",text:"Artifact path"}),
+    el("div",{class:"apv-path",text: j.artifact || "No artifact path recorded for this job."}),
+    el("p",{class:"hint",style:"margin-top:8px",text:
+      "This is the path recorded for the run. The panel is offline and cannot read your filesystem — it does not show file contents. Open the path in your editor to see the artifact."}),
+    el("div",{class:"apv-actions",style:"margin-top:10px"},[
+      el("button",{class:"btn",text:"Copy path",disabled: !j.artifact,onclick:function(){ if (j.artifact) copyText(j.artifact); }})
+    ])
+  ]));
+
+  if (j.note) body.appendChild(el("div",{},[
+    el("div",{class:"sec-title",style:"margin-bottom:8px",text:"Note"}),
+    el("div",{class:"apv-path",text:j.note})
+  ]));
+
+  var actions = [];
+  if (j.status === "awaiting approval"){
+    actions.push(el("button",{class:"btn btn-primary",text:"Approve",onclick:function(){ approveJob(j); }}));
+    actions.push(el("button",{class:"btn",text:"Open in approval inbox",onclick:function(){
+      state.view = "approvals"; save(); closeDrawer(); render();
+    }}));
+  }
+  if (j.status === "blocked" || j.status === "failed"){
+    actions.push(el("button",{class:"btn",text:"Re-queue stage",onclick:function(){ requeueJob(j); }}));
+  }
+  actions.push(el("button",{class:"btn btn-danger btn-sm",text:"Delete record",onclick:function(){
+    if (!confirm("Delete job record " + j.id + "?")) return;
+    state.jobs = state.jobs.filter(function(x){ return x.id !== j.id; });
+    if (state.sim.jobId === j.id) state.sim.jobId = "";
+    closeDrawer(); save(); render(); toast("Job record deleted.");
+  }}));
+  body.appendChild(el("div",{class:"apv-actions"},actions));
+
+  d.appendChild(body);
+}
+
+document.getElementById("drawerBack").addEventListener("click", closeDrawer);
+document.addEventListener("keydown", function(e){
+  if (e.key === "Escape" && openJobId) closeDrawer();
+});
+
+/* ===========================================================================
+   SIMULATE MODE
+   Walks a card through the five stages on a timer so the console can be
+   demonstrated and filmed with no live Claude session. It executes NOTHING.
+   Every record it writes carries sim:true, which is persisted and exported.
+   =========================================================================== */
+var SIM_STEP = { queue: 1500, run: 5600 };
+function simMult(){ return state.sim.speed === 0 ? 0 : (state.sim.speed === 4 ? 0.25 : 1); }
+var simPick = "";
+
+function simStart(){
+  var s = state.sim;
+  if (s.active) return;
+  var src = simPick ? cardById(simPick) : null;
+  var title = "SIM · " + (src ? src.title : "Sample run — " + machine().label);
+  var card = {
+    id: "sim-card-" + uid(), machine: state.machine, stage: 0, title: title.slice(0,200), created: nowISO(),
+    notes: "Created by simulate mode. Not a real run — no command was executed and no file was written.",
+    sim: true
+  };
+  state.cards.unshift(card);
+
+  s.active = true; s.paused = false; s.done = false; s.gate = false;
+  s.machine = state.machine; s.cardId = card.id; s.jobId = ""; s.rest = 0;
+
+  pushFeed("sim","Simulation started for “" + card.title + "”. No commands are being executed.", true, s.machine);
+  logRun(0, "SIMULATION started — “" + card.title + "”. Nothing was executed.", true, s.machine);
+  simBeginStage(0);
+  save(); render();
+  toast("Simulation started — nothing is being executed.");
+}
+
+function simBeginStage(i){
+  var s = state.sim;
+  var card = cardById(s.cardId);
+  if (!card){ simReset(true); return; }
+  var st = stagesOf(s.machine)[i];
+  var j = {
+    id: "job-sim" + uid().slice(-4), machine: s.machine, cardId: card.id, card: card.title, stage: i,
+    command: st.command, status: "queued", queuedAt: nowISO(), startedAt: "", endedAt: "",
+    artifact: "", note: "", sim: true
+  };
+  state.jobs.unshift(j);
+  s.jobId = j.id; s.phase = "start"; s.gate = false;
+  s.nextAt = s.paused ? 0 : Date.now() + SIM_STEP.queue * simMult();
+  if (s.paused) s.rest = SIM_STEP.queue * simMult();
+  pushFeed("job","Job " + j.id + " queued — " + st.command + " · " + card.title, true, s.machine);
+}
+
+function simTick(){
+  var s = state.sim;
+  if (!s.active || s.paused || s.done || s.gate) return;
+  if (!s.nextAt || Date.now() < s.nextAt) return;
+  var j = jobById(s.jobId);
+  if (!j || (j.status !== "queued" && j.status !== "running")){ s.nextAt = 0; return; }
+
+  if (s.phase === "start"){
+    j.status = "running";
+    j.startedAt = nowISO();
+    s.phase = "gate";
+    s.nextAt = Date.now() + SIM_STEP.run * simMult();
+    pushFeed("job","Job " + j.id + " started — " + j.command + " (simulated; nothing is executed)", true, s.machine);
+  } else {
+    j.status = "awaiting approval";
+    j.endedAt = nowISO();
+    j.artifact = artifactPath(j.machine, j.stage, j.card, j.queuedAt);
+    s.phase = "wait"; s.gate = true; s.nextAt = 0;
+    pushFeed("artifact","Artifact path recorded — " + j.artifact, true, s.machine);
+    pushFeed("approval","Human gate: “" + j.card + "” at " + stageName(j.machine, j.stage) + " is awaiting your approval.", true, s.machine);
+    logRun(j.stage, "SIMULATION · " + j.command + " finished — waiting for approval.", true, s.machine);
+  }
+  save();
+  renderLive();
+}
+
+function simPause(){
+  var s = state.sim;
+  if (!s.active || s.paused) return;
+  s.rest = s.nextAt ? Math.max(0, s.nextAt - Date.now()) : 0;
+  s.paused = true; s.nextAt = 0;
+  pushFeed("sim","Simulation paused.", true, s.machine);
+  save(); render();
+}
+function simResume(){
+  var s = state.sim;
+  if (!s.active || !s.paused) return;
+  s.paused = false;
+  s.nextAt = (s.gate || s.done || s.phase === "blocked") ? 0 : Date.now() + (s.rest || 0);
+  s.rest = 0;
+  pushFeed("sim","Simulation resumed.", true, s.machine);
+  save(); render();
+}
+function simSetSpeed(v){
+  var s = state.sim;
+  s.speed = v;
+  if (s.active && !s.paused && !s.gate && !s.done && s.nextAt){
+    s.nextAt = Date.now() + (s.phase === "start" ? SIM_STEP.queue : SIM_STEP.run) * simMult();
+  }
+  save(); render();
+}
+function simReset(quiet){
+  var removed = 0;
+  ["cards","jobs","log","feed"].forEach(function(k){
+    var before = state[k].length;
+    state[k] = state[k].filter(function(r){ return r.sim !== true; });
+    removed += before - state[k].length;
+  });
+  var speed = state.sim.speed;
+  state.sim = freshSim();
+  state.sim.speed = speed;
+  if (openJobId && !jobById(openJobId)) closeDrawer();
+  save();
+  if (!quiet){ render(); toast(removed ? ("Simulation reset — " + removed + " simulated records removed.") : "Simulation reset."); }
+}
+
+function renderSimBanner(){
+  var host = document.getElementById("simBanner");
+  clear(host);
+  var s = state.sim;
+  if (!s.active) return;
+
+  var stalled = !s.done && !s.paused && !s.gate && s.phase !== "blocked" && !jobById(s.jobId);
+  var statusText = s.done ? "Run complete."
+    : s.paused ? "Paused."
+    : s.gate ? "Waiting for your approval in the inbox."
+    : s.phase === "blocked" ? "Blocked — re-queue it in the approval inbox."
+    : stalled ? "Stopped — the job it was tracking is gone. Reset to clear."
+    : "Stepping through stages.";
+
+  var controls = el("div",{class:"simbar-c"},[
+    el("span",{class:"tag",style:"color:#cdbcff;border-color:rgba(167,139,250,.45)",
+      text: s.speed === 0 ? "instant" : (s.speed === 4 ? "4x" : "1x")}),
+    s.gate ? el("button",{class:"btn",text:"Go to approvals",onclick:function(){
+      state.view = "approvals"; save(); render();
+    }}) : null,
+    s.done ? null : el("button",{class:"btn",text: s.paused ? "Resume" : "Pause",
+      onclick: s.paused ? simResume : simPause}),
+    el("button",{class:"btn",text:"Reset",onclick:function(){ simReset(false); }})
+  ]);
+
+  host.appendChild(el("div",{class:"simbar"},[
+    el("div",{class:"simbar-inner"},[
+      el("span",{class:"sb-dot sim","aria-hidden":"true"}),
+      el("span",{},[
+        el("b",{text:"SIMULATION"}),
+        " — not a real run. No commands are being executed. ",
+        el("span",{style:"opacity:.85",text:statusText})
+      ]),
+      controls
+    ])
+  ]));
+}
+
+function renderSimPanel(){
+  var host = document.getElementById("simPanel");
+  clear(host);
+  var s = state.sim;
+  var mine = state.cards.filter(function(c){ return c.machine === state.machine && !c.sim; });
+
+  host.appendChild(el("div",{class:"sim-note",text:
+    "Simulate mode is for demos and screen recordings. It walks a copy of a card through all five stages on a timer, pausing at every approval gate. It executes no commands, writes no files and makes no network requests. Everything it creates is tagged SIM and is removed by Reset."}));
+
+  var cardSel = el("select",{class:"field","aria-label":"Card to simulate",disabled: s.active,
+    onchange:function(e){ simPick = e.target.value; }},
+    [el("option",{value:"",text:"Sample run — " + machine().label})].concat(mine.map(function(c){
+      return el("option",{value:c.id,text:c.title});
+    })));
+  if (simPick) cardSel.value = simPick;
+  if (cardSel.value !== simPick) simPick = cardSel.value;
+
+  var speedSeg = el("div",{class:"seg",role:"group","aria-label":"Simulation speed"},[
+    el("button",{"aria-pressed": s.speed === 1 ? "true":"false",text:"1x",onclick:function(){ simSetSpeed(1); }}),
+    el("button",{"aria-pressed": s.speed === 4 ? "true":"false",text:"4x",onclick:function(){ simSetSpeed(4); }}),
+    el("button",{"aria-pressed": s.speed === 0 ? "true":"false",text:"instant",onclick:function(){ simSetSpeed(0); }})
+  ]);
+
+  host.appendChild(el("div",{class:"row"},[
+    el("label",{class:"hint",for:"simCard",text:"Card"}), cardSel,
+    el("span",{class:"hint",text:"Speed"}), speedSeg
+  ]));
+  cardSel.id = "simCard";
+
+  host.appendChild(el("div",{class:"row"},[
+    el("button",{class:"btn btn-primary",text:"Start simulation",disabled: s.active,onclick:simStart}),
+    el("button",{class:"btn",text: s.paused ? "Resume" : "Pause",disabled: !s.active || s.done,
+      onclick: s.paused ? simResume : simPause}),
+    el("button",{class:"btn",text:"Reset",disabled: !s.active && simRecordCount() === 0,
+      onclick:function(){ simReset(false); }}),
+    el("span",{class:"hint",style:"margin-left:auto",
+      text: s.active
+        ? (s.done ? "Complete — 5 of 5 stages walked." :
+           s.gate ? "Paused at a human gate. Approve it in the inbox to continue." :
+           s.paused ? "Paused." : "Running stage " + ((jobById(s.jobId)||{stage:0}).stage + 1) + " of 5.")
+        : (simRecordCount() ? simRecordCount() + " simulated records still present — Reset removes them." : "Idle.")})
+  ]));
+}
+
+setInterval(simTick, 200);
+
+/* ===========================================================================
+   Header status strip + view tabs + live clock
+   =========================================================================== */
+function renderStrip(){
+  var host = document.getElementById("statusbar");
+  clear(host);
+  var s = state.sim;
+  var inner = el("div",{class:"sb-inner"},[
+    el("span",{class:"sb-item"},[ el("span",{text:"Machine"}), el("b",{text:machine().label}) ]),
+    el("span",{class:"sb-sep","aria-hidden":"true"})
+  ]);
+
+  var chips = el("span",{class:"sb-stages"});
+  stages().forEach(function(st,i){
+    chips.appendChild(el("span",{class:"sb-chip",title:st.name + " — stage " + (i+1)},[
+      st.name, " ", el("b",{text:String(cardsFor(i).length)})
+    ]));
+  });
+  inner.appendChild(chips);
+  inner.appendChild(el("span",{class:"sb-sep","aria-hidden":"true"}));
+  inner.appendChild(el("span",{class:"sb-item"},[
+    el("span",{text:"Awaiting approval"}), el("b",{text:String(pendingApprovals().length)})
+  ]));
+  inner.appendChild(el("span",{class:"sb-sep","aria-hidden":"true"}));
+  inner.appendChild(el("span",{class:"sb-item"},[
+    el("span",{class:"sb-dot" + (s.active && !s.paused && !s.done ? " sim" : ""),"aria-hidden":"true"}),
+    el("span",{text: !s.active ? "No simulation running"
+      : s.done ? "Simulation complete (not a real run)"
+      : s.paused ? "Simulation paused (not a real run)"
+      : "SIMULATION running — nothing executed"})
+  ]));
+  inner.appendChild(el("span",{class:"sb-clock",id:"clock",title:"Local time",text:fmtClock()}));
+  host.appendChild(inner);
+}
+
+function renderTabs(){
+  var host = document.getElementById("tabs");
+  clear(host);
+  VIEWS.forEach(function(v){
+    var kids = [ el("span",{text:v.label}) ];
+    if (v.key === "approvals"){
+      var n = pendingApprovals().length;
+      if (n) kids.push(el("span",{class:"pill",text:String(n)}));
+    }
+    if (v.key === "ops"){
+      var running = state.jobs.filter(function(j){ return j.status === "running" || j.status === "queued"; }).length;
+      if (running) kids.push(el("span",{class:"pill",text:String(running)}));
+    }
+    host.appendChild(el("button",{class:"tab",id:"tab-"+v.key,role:"tab",
+      "aria-selected": state.view === v.key ? "true" : "false",
+      "aria-controls":"view-"+v.key,
+      onclick:function(){ state.view = v.key; save(); render(); }}, kids));
+  });
+  VIEWS.forEach(function(v){
+    var n = document.getElementById("view-" + v.key);
+    if (n) n.className = "view" + (state.view === v.key ? " on" : "");
+  });
+}
+
+/* Live relative timestamps + running durations, without a full re-render. */
+function refreshTimes(){
+  var rel = document.querySelectorAll("[data-rel]");
+  for (var i=0;i<rel.length;i++) rel[i].textContent = relTime(rel[i].getAttribute("data-rel"));
+  var dur = document.querySelectorAll("[data-dur]");
+  for (var k=0;k<dur.length;k++){
+    var t = new Date(dur[k].getAttribute("data-dur")).getTime();
+    dur[k].textContent = isFinite(t) ? fmtDur(Date.now() - t) : "—";
+  }
+}
+var tickN = 0;
+setInterval(function(){
+  var c = document.getElementById("clock");
+  if (c) c.textContent = fmtClock();
+  tickN++;
+  if (tickN % 5 === 0) refreshTimes();
+}, 1000);
 
 /* ===========================================================================
    Render root
@@ -1026,15 +2209,43 @@ function renderStorageNote(){
     : "Local storage unavailable — export before closing this tab.";
 }
 
+function isTyping(){
+  var a = document.activeElement;
+  return !!a && (a.tagName === "INPUT" || a.tagName === "TEXTAREA");
+}
+
+/* Partial re-render used by the simulation timer, so a step never steals the
+   caret from a note you are typing. */
+function renderLive(){
+  renderStrip();
+  renderSimBanner();
+  renderTabs();
+  if (state.view === "ops"){ renderJobs(); renderSimPanel(); }
+  if (state.view === "approvals") renderApprovals();
+  if (state.view === "activity") renderFeed();
+  if (state.view === "board" && !isTyping()) renderBoard();
+  if (state.view === "ledger" && !isTyping()) renderLog();
+  renderDrawer();
+}
+
 function render(){
   machineSelect.value = state.machine;
+  renderStrip();
+  renderSimBanner();
+  renderTabs();
   renderBanner();
   renderServices();
+  renderJobs();
+  renderRecForm();
+  renderSimPanel();
   renderNext();
   renderBoard();
+  renderApprovals();
+  renderFeed();
   renderLog();
   renderCosts();
   renderStorageNote();
+  renderDrawer();
 }
 
 render();

@@ -16,35 +16,86 @@ week, not buried.
 
 ---
 
+## READ THIS BEFORE SHOOTING ANYTHING — this account is faceless
+
+**Nobody appears in frame. Ever, on any of the 30 days.** No presenter, no
+talking head, no hired actor in shot, no AI-generated human other than Ava.
+There are exactly three permitted shot modes, and every day below is tagged
+with the one it uses:
+
+- **(a) Screen-only + voiceover** — the screen recording *is* the shot; an
+  unseen voice carries the words. This is the default and most days use it.
+- **(b) Ava** — the declared AI-avatar guide character, for explainer days.
+- **(c) Text-on-screen, no voice** — silent, caption-led pieces.
+
+The recurring played characters (**Skeptic**, **The Client**) stay, but are now
+**voice-only or hands-only**: a hand on a phone, a hand on a trackpad, a voice
+reacting off-screen. They are still dramatizations and still get labelled as
+such. This supersedes the "you, on camera or voiceover" wording in
+`content-system.md`'s cast entry — that character is now a voice and a cursor,
+never a person in shot. If a shot list ever asks you to point a lens at a human,
+it's wrong; re-read this block.
+
+### How trust gets carried without a presenter
+
+`market-research.md` is blunt about the cost here: a visible, named operator
+beats an anonymous account, and anonymity is a conversion killer in this niche.
+Going faceless gives up our strongest trust signal, so it has to be paid for
+deliberately, every week:
+
+- **Inspectable proof replaces presence.** Real artifacts, real file trees, real
+  command output landing live, the real operating console, real git history —
+  things a viewer could go and check. Any day that used to earn trust because a
+  human was saying it now has to earn it by showing something verifiable.
+  Prefer the messier, more specific artifact over the tidy one; specificity is
+  what a presenter used to supply.
+- **Faceless is not anonymous.** ClaudeFleet stays a named brand with a real
+  bio, a real support address, and a real person answering DMs. The profile must
+  never read as a burner page. Say the brand name out loud in the content.
+- **The refund stays visible.** The 30-day money-back refund is the only
+  guarantee this account ever makes, and it gets stated plainly and often — it
+  is the risk-reversal a presenter used to provide. No income claims, ever.
+- **Label what's simulated.** Whenever the single-file offline admin panel is on
+  screen, its simulated-activity labelling must be legible in frame, and the
+  voiceover says it plainly: it's a local, file-based console that reads files
+  from disk — no backend, no network calls, and it cannot run Claude Code from
+  the browser. Never frame or caption the panel so it could be mistaken for a
+  live run. This rule outranks every other note in this calendar.
+
+---
+
 ## Day 1 — PATTERN-INTERRUPT
+**Shot mode:** (a) Screen-only + voiceover, with a hands-only insert for the phone beat. No presenter, nobody in frame.
 **Hook:** "Delete this app." *(beat)* "Wait — no. Read the folder name first."
 **Beats:**
-1. Open on a hand hovering over an app icon like it's about to be deleted — then freeze-frame text overlay: "WRONG APP. LOOK AT THIS ONE INSTEAD."
+1. Open on a hand hovering over an app icon like it's about to be deleted (hand only, cropped at the wrist) — then freeze-frame text overlay: "WRONG APP. LOOK AT THIS ONE INSTEAD."
 2. Cut hard to a folder titled "Autopilot Content Machine" sitting on a desktop.
 3. "Everyone's uninstalling apps that do one thing. Smart people are installing one pipeline that does five jobs."
 4. Quick-flash the five pipeline stages: Idea → Script → Render → Assemble → Scheduled — one word each, fast cuts.
 5. "This isn't a content app. It's the five slash commands that replace your content week."
-**Visual note:** Higgsfield-style AI generation, matching the reel-scripts.md style anchor (`cinematic, moody teal-and-orange grade, shallow depth of field, 35mm lens, soft practical lighting, photorealistic`, 9:16). Scene: close-up of a thumb hovering over a phone app icon about to tap delete, sudden freeze with a sharp light flare, then hard-cut to a glowing desktop folder icon labeled "AUTOPILOT CONTENT MACHINE" pulsing once like it just powered on. Camera: fast punch-in on the freeze-frame, then a snap-cut to the folder — no easing, jarring on purpose.
+**Visual note:** Higgsfield-style AI generation, matching the reel-scripts.md style anchor (`cinematic, moody teal-and-orange grade, shallow depth of field, 35mm lens, soft practical lighting, photorealistic`, 9:16). Scene: extreme close-up of a thumb hovering over a phone app icon about to tap delete — **hand only, framed so no person is visible, no reflection of a person in the screen** — sudden freeze with a sharp light flare, then hard-cut to a glowing desktop folder icon labeled "AUTOPILOT CONTENT MACHINE" pulsing once like it just powered on. Camera: fast punch-in on the freeze-frame, then a snap-cut to the folder — no easing, jarring on purpose.
 **Caption:** Everyone's downloading more apps. I deleted mine and gave Claude a five-stage content pipeline instead. Screen-recording the actual setup this week — no hype, just the folder. Comment CONTENT and I'll send it over.
 **CTA keyword:** CONTENT
 
 ---
 
 ## Day 2 — SCREEN-RECORD PROOF
+**Shot mode:** (a) Screen-only + voiceover. The screen recording is the entire shot, start to finish.
 **Hook:** "This is my actual Autopilot Content Machine folder. Not a mockup. Let's open it."
 **Beats:**
 1. Screen-record starting on a plain desktop, cursor opens the Autopilot Content Machine folder live.
 2. Click into one of the 5 agent employee files — scroll the real prompt/instructions on screen, no zooming past it.
-3. Run `/cf-script` for real, let the response actually start generating on camera (don't cut away).
-4. Voiceover: "I'm not going to show you a fake dashboard. I'm going to show you the folder, because that's the whole product."
+3. Run `/cf-script` for real, let the response actually start generating on screen (don't cut away).
+4. Voiceover: "I'm not going to show you a fake dashboard, and I'm not going to stand in front of it either. I'm going to show you the folder, because that's the whole product."
 5. End on the finished script sitting in a file, cursor clicking it open to prove it's real.
-**Visual note:** Screen-record the actual Autopilot Content Machine files on your own machine — full unedited screen capture, cursor visible throughout, no cropped/blurred sections. Keep it feeling raw, not polished — per market-research.md, real screen-recorded proof outperforms every other trust format in this niche.
+**Visual note:** Screen-record the actual Autopilot Content Machine files on your own machine — full unedited screen capture, cursor visible throughout, no cropped/blurred sections. Voiceover only; the recording is the whole frame. Keep it feeling raw, not polished — per market-research.md, real screen-recorded proof outperforms every other trust format in this niche, and on a faceless account it is doing double duty: it is the proof *and* it is the thing standing in for a presenter, so leave the mess in (real file names, real timestamps, the odd typo) rather than tidying the desktop.
 **Caption:** No mockups, no "imagine this." Here's the actual folder, the actual slash command, the actual script it wrote — recorded live. This is the Autopilot Content Machine. $99, and heads up: that's the system, not the Claude/Higgsfield/Postiz subscriptions it runs on. Comment CONTENT and it's in your DMs.
 **CTA keyword:** CONTENT
 
 ---
 
 ## Day 3 — CHEAT-CODE
+**Shot mode:** (a) Screen-only + voiceover, opening on a text card. Nobody in frame at any point.
 **Hook:** "This feels like it shouldn't be legal to know."
 **Beats:**
 1. On-screen text punches in: "THIS FEELS ILLEGAL TO KNOW" over a dark, high-contrast frame.
@@ -59,6 +110,7 @@ week, not buried.
 ---
 
 ## Day 4 — LISTICLE
+**Shot mode:** (c) Text-on-screen, no voice. Silent, caption-led, cut to trending audio — the commands running on screen carry it.
 **Hook:** "3 slash commands that are basically a part-time content team."
 **Beats:**
 1. Text overlay: "3 COMMANDS. 3 REAL STAGES." Fast cut per command, ~4 seconds each.
@@ -66,14 +118,15 @@ week, not buried.
 3. Command 2: `/cf-render` — "Turns that script into an actual Higgsfield shot brief, ready to generate."
 4. Command 3: `/cf-schedule` — "Puts the finished post on the calendar through Postiz. No manual posting."
 5. "Those three are 3 of 17 in the Autopilot Content Machine. Same rule for all of them: one command, one finished stage."
-**Visual note:** Screen-record each of the three slash commands being run in real time, with quick text overlays naming the stage ("SCRIPT," "RENDER BRIEF," "SCHEDULED") stamped over the corner of the screen recording as each plays.
+**Visual note:** Screen-record each of the three slash commands being run in real time, with quick text overlays naming the stage ("SCRIPT," "RENDER BRIEF," "SCHEDULED") stamped over the corner of the screen recording as each plays. No voiceover on this one — every word is burned-in caption, so it reads muted-autoplay-first. Nobody appears; the cursor is the only thing moving.
 **Caption:** You don't need a hundred AI prompts saved. You need a pipeline that actually finishes. Here are 3 of the 17 in the Autopilot Content Machine. Comment CONTENT and I'll send the rest.
 **CTA keyword:** CONTENT
 
 ---
 
 ## Day 5 — SCREEN-RECORD PROOF
-**Hook:** "Watch me install this whole thing in under 2 minutes. Timer's on screen."
+**Shot mode:** (a) Screen-only + voiceover. Single continuous capture of the desktop; the timer widget is the only overlay.
+**Hook:** "Watch this install in under 2 minutes. Timer's on screen the whole way."
 **Beats:**
 1. Screen-record with a visible on-screen stopwatch overlay starting at 0:00.
 2. Unzip the real shipped Autopilot Content Machine files, drop the agent files and hooks into place, no cuts.
@@ -87,6 +140,7 @@ week, not buried.
 ---
 
 ## Day 6 — ENGAGEMENT-BAIT STORY
+**Shot mode:** (c) Text-on-screen, no voice. Native stickers over branded slides — no video, nobody in frame.
 **Hook:** Poll sticker: "Do you actually post consistently, or does content just pile up in your notes app?"
 **Beats:**
 1. Story frame 1: bold text "BE HONEST 👇" over a plain background, poll sticker with options "Posts weekly" / "It's a graveyard of drafts."
@@ -100,13 +154,15 @@ week, not buried.
 ---
 
 ## Day 7 — SCREEN-RECORD PROOF
+**Shot mode:** (a) Screen-only + voiceover. This is the week's credibility day, so every second of it is verifiable screen, not a person asserting things.
 **Hook:** "One week in. Here's everything people have actually asked me since Day 1."
 **Beats:**
 1. Screen-record scrolling real DM/comment threads from the week (blur out names/handles for privacy, keep the questions visible).
 2. "Most asked: 'does this actually work or is it just prompts.' Fair question — here's the folder again, live."
 3. Re-open the Autopilot Content Machine and run `/cf-assemble` on screen, showing the real assembled post come together.
-4. "Real behind-the-scenes: I installed this from the actual shipped zip this week, end to end — install, script, render, dashboard round-trip. It surfaced three real install bugs. Fixed all three, on camera, no cuts."
-5. "Next week I'm getting into how this actually fits into a content system you can run every day — not just the demo."
-**Visual note:** Screen-record scrolling real (identity-blurred) DMs/comments plus a live run of `/cf-assemble` and a look at the fixed install bugs from this week's real end-to-end test — this is the Week 1 credibility recap, so everything shown must be actual footage, nothing staged as a testimonial per content-system.md's fabricated-testimonial rule.
-**Caption:** One week of showing the actual folder instead of talking about it. This week I ran the real install end to end — found 3 real bugs, fixed all 3, all recorded. That's what "it works" means here: a receipt, not a claim. Autopilot Content Machine is $99 (Claude/Higgsfield/Postiz subscriptions not included — worth saying plainly). Comment CONTENT and I'll send it.
+4. "Real behind-the-scenes: I installed this from the actual shipped zip this week, end to end — install, script, render, panel round-trip. It surfaced three real install bugs." Cut to the actual `git log` scrolling on screen: three fix commits, real messages, real timestamps. "Fixed all three. There's the commits — you don't have to take my word for it, that's the point."
+5. "You're not going to see my face on this account. You're going to see the files, the commands, and the commit history instead. ClaudeFleet, real brand, real inbox, 30-day refund if it's not for you."
+6. "Next week I'm getting into how this actually fits into a content system you can run every day — not just the demo."
+**Visual note:** Screen-record only, voiceover only — nobody in frame. Scroll real (identity-blurred) DMs/comments, run `/cf-assemble` live, then show the real `git log` for the three install fixes with the actual commit messages and dates legible. This is the Week 1 credibility recap and the first day that has to prove the faceless format can still close: everything shown must be actual footage, nothing staged as a testimonial per content-system.md's fabricated-testimonial rule, and the commit history is doing the job a visible presenter would have done. Do not zoom past the commit text — let it sit long enough to read and pause.
+**Caption:** One week of showing the actual folder instead of talking about it. This week I ran the real install end to end — found 3 real bugs, fixed all 3, and the commits are in this video. That's what "it works" means here: a receipt, not a claim. You won't see me on this account; you'll see the files. ClaudeFleet is a named brand with a real inbox and a 30-day refund — ask me anything you want answered. Autopilot Content Machine is $99 (Claude/Higgsfield/Postiz subscriptions not included — worth saying plainly). Comment CONTENT and I'll send it.
 **CTA keyword:** CONTENT
