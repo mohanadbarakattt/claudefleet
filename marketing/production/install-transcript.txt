@@ -1,0 +1,56 @@
+
+$ unzip -q claudefleet-content-machine.zip && ls -1
+autopilot-content-machine
+claudefleet-content-machine.zip
+
+$ export FLEET_SRC="~/Downloads/autopilot-content-machine"
+
+$ export MACHINE_DIR=content-machine
+
+$ export CLAUDEFLEET_HOME="~/claudefleet"
+
+$ ls "$FLEET_SRC/_engine"
+ENGINE.md
+INSTALL.md
+admin-panel
+hooks
+pipeline.example.json
+
+$ mkdir -p "$CLAUDEFLEET_HOME/logs" "$CLAUDEFLEET_HOME/$MACHINE_DIR"/{assets,notes,scripts,briefs,posts,schedule} && echo "fleet home created"
+fleet home created
+
+$ cp "$FLEET_SRC/_engine/pipeline.example.json" "$CLAUDEFLEET_HOME/pipeline.json" && echo "pipeline.json seeded"
+pipeline.json seeded
+
+$ ls ~/.claude/agents
+cf-angle-scout.md
+cf-caption-writer.md
+cf-distribution-planner.md
+cf-script-writer.md
+cf-shot-designer.md
+
+$ ls ~/.claude/skills
+cf-assemble
+cf-ideas
+cf-render
+cf-schedule
+cf-script
+
+$ cp "$FLEET_SRC/_engine/admin-panel/index.html" "$CLAUDEFLEET_HOME/admin.html" && echo "admin panel installed"
+admin panel installed
+
+$ find "$CLAUDEFLEET_HOME" -maxdepth 2 | sed "s|~|~|" | sort
+~/claudefleet
+~/claudefleet/admin.html
+~/claudefleet/content-machine
+~/claudefleet/content-machine/assets
+~/claudefleet/content-machine/briefs
+~/claudefleet/content-machine/notes
+~/claudefleet/content-machine/posts
+~/claudefleet/content-machine/schedule
+~/claudefleet/content-machine/scripts
+~/claudefleet/logs
+~/claudefleet/pipeline.json
+
+$ python3 -m json.tool "$CLAUDEFLEET_HOME/pipeline.json" > /dev/null && echo "pipeline.json: valid JSON"
+pipeline.json: valid JSON
